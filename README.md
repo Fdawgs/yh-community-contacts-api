@@ -16,16 +16,12 @@
 
 This is [Yeovil District Hospital NHSFT](https://yeovilhospital.co.uk/)'s Community Contacts RESTful API, a Node.js application using the [Fastify](https://www.fastify.io/) web framework, built to support CRUD (Create, Read, Update, and Delete) functionality of community midwife, health visitor, and school nurse team email addresses in YDH's catchment area.
 
-Clients that automatically dispatch maternity and paediatric discharge summaries via encrypted email to their respective community teams, based on a patient’s postcode, school code, or GP practice code, primarily use this API.
+This was built for use by interface engine channels/workflows that automatically dispatch maternity and paediatric discharge summaries via encrypted email to their respective community teams, based on a patient’s postcode, school code, or GP practice code.
 
 ## Prerequisites
 
 -   [Node.js](https://nodejs.org/en/) >=14.0.0 (if running outside of Docker)
 -   [SQL Server](https://www.microsoft.com/en-gb/sql-server/sql-server-downloads) or [PostgreSQL](https://www.postgresql.org/download/) (either as services/instances or Docker containers)
-
-### Database Setup
-
-**TODO**
 
 ## Setup
 
@@ -47,15 +43,36 @@ Perform the following steps before deployment:
 ### Standard Deployment
 
 1. Run `npm install --ignore-scripts --production` to install dependencies
-2. Run `npm start`
+2. Run `npm run db:migrate` to create supporting database, schemas, and tables
+3. Run `npm start`
 
 The service should be up and running on the port set in the config. You should see the following output in stdout or the log file specified using the `LOG_ROTATION_FILENAME` environment variable:
 
 ```json
 {
 	"level": "info",
-	"time": "2020-12-01T09:48:08.612Z",
-	"pid": 41896,
+	"time": "2022-01-10T10:17:35.556Z",
+	"pid": 18,
+	"hostname": "MYCOMPUTER",
+	"msg": "Connecting to MSSQL DB"
+}
+```
+
+```json
+{
+	"level": "info",
+	"time": "2022-01-10T10:17:35.558Z",
+	"pid": 18,
+	"hostname": "MYCOMPUTER",
+	"msg": "MSSQL DB connection opened"
+}
+```
+
+```json
+{
+	"level": "info",
+	"time": "2022-01-10T10:17:35.760Z",
+	"pid": 18,
 	"hostname": "MYCOMPUTER",
 	"msg": "Server listening at http://0.0.0.0:8204"
 }
@@ -74,9 +91,10 @@ This requires [Docker](https://www.docker.com) installed.
 If you are unable to deploy this into production using Docker, it is recommended that you use a process manager such as [PM2](https://pm2.keymetrics.io/).
 
 1. Run `npm install --ignore-scripts --production` to install dependencies
-2. Run `npm install -g pm2` to install pm2 globally
-3. Launch application with `pm2 start .pm2.config.js`
-4. Check the application has been deployed using `pm2 list` or `pm2 monit`
+2. Run `npm run db:migrate` to create supporting database, schemas, and tables
+3. Run `npm install -g pm2` to install pm2 globally
+4. Launch application with `pm2 start .pm2.config.js`
+5. Check the application has been deployed using `pm2 list` or `pm2 monit`
 
 #### To Install as a Windows Service:
 
