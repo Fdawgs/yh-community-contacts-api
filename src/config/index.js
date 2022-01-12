@@ -231,16 +231,16 @@ async function getConfig() {
 		swagger: {
 			openapi: {
 				info: {
-					title: "YDH MyYDH CRUD API",
+					title: "YDH Community Contacts CRUD API",
 					description:
-						'<a href="https://yeovilhospital.co.uk/">Yeovil District Hospital NHSFT</a>\'s RESTful API, a Node.js application using the <a href="https://www.fastify.io/">Fastify web framework</a>, built to support CRUD (Create, Read, Update, and Delete) functionality of patient contact preferences for the MyYDH patient and clinician app at https://my.ydh.nhs.uk.',
+						'<a href="https://yeovilhospital.co.uk/">Yeovil District Hospital NHSFT</a>\'s Community Contacts RESTful API, a Node.js application using the <a href="https://www.fastify.io/">Fastify web framework</a>, built to support CRUD (Create, Read, Update, and Delete) functionality of community midwife, health visitor, and school nurse team email addresses in YDH\'s catchment area.',
 					contact: {
 						name: "Solutions Development Team",
 						email: "servicedesk@ydh.nhs.uk",
 					},
 					license: {
 						name: license,
-						url: "https://raw.githubusercontent.com/Fdawgs/ydh-myydh-crud-api/master/LICENSE",
+						url: "https://raw.githubusercontent.com/Fdawgs/ydh-community-contacts-api/master/LICENSE",
 					},
 					version,
 					// Redoc specific extension to support loading image in docs
@@ -254,14 +254,9 @@ async function getConfig() {
 				components: {},
 				tags: [
 					{
-						name: "Contact Preferences",
+						name: "Community Contacts",
 						description:
-							"Endpoints relating to patient contact preferences",
-					},
-					{
-						name: "Documents",
-						description:
-							"Endpoints relating to patient clinical documents",
+							"Endpoints relating to community contact details",
 					},
 					{
 						name: "System Administration",
