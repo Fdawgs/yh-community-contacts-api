@@ -14,7 +14,7 @@
 		"node": ">=14.0.0"
 	},
 	"scripts": {
-		"benchmark": "autocannon -a 1000 -H \"Authorization:Bearer testtoken\" \"http://0.0.0.0:8204/preferences/options\"",
+		"benchmark": "autocannon -a 1000 -H \"Authorization:Bearer testtoken\" \"http://0.0.0.0:8204/admin/healthcheck\"",
 		"db:migrate": "node ./src/migrate.js",
 		"jest": "jest --detectOpenHandles --runInBand",
 		"jest:coverage": "jest --coverage --runInBand",
