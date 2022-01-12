@@ -1,4 +1,4 @@
-IF OBJECT_ID('community_contacts_crud_api.lookup.discharge_email_destinations', 'U') IS NULL CREATE TABLE community_contacts_crud_api.lookup.discharge_email_destinations
+IF OBJECT_ID('community_contacts_api.lookup.discharge_email_destinations', 'U') IS NULL CREATE TABLE community_contacts_api.lookup.discharge_email_destinations
     (
         match_key VARCHAR(100) NOT NULL,
         match_value VARCHAR(100) NOT NULL,

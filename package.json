@@ -31,7 +31,7 @@
 		"test:db:mssql:down": "docker stop ydh-community-contacts-api-mssql",
 		"test:db:mssql:nuke": "docker stop ydh-community-contacts-api-mssql && docker rm -v ydh-community-contacts-api-mssql",
 		"test:db:mssql:up": "docker start ydh-community-contacts-api-mssql",
-		"test:db:postgres:build": "docker run -p 5432:5432 --name ydh-community-contacts-api-postgres -e POSTGRES_DB=community_contacts_crud_api -e POSTGRES_PASSWORD=password -d postgres:14-alpine",
+		"test:db:postgres:build": "docker run -p 5432:5432 --name ydh-community-contacts-api-postgres -e POSTGRES_DB=community_contacts_api -e POSTGRES_PASSWORD=password -d postgres:14-alpine",
 		"test:db:postgres:down": "docker stop ydh-community-contacts-api-postgres",
 		"test:db:postgres:nuke": "docker stop ydh-community-contacts-api-postgres && docker rm -v ydh-community-contacts-api-postgres",
 		"test:db:postgres:up": "docker start ydh-community-contacts-api-postgres"
