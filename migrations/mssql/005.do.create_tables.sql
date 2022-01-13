@@ -5,7 +5,7 @@ IF OBJECT_ID('community_contacts_api.lookup.discharge_email_destinations', 'U') 
         receiver VARCHAR(MAX) NOT NULL,
         email_health_visitors VARCHAR(256) NOT NULL,
         email_community_midwives VARCHAR(256) NOT NULL,
-        created DATETIME NOT NULL,
-        last_updated DATETIME,
+        created DATETIME2 NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        last_updated DATETIME2 DEFAULT CURRENT_TIMESTAMP,
         CONSTRAINT ck_destination_match PRIMARY KEY (match_key, match_value)
     );

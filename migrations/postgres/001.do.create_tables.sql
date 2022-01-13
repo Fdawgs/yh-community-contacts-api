@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS lookup.discharge_email_destinations
         receiver VARCHAR NOT NULL,
         email_health_visitors VARCHAR(256) NOT NULL,
         email_community_midwives VARCHAR(256) NOT NULL,
-        created TIMESTAMP NOT NULL,
-        last_updated TIMESTAMP,
+        created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         CONSTRAINT ck_destination_match PRIMARY KEY (match_key, match_value)
     );
