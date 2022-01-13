@@ -36,8 +36,8 @@ async function plugin(server) {
 						"message",
 						S.string().enum([
 							"Invalid or expired search results",
-							"Receiver record(s) do not exist or have already been deleted",
-							"Receiver record(s) not found",
+							"Contact record do not exist or has already been deleted",
+							"Contact record(s) not found",
 						])
 					)
 			)
@@ -74,10 +74,9 @@ async function plugin(server) {
 					.prop(
 						"message",
 						S.string().examples([
-							"Unable to delete read receipt from database",
-							"Unable to return result(s) from database",
-							"Unable to update patient preference in database",
-							"Unable to update read receipt in database",
+							"Unable to add contact record to database",
+							"Unable to delete contact record from database",
+							"Unable to update contact record in database",
 						])
 					)
 			)
