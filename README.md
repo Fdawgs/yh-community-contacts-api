@@ -21,7 +21,7 @@ This was built for use by interface engine channels/workflows that automatically
 ## Prerequisites
 
 -   [Node.js](https://nodejs.org/en/) >=14.0.0 (if running outside of Docker)
--   [SQL Server](https://www.microsoft.com/en-gb/sql-server/sql-server-downloads) or [PostgreSQL](https://www.postgresql.org/download/) (either as services/instances or Docker containers)
+-   [SQL Server](https://www.microsoft.com/en-gb/sql-server/sql-server-downloads) >=13.x or [PostgreSQL](https://www.postgresql.org/download/) (either as services/instances or Docker containers)
 
 ## Setup
 
@@ -31,6 +31,8 @@ Perform the following steps before deployment:
 2. Navigate to the project directory
 3. Make a copy of `.env.template` in the root directory and rename it to `.env`
 4. Configure the application using the environment variables in `.env`
+
+**Note:** You will need to create a database prior to using it in the `DB_CONNECTION_STRING` environment variable (this does not apply if using the included Docker Compose file to deploy)
 
 **Note:** Set the following environment variables in `.env` to meet NHS Digital's recommendation to retain 6 months' worth of logs:
 
@@ -108,6 +110,10 @@ Contributions are welcome, and any help is greatly appreciated!
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for details on how to get started.
 Please adhere to this project's [Code of Conduct](./CODE_OF_CONDUCT.md) when contributing.
+
+## Acknowledgements
+
+-   **Michael McCormack** - MSSQL query optimisation
 
 ## License
 

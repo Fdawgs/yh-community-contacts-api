@@ -1,1 +1,0 @@
-IF NOT EXISTS ( SELECT name FROM sys.databases WHERE name = N'community_contacts_api' ) EXEC('CREATE DATABASE community_contacts_api');
