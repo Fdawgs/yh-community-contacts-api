@@ -9,7 +9,7 @@ const contactBaseSchema = S.object()
 		S.object()
 			.prop(
 				"type",
-				S.string().examples(["gp_id", "postcode", "school code"])
+				S.string().examples(["gp_id", "postcode", "school_code"])
 			)
 			.prop("value", S.string().examples(["BA229RZ"]))
 			.prop("receiver", S.string().examples(["Sherborne"]))
@@ -142,7 +142,7 @@ const contactGetSearchSchema = {
 			"match.type",
 			S.string()
 				.description("Type of matching value")
-				.examples(["gp_id", "postcode", "school code"])
+				.examples(["gp_id", "postcode", "school_code"])
 		)
 		.prop(
 			"match.value",
