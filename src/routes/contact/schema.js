@@ -161,7 +161,7 @@ const contactGetSearchSchema = {
 			S.string().description().examples(["example@ydh.nhs.uk"])
 		)
 		.prop(
-			"last_updated",
+			"meta.last_updated",
 			S.anyOf([
 				S.string()
 					.description(

@@ -151,10 +151,6 @@ async function route(server, options) {
 		schema: contactGetSearchSchema,
 		async handler(req, res) {
 			try {
-				// Pagination values used for OFFSET and FETCH NEXT in SQL query
-				const page = parseInt(req.query.page, 10) - 1;
-				const perPage = parseInt(req.query.per_page, 10);
-
 				// Build WHERE clause
 				const whereArray = [];
 
@@ -203,15 +199,15 @@ async function route(server, options) {
 				}
 
 				/**
-				 * last_updated - Last modified datetime of community contact record,
+				 * meta.last_updated - Last modified datetime of community contact record,
 				 * can be a string or array
 				 */
-				if (req?.query?.last_updated) {
+				if (req?.query?.["meta.last_updated"]) {
 					let lastUpdated = [];
-					if (Array.isArray(req.query.last_updated)) {
-						lastUpdated = req.query.last_updated;
+					if (Array.isArray(req.query["meta.last_updated"])) {
+						lastUpdated = req.query["meta.last_updated"];
 					} else {
-						lastUpdated.push(req.query.last_updated);
+						lastUpdated.push(req.query["meta.last_updated"]);
 					}
 
 					lastUpdated.forEach((modified) => {
@@ -227,6 +223,10 @@ async function route(server, options) {
 						whereArray.push(`(last_updated ${operator} '${date}')`);
 					});
 				}
+
+				// Pagination values used for OFFSET and FETCH NEXT in SQL query
+				const page = parseInt(req.query.page, 10) - 1;
+				const perPage = parseInt(req.query.per_page, 10);
 
 				// Stops SQL query with empty WHERE clause from being made and throwing errors
 				if (whereArray.length === 0) {
