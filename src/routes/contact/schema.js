@@ -161,7 +161,7 @@ const contactGetSearchSchema = {
 			S.string().description().examples(["example@ydh.nhs.uk"])
 		)
 		.prop(
-			"lastModified",
+			"last_updated",
 			S.anyOf([
 				S.string()
 					.description(
@@ -206,7 +206,7 @@ const contactGetSearchSchema = {
 				.minimum(1)
 		)
 		.prop(
-			"perPage",
+			"per_page",
 			S.number()
 				.description(
 					"Number of community contact records to return per page"
@@ -224,7 +224,7 @@ const contactGetSearchSchema = {
 				S.array().items(
 					S.object()
 						.prop("url", S.string().format("uri"))
-						.extends(contactBaseSchema)
+						.extend(contactBaseSchema)
 				)
 			)
 			.prop(

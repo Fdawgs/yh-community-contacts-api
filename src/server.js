@@ -123,13 +123,13 @@ async function plugin(server, config) {
 				})
 				.register(clean)
 				.register(convertDateParamOperator)
-				.register(db, config.database);
-			// Import and register service routes
-			// .register(autoLoad, {
-			// 	dir: path.joinSafe(__dirname, "routes"),
-			// 	ignorePattern: /(admin|docs)/,
-			// 	options: config,
-			// });
+				.register(db, config.database)
+				// Import and register service routes
+				.register(autoLoad, {
+					dir: path.joinSafe(__dirname, "routes"),
+					ignorePattern: /(admin|docs)/,
+					options: config,
+				});
 		})
 
 		/**
