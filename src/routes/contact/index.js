@@ -199,6 +199,32 @@ async function route(server, options) {
 				}
 
 				/**
+				 * meta.created - Datetime when community contact record was created,
+				 * can be a string or array
+				 */
+				if (req?.query?.["meta.created"]) {
+					let created = [];
+					if (Array.isArray(req.query["meta.created"])) {
+						created = req.query["meta.created"];
+					} else {
+						created.push(req.query["meta.created"]);
+					}
+
+					created.forEach((modified) => {
+						let date = modified;
+						const operator = server.convertDateParamOperator(
+							querystring.escape(date).substring(0, 2)
+						);
+
+						if (Number.isNaN(Number(date.substring(0, 2)))) {
+							date = date.substring(2, date.length);
+						}
+
+						whereArray.push(`(created ${operator} '${date}')`);
+					});
+				}
+
+				/**
 				 * meta.last_updated - Last modified datetime of community contact record,
 				 * can be a string or array
 				 */

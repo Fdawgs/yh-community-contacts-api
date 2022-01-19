@@ -161,6 +161,43 @@ const contactGetSearchSchema = {
 			S.string().description().examples(["example@ydh.nhs.uk"])
 		)
 		.prop(
+			"meta.created",
+			S.anyOf([
+				S.string()
+					.description(
+						"Datetime when community contact record was created"
+					)
+					.examples([
+						"2022-01-13",
+						"ge2022-01-13T00:00:01",
+						"ge2022-01-13",
+						"2022-01-13T00:00:01",
+					])
+					.pattern(
+						/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)$/m
+					),
+				S.array()
+					.items(
+						S.string()
+							.description(
+								"Datetime when community contact record was created"
+							)
+							.examples([
+								"2022-01-13",
+								"ge2022-01-13T00:00:01",
+								"ge2022-01-13",
+								"2022-01-13T00:00:01",
+							])
+							.pattern(
+								/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)$/m
+							)
+					)
+					.minItems(2)
+					.maxItems(2)
+					.uniqueItems(true),
+			])
+		)
+		.prop(
 			"meta.last_updated",
 			S.anyOf([
 				S.string()
