@@ -11,8 +11,8 @@ const contactBaseSchema = S.object()
 				"type",
 				S.string().examples(["gp_id", "postcode", "school_code"])
 			)
-			.prop("value", S.string().examples(["BA229RZ"]))
-			.prop("receiver", S.string().examples(["Sherborne"]))
+			.prop("value", S.string().examples(["TA126JU"]))
+			.prop("receiver", S.string().examples(["Area North"]))
 	)
 	.prop(
 		"telecom",
