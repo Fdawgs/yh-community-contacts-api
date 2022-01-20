@@ -1,5 +1,3 @@
-const querystring = require("querystring");
-
 // Import plugins
 const cors = require("fastify-cors");
 
@@ -210,10 +208,10 @@ async function route(server, options) {
 						created.push(req.query["meta.created"]);
 					}
 
-					created.forEach((modified) => {
-						let date = modified;
+					created.forEach((createDate) => {
+						let date = createDate;
 						const operator = server.convertDateParamOperator(
-							querystring.escape(date).substring(0, 2)
+							date.substring(0, 2)
 						);
 
 						if (Number.isNaN(Number(date.substring(0, 2)))) {
@@ -236,10 +234,10 @@ async function route(server, options) {
 						lastUpdated.push(req.query["meta.last_updated"]);
 					}
 
-					lastUpdated.forEach((modified) => {
-						let date = modified;
+					lastUpdated.forEach((lastUpdatedDate) => {
+						let date = lastUpdatedDate;
 						const operator = server.convertDateParamOperator(
-							querystring.escape(date).substring(0, 2)
+							date.substring(0, 2)
 						);
 
 						if (Number.isNaN(Number(date.substring(0, 2)))) {
@@ -255,6 +253,7 @@ async function route(server, options) {
 				const perPage = parseInt(req.query.per_page, 10);
 
 				// Stops SQL query with empty WHERE clause from being made and throwing errors
+				// TODO: replace with JSON Schema subschemas when supported
 				if (whereArray.length === 0) {
 					res.badRequest("No valid query string parameters provided");
 				} else {
