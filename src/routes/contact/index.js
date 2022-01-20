@@ -256,7 +256,7 @@ async function route(server, options) {
 
 				// Stops SQL query with empty WHERE clause from being made and throwing errors
 				if (whereArray.length === 0) {
-					res.notFound("Invalid or expired search results");
+					res.badRequest("No valid query string parameters provided");
 				} else {
 					const whereClausePredicates = whereArray.join(" AND ");
 

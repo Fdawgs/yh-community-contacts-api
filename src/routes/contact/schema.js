@@ -285,6 +285,9 @@ const contactGetSearchSchema = {
 						.prop("total_pages", S.number().examples([1, 10]))
 				)
 			),
+		400: S.ref("responses#/definitions/badRequest").description(
+			"Bad Request"
+		),
 		401: S.ref("responses#/definitions/unauthorized").description(
 			"Unauthorized"
 		),

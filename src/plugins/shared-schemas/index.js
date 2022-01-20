@@ -14,6 +14,20 @@ async function plugin(server) {
 			.title("Responses")
 			.description("Common response schemas")
 			.definition(
+				"badRequest",
+				S.object()
+					.id("#badRequest")
+					.title("400 Bad Request")
+					.prop("statusCode", S.number().const(400))
+					.prop("error", S.string().const("Bad Request"))
+					.prop(
+						"message",
+						S.string().examples([
+							"No valid query string parameters provided",
+						])
+					)
+			)
+			.definition(
 				"unauthorized",
 				S.object()
 					.id("#unauthorized")
@@ -35,7 +49,6 @@ async function plugin(server) {
 					.prop(
 						"message",
 						S.string().enum([
-							"Invalid or expired search results",
 							"Contact record do not exist or has already been deleted",
 							"Contact record(s) not found",
 						])
