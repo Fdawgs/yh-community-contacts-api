@@ -174,7 +174,7 @@ const contactGetSearchSchema = {
 						"2022-01-13T00:00:01",
 					])
 					.pattern(
-						/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)$/m
+						/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)$/im
 					),
 				S.array()
 					.items(
@@ -189,7 +189,7 @@ const contactGetSearchSchema = {
 								"2022-01-13T00:00:01",
 							])
 							.pattern(
-								/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)$/m
+								/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)$/im
 							)
 					)
 					.minItems(2)
@@ -211,7 +211,7 @@ const contactGetSearchSchema = {
 						"2022-01-13T00:00:01",
 					])
 					.pattern(
-						/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)$/m
+						/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)$/im
 					),
 				S.array()
 					.items(
@@ -226,7 +226,7 @@ const contactGetSearchSchema = {
 								"2022-01-13T00:00:01",
 							])
 							.pattern(
-								/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)$/m
+								/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)$/im
 							)
 					)
 					.minItems(2)
