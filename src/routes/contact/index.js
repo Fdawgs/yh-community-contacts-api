@@ -1,3 +1,5 @@
+const { URL } = require("url");
+
 // Import plugins
 const cors = require("fastify-cors");
 
@@ -27,12 +29,19 @@ const {
  * @param {string} results.telecom - Stringified JSON object containing telecom details.
  * @param {string} results.created - Date community contact record was created.
  * @param {string=} results.last_updated - Date community contact record was last updated.
+ * @param {object=} req - Fastify Request object.
  * @returns {object} community contact record.
  */
-function buildContact(results) {
+function buildContact(results, req) {
 	return {
-		// TODO: add URL
-		url: ``,
+		// cleanObject will remove the undefined url key if present
+		url:
+			req !== undefined
+				? new URL(
+						`/contact/${results.id}`,
+						`${req.protocol}://${req.hostname}`
+				  ).href
+				: undefined,
 		id: results.id,
 		match: {
 			type: results.match_type,
@@ -131,7 +140,7 @@ async function route(server, options) {
 				 * Database client packages return results in different structures,
 				 * (mssql uses recordsets, pg uses rows) thus the optional chaining
 				 */
-				let contact = results?.recordsets?.[0] ?? results?.[0]?.rows;
+				let contact = results?.recordsets?.[0] ?? results?.rows;
 
 				if (contact && contact.length > 0) {
 					contact = contact[0];
@@ -287,8 +296,10 @@ async function route(server, options) {
 					);
 
 					const contactsObject = {
-						// TODO: add link
-						link: "",
+						link: new URL(
+							req.url,
+							`${req.protocol}://${req.hostname}`
+						).href,
 						entry: [],
 						meta: {
 							pagination: {
@@ -301,7 +312,7 @@ async function route(server, options) {
 					};
 
 					contacts.forEach((contact) => {
-						contactsObject.entry.push(buildContact(contact));
+						contactsObject.entry.push(buildContact(contact, req));
 					});
 					res.send(server.cleanObject(contactsObject));
 				}
