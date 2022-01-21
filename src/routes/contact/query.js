@@ -65,7 +65,10 @@ FETCH NEXT ${perPage} ROWS ONLY;`;
  * @author Frazer Smith
  * @description Build SQL query string.
  * @param {object} options - Query string and database config values.
- * @param {string} options.id - Logical id of the artifact.
+ * @param {string} options.matchType - Type of matching value.
+ * @param {string} options.matchValue - Matching Value.
+ * @param {string} options.matchReceiver - Receiving organisation or area.
+ * @param {string} options.telecom - JSON string containing contact details.
  * @returns {string} Query string.
  */
 const contactPost = ({ matchType, matchValue, matchReceiver, telecom }) =>
@@ -77,6 +80,10 @@ const contactPost = ({ matchType, matchValue, matchReceiver, telecom }) =>
  * @description Build SQL query string.
  * @param {object} options - Query string and database config values.
  * @param {string} options.id - Logical id of the artifact.
+ * @param {string} options.matchType - Type of matching value.
+ * @param {string} options.matchValue - Matching Value.
+ * @param {string} options.matchReceiver - Receiving organisation or area.
+ * @param {string} options.telecom - JSON string containing contact details.
  * @returns {string} Query string.
  */
 const contactPut = ({ id, matchType, matchValue, matchReceiver, telecom }) =>
