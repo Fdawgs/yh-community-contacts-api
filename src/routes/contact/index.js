@@ -352,15 +352,12 @@ async function route(server, options) {
 					);
 				}
 			} catch (err) {
-				console.log(err.message);
-				// Violation of PRIMARY KEY constraint 'ck_destination_match' for MSSQL
-				// duplicate key value violates unique constraint "ck_destination_match" for PG
-
-				// TODO: change thrown error message to mention violation if present
-
 				req.log.error({ req, res, err }, err && err.message);
+				// Primary key constraint 'ck_destination_match'
 				throw res.internalServerError(
-					"Unable to add contact record to database"
+					err.message.includes("ck_destination_match")
+						? "A contact record with already exists with this match.type and match.value combination"
+						: "Unable to add contact record to database"
 				);
 			}
 		},

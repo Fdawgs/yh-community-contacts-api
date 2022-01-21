@@ -88,6 +88,7 @@ async function plugin(server) {
 					.prop(
 						"message",
 						S.string().examples([
+							"A contact record with already exists with this match.type and match.value combination",
 							"Unable to add contact record to database",
 							"Unable to delete contact record from database",
 							"Unable to update contact record in database",
