@@ -13,6 +13,7 @@ const contactBaseSchema = S.object()
 			)
 			.prop("value", S.string().examples(["TA126JU"]))
 			.prop("receiver", S.string().examples(["Area North"]))
+			.required(["type", "value", "receiver"])
 	)
 	.prop(
 		"telecom",
@@ -28,6 +29,7 @@ const contactBaseSchema = S.object()
 							"Health Visitors",
 						])
 					)
+					.required(["system", "value", "use"])
 			)
 			.uniqueItems(true)
 	)
@@ -314,9 +316,10 @@ const contactPostSchema = {
 	summary: "Add community contact",
 	description: "Add a new community contact record.",
 	operationId: "postContact",
+	consumes: ["application/json"],
 	body: contactBaseSchema
 		.additionalProperties(false)
-		.only("match", "telecom"),
+		.only(["match", "telecom"]),
 	response: {
 		204: S.string().raw({ nullable: true }).description("No Content"),
 		401: S.ref("responses#/definitions/unauthorized").description(
@@ -342,6 +345,7 @@ const contactPutSchema = {
 	summary: "Update community contact",
 	description: "Update an existing community contact record.",
 	operationId: "putContact",
+	consumes: ["application/json"],
 	params: S.object()
 		.prop(
 			"id",
@@ -353,11 +357,14 @@ const contactPutSchema = {
 		.required(["id"]),
 	body: contactBaseSchema
 		.additionalProperties(false)
-		.only("match", "telecom"),
+		.only(["match", "telecom"]),
 	response: {
 		204: S.string().raw({ nullable: true }).description("No Content"),
 		401: S.ref("responses#/definitions/unauthorized").description(
 			"Unauthorized"
+		),
+		404: S.ref("responses#/definitions/notFoundDbResults").description(
+			"Not Found"
 		),
 		406: S.ref("responses#/definitions/notAcceptable").description(
 			"Not Acceptable"

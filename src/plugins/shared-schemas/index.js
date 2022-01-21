@@ -49,7 +49,7 @@ async function plugin(server) {
 					.prop(
 						"message",
 						S.string().enum([
-							"Contact record do not exist or has already been deleted",
+							"Contact record does not exist or has already been deleted",
 							"Contact record(s) not found",
 						])
 					)

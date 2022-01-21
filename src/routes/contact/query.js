@@ -61,4 +61,37 @@ ORDER BY match_value DESC
 OFFSET ${page * perPage} ROWS
 FETCH NEXT ${perPage} ROWS ONLY;`;
 
-module.exports = { contactDelete, contactGetRead, contactGetSearch };
+/**
+ * @author Frazer Smith
+ * @description Build SQL query string.
+ * @param {object} options - Query string and database config values.
+ * @param {string} options.id - Logical id of the artifact.
+ * @returns {string} Query string.
+ */
+const contactPost = ({ matchType, matchValue, matchReceiver, telecom }) =>
+	`INSERT INTO lookup.contacts (match_type, match_value, match_receiver, telecom)
+    VALUES  ('${matchType}', '${matchValue}', '${matchReceiver}', '${telecom}');`;
+
+/**
+ * @author Frazer Smith
+ * @description Build SQL query string.
+ * @param {object} options - Query string and database config values.
+ * @param {string} options.id - Logical id of the artifact.
+ * @returns {string} Query string.
+ */
+const contactPut = ({ id, matchType, matchValue, matchReceiver, telecom }) =>
+	`UPDATE lookup.contacts
+    SET match_type = '${matchType}',
+    match_value = '${matchValue}',
+    match_receiver = '${matchReceiver}',
+    telecom = '${telecom}',
+    last_updated = CURRENT_TIMESTAMP
+    WHERE id = '${id}'`;
+
+module.exports = {
+	contactDelete,
+	contactGetRead,
+	contactGetSearch,
+	contactPost,
+	contactPut,
+};

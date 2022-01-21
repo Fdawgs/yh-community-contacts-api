@@ -8,7 +8,13 @@ const {
 	contactPostSchema,
 	contactPutSchema,
 } = require("./schema");
-const { contactDelete, contactGetRead, contactGetSearch } = require("./query");
+const {
+	contactDelete,
+	contactGetRead,
+	contactGetSearch,
+	contactPost,
+	contactPut,
+} = require("./query");
 
 /**
  * @author Frazer Smith
@@ -97,7 +103,7 @@ async function route(server, options) {
 					res.status(204);
 				} else {
 					res.notFound(
-						"Contact record do not exist or has already been deleted"
+						"Contact record does not exist or has already been deleted"
 					);
 				}
 			} catch (err) {
@@ -281,6 +287,7 @@ async function route(server, options) {
 					);
 
 					const contactsObject = {
+						// TODO: add link
 						link: "",
 						entry: [],
 						meta: {
@@ -307,19 +314,82 @@ async function route(server, options) {
 		},
 	});
 
-	// server.route({
-	// 	method: "POST",
-	// 	url: "/",
-	// 	schema: contactPostSchema,
-	// 	async handler(req, res) {},
-	// });
+	server.route({
+		method: "POST",
+		url: "/",
+		schema: contactPostSchema,
+		async handler(req, res) {
+			try {
+				const results = await server.db.query(
+					contactPost({
+						matchType: req.body.match.type,
+						matchValue: req.body.match.value,
+						matchReceiver: req.body.match.receiver,
+						telecom: JSON.stringify(req.body.telecom),
+					})
+				);
 
-	// server.route({
-	// 	method: "PUT",
-	// 	url: "/:id",
-	// 	schema: contactPutSchema,
-	// 	async handler(req, res) {},
-	// });
+				/**
+				 * Database client packages return results in different structures,
+				 * (mssql uses rowsAffected, pg uses rowCount) thus the optional chaining
+				 */
+				if (results?.rowsAffected?.[0] > 0 || results?.rowCount > 0) {
+					res.status(204);
+				} else {
+					res.notFound(
+						"Contact record does not exist or has already been deleted"
+					);
+				}
+			} catch (err) {
+				console.log(err.message);
+				// Violation of PRIMARY KEY constraint 'ck_destination_match' for MSSQL
+				// duplicate key value violates unique constraint "ck_destination_match" for PG
+
+				// TODO: change thrown error message to mention violation if present
+
+				req.log.error({ req, res, err }, err && err.message);
+				throw res.internalServerError(
+					"Unable to add contact record to database"
+				);
+			}
+		},
+	});
+
+	server.route({
+		method: "PUT",
+		url: "/:id",
+		schema: contactPutSchema,
+		async handler(req, res) {
+			try {
+				const results = await server.db.query(
+					contactPut({
+						id: req.params.id,
+						matchType: req.body.match.type,
+						matchValue: req.body.match.value,
+						matchReceiver: req.body.match.receiver,
+						telecom: JSON.stringify(req.body.telecom),
+					})
+				);
+
+				/**
+				 * Database client packages return results in different structures,
+				 * (mssql uses rowsAffected, pg uses rowCount) thus the optional chaining
+				 */
+				if (results?.rowsAffected?.[0] > 0 || results?.rowCount > 0) {
+					res.status(204);
+				} else {
+					res.notFound(
+						"Contact record does not exist or has already been deleted"
+					);
+				}
+			} catch (err) {
+				req.log.error({ req, res, err }, err && err.message);
+				throw res.internalServerError(
+					"Unable to update contact record in database"
+				);
+			}
+		},
+	});
 }
 
 module.exports = route;
