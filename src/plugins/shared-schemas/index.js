@@ -7,6 +7,7 @@ const S = require("fluent-json-schema");
  * @param {object} server - Fastify instance.
  */
 async function plugin(server) {
+	// TODO: add 415 response schemas for POST and PUT
 	// Response schemas
 	server.addSchema(
 		S.object()
