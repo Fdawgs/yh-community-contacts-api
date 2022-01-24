@@ -40,6 +40,11 @@ WHERE id = '${id}';`;
 const contactGetSearch = ({ client, whereClausePredicates, page, perPage }) => `
 SELECT COUNT(*) AS total
 FROM lookup.contacts
+${
+	client === "mssql"
+		? "CROSS APPLY OPENJSON(lookup.contacts.telecom, '$') telecom_parsed"
+		: ""
+}
 WHERE ${whereClausePredicates};
 
 SELECT

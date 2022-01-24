@@ -203,7 +203,6 @@ async function route(server, options) {
 
 						case "mssql":
 						default:
-							// TODO: query does not work for MSSQL
 							whereArray.push(
 								`(ISJSON(telecom) = 1 AND JSON_VALUE(telecom_parsed.[value], '$.value') = '${req.query["telecom.value"]}')`
 							);
