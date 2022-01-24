@@ -355,7 +355,7 @@ async function route(server, options) {
 				// Primary key constraint 'ck_destination_match'
 				throw res.internalServerError(
 					err.message.includes("ck_destination_match")
-						? "A contact record with already exists with this match.type and match.value combination"
+						? "A contact record with this match.type and match.value combination already exists"
 						: "Unable to add contact record to database"
 				);
 			}
@@ -394,7 +394,7 @@ async function route(server, options) {
 				// Primary key constraint 'ck_destination_match'
 				throw res.internalServerError(
 					err.message.includes("ck_destination_match")
-						? "A contact record with already exists with this match.type and match.value combination"
+						? "A contact record with this match.type and match.value combination already exists"
 						: "Unable to update contact record in database"
 				);
 			}
