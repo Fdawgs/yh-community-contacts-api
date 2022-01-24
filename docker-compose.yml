@@ -1,18 +1,18 @@
 services:
     db:
-        container_name: ydh-community-contacts-crud-api-db
+        container_name: ydh-community-contacts-api-db
         image: postgres:14-alpine
         environment:
-            POSTGRES_DB: community-contacts_crud_api
+            POSTGRES_DB: community_contacts_api
             POSTGRES_USER: postgres
             POSTGRES_PASSWORD: password
         ports:
             - 5432:5432
         volumes:
-            - ydh-community-contacts-crud-api-db-data:/var/lib/postgresql/data
+            - ydh-community-contacts-api-db-data:/var/lib/postgresql/data
 
     app:
-        container_name: ydh-community-contacts-crud-api
+        container_name: ydh-community-contacts-api
         build:
             context: .
         deploy:
@@ -22,7 +22,7 @@ services:
                     memory: "${DOCKER_APP_MEMORY:-0}"
         env_file: .env
         environment:
-            DB_CONNECTION_STRING: "postgresql://postgres:password@ydh-community-contacts-crud-api-db:5432/community-contacts_crud_api"
+            DB_CONNECTION_STRING: "postgresql://postgres:password@ydh-community-contacts-api-db:5432/community_contacts_api"
             LOG_ROTATION_DATE_FORMAT:
             LOG_ROTATION_FILENAME:
             NODE_ENV: production
@@ -38,7 +38,7 @@ services:
             # See https://github.com/opencontainers/image-spec/blob/master/annotations.md
             org.opencontainers.image.authors: Frazer Smith <frazer.smith@ydh.nhs.uk>
             org.opencontainers.image.licenses: MIT
-            org.opencontainers.image.url: https://github.com/Fdawgs/ydh-community-contacts-crud-api
+            org.opencontainers.image.url: https://github.com/Fdawgs/ydh-community-contacts-api
         logging:
             options:
                 max-file: "${LOG_ROTATION_MAX_LOGS:-10}"
@@ -49,5 +49,5 @@ services:
         command: ["npm", "run", "start:migrate"]
 
 volumes:
-    ydh-community-contacts-crud-api-db-data:
+    ydh-community-contacts-api-db-data:
         external: false

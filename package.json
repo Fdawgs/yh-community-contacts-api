@@ -14,7 +14,7 @@
 		"node": ">=14.0.0"
 	},
 	"scripts": {
-		"benchmark": "autocannon -a 1000 -H \"Authorization:Bearer testtoken\" \"http://0.0.0.0:8204/preferences/options\"",
+		"benchmark": "autocannon -a 1000 -H \"Authorization:Bearer testtoken\" \"http://0.0.0.0:8204/admin/healthcheck\"",
 		"db:migrate": "node ./src/migrate.js",
 		"jest": "jest --detectOpenHandles --runInBand",
 		"jest:coverage": "jest --coverage --runInBand",
@@ -31,7 +31,7 @@
 		"test:db:mssql:down": "docker stop ydh-community-contacts-api-mssql",
 		"test:db:mssql:nuke": "docker stop ydh-community-contacts-api-mssql && docker rm -v ydh-community-contacts-api-mssql",
 		"test:db:mssql:up": "docker start ydh-community-contacts-api-mssql",
-		"test:db:postgres:build": "docker run -p 5432:5432 --name ydh-community-contacts-api-postgres -e POSTGRES_DB=community-contacts_crud_api -e POSTGRES_PASSWORD=password -d postgres:14-alpine",
+		"test:db:postgres:build": "docker run -p 5432:5432 --name ydh-community-contacts-api-postgres -e POSTGRES_DB=community_contacts_api -e POSTGRES_PASSWORD=password -d postgres:14-alpine",
 		"test:db:postgres:down": "docker stop ydh-community-contacts-api-postgres",
 		"test:db:postgres:nuke": "docker stop ydh-community-contacts-api-postgres && docker rm -v ydh-community-contacts-api-postgres",
 		"test:db:postgres:up": "docker start ydh-community-contacts-api-postgres"
@@ -83,7 +83,7 @@
 		"eslint-plugin-promise": "^6.0.0",
 		"eslint-plugin-security": "^1.4.0",
 		"eslint-plugin-security-node": "^1.1.0",
-		"faker": "^5.5.3",
+		"faker": "5.5.3",
 		"glob": "^7.2.0",
 		"husky": "^7.0.4",
 		"is-html": "^2.0.0",
