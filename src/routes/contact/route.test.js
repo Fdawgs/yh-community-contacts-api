@@ -231,10 +231,10 @@ describe("Contact Route", () => {
 					expect(response.statusCode).toBe(415);
 				});
 
-				test.skip("Should return HTTP status code 404 if contact record with id not found", async () => {
+				test("Should return HTTP status code 404 if contact record with id not found", async () => {
 					const mockQueryFn = jest
 						.fn()
-						.mockRejectedValue(
+						.mockResolvedValue(
 							testObject.mocks.queryResults.put.error
 						);
 
@@ -373,10 +373,10 @@ describe("Contact Route", () => {
 					expect(response.statusCode).toBe(415);
 				});
 
-				test.skip("Should return HTTP status code 500 if unable to update a contact record", async () => {
+				test("Should return HTTP status code 500 if unable to update a contact record", async () => {
 					const mockQueryFn = jest
 						.fn()
-						.mockRejectedValue(
+						.mockResolvedValue(
 							testObject.mocks.queryResults.post.error
 						);
 
