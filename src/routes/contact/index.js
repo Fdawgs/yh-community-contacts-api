@@ -391,8 +391,11 @@ async function route(server, options) {
 				}
 			} catch (err) {
 				req.log.error({ req, res, err }, err && err.message);
+				// Primary key constraint 'ck_destination_match'
 				throw res.internalServerError(
-					"Unable to update contact record in database"
+					err.message.includes("ck_destination_match")
+						? "A contact record with already exists with this match.type and match.value combination"
+						: "Unable to update contact record in database"
 				);
 			}
 		},
