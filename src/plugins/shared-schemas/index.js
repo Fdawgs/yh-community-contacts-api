@@ -7,7 +7,6 @@ const S = require("fluent-json-schema");
  * @param {object} server - Fastify instance.
  */
 async function plugin(server) {
-	// TODO: add 415 response schemas for POST and PUT
 	// Response schemas
 	server.addSchema(
 		S.object()
@@ -63,6 +62,20 @@ async function plugin(server) {
 					.prop("statusCode", S.number().const(406))
 					.prop("error", S.string().const("Not Acceptable"))
 					.prop("message", S.string().const("Not Acceptable"))
+			)
+			.definition(
+				"unsupportedMediaType",
+				S.object()
+					.id("#unsupportedMediaType")
+					.title("415 Unsupported Media Type")
+					.prop("statusCode", S.number().const(415))
+					.prop("error", S.string().const("Unsupported Media Type"))
+					.prop(
+						"message",
+						S.string().examples([
+							"Unsupported Media Type: application/xml",
+						])
+					)
 			)
 			.definition(
 				"tooManyRequests",
