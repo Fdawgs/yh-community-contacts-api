@@ -346,9 +346,7 @@ async function route(server, options) {
 				if (results?.rowsAffected?.[0] > 0 || results?.rowCount > 0) {
 					res.status(204);
 				} else {
-					res.notFound(
-						"Contact record does not exist or has already been deleted"
-					);
+					throw new Error();
 				}
 			} catch (err) {
 				req.log.error({ req, res, err }, err && err.message);
