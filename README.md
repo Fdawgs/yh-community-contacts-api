@@ -18,6 +18,8 @@ This is [Yeovil District Hospital NHSFT](https://yeovilhospital.co.uk/)'s Commun
 
 This was built for use by interface engine channels/workflows that automatically dispatch maternity and paediatric discharge summaries via encrypted email to their respective community teams, based on a patient’s postcode, school code, or GP practice code.
 
+A case study detailing the benefits of this API (and calling workflows) can be found [here](./docs/case_study.pdf).
+
 ## Prerequisites
 
 -   [Node.js](https://nodejs.org/en/) >=14.0.0 (if running outside of Docker)
@@ -113,7 +115,10 @@ Please adhere to this project's [Code of Conduct](./CODE_OF_CONDUCT.md) when con
 
 ## Acknowledgements
 
--   **Michael McCormack** - MSSQL query optimisation
+-   **Bev Barrett** (Digital Midwife) - Project lead; community midwife and health visitor email sourcing
+-   **Jon Mӧller** (Digital Solutions Analyst) - School code sourcing; Dorset county integration
+-   **Michael McCormack** (Solutions Developer) - MSSQL query optimisation
+-   **Raechele Newbury** (Safeguarding Children Practitioner) - Paediatric safeguarding email integration and adoption
 
 ## License
 
