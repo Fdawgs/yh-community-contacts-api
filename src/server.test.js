@@ -208,8 +208,61 @@ describe("Server Deployment", () => {
 					});
 				});
 
-				// eslint-disable-next-line jest/no-disabled-tests
-				describe.skip("/contacts Route", () => {});
+				describe("/contacts Route", () => {
+					const mockId = "b8e7265c-4733-44be-9238-7d7b8718fb88";
+
+					describe("/:id GET Requests", () => {
+						test("Should return HTTP status code 401 if bearer token invalid", async () => {
+							const response = await server.inject({
+								method: "GET",
+								url: `/contact/${mockId}`,
+								headers: {
+									accept: "application/json",
+									authorization: "Bearer invalid",
+								},
+							});
+
+							expect(response.headers).toEqual({
+								...expResHeadersJson,
+								vary: "accept-encoding",
+							});
+							expect(response.statusCode).toBe(401);
+						});
+
+						test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
+							const response = await server.inject({
+								method: "GET",
+								url: `/contact/${mockId}`,
+								headers: {
+									accept: "application/javascript",
+									authorization: "Bearer testtoken",
+								},
+							});
+
+							expect(JSON.parse(response.payload)).toEqual({
+								error: "Not Acceptable",
+								message: "Not Acceptable",
+								statusCode: 406,
+							});
+							expect(response.headers).toEqual(expResHeadersJson);
+							expect(response.statusCode).toBe(406);
+						});
+
+						test("Should return response if media type in `Accept` request header is supported", async () => {
+							const response = await server.inject({
+								method: "GET",
+								url: `/contact/${mockId}`,
+								headers: {
+									accept: "application/json",
+									authorization: "Bearer testtoken",
+								},
+							});
+
+							expect(response.headers).toEqual(expResHeadersJson);
+							expect(response.statusCode).not.toBe(406);
+						});
+					});
+				});
 			});
 		});
 	});
