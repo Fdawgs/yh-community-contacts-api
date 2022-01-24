@@ -1,3 +1,4 @@
+const faker = require("faker");
 const Fastify = require("fastify");
 const sensible = require("fastify-sensible");
 const route = require(".");
@@ -5,6 +6,11 @@ const getConfig = require("../../config");
 const cleanObject = require("../../plugins/clean-object");
 const convertDateParamOperator = require("../../plugins/convert-date-param-operator");
 const sharedSchemas = require("../../plugins/shared-schemas");
+
+const mockPage = 1;
+
+const mockDate1 = faker.date.past().toISOString().split("T")[0];
+const mockDate2 = faker.date.past().toISOString().split("T")[0];
 
 const mockId = "b8e7265c-4733-44be-9238-7d7b8718fb88";
 const mockPayload = {
@@ -36,6 +42,29 @@ const mockResult = {
 	last_updated: "2022-01-18T14:07:48.190Z",
 };
 
+const mockSearchResult = {
+	link: expect.any(String),
+	meta: {
+		pagination: {
+			total: expect.any(Number),
+			per_page: mockPage,
+			current_page: mockPage,
+			total_pages: expect.any(Number),
+		},
+	},
+	entry: [
+		{
+			url: expect.any(String),
+			id: mockId,
+			meta: {
+				created: mockResult.created,
+				last_updated: mockResult.last_updated,
+			},
+			...mockPayload,
+		},
+	],
+};
+
 describe("Contact Route", () => {
 	const connectionTests = [
 		{
@@ -57,12 +86,30 @@ describe("Contact Route", () => {
 							rowsAffected: [1],
 						},
 					},
-					get: {
+					getRead: {
 						error: {
 							recordsets: [],
 						},
 						ok: {
 							recordsets: [
+								[
+									{
+										...mockResult,
+										telecom: JSON.stringify(
+											mockPayload.telecom
+										),
+									},
+								],
+							],
+						},
+					},
+					getSearch: {
+						error: {
+							recordsets: [[], []],
+						},
+						ok: {
+							recordsets: [
+								[{ total: 1 }],
 								[
 									{
 										...mockResult,
@@ -96,7 +143,7 @@ describe("Contact Route", () => {
 						error: { rowCount: 0 },
 						ok: { rowCount: 1 },
 					},
-					get: {
+					getRead: {
 						error: {
 							rows: [],
 						},
@@ -108,6 +155,22 @@ describe("Contact Route", () => {
 								},
 							],
 						},
+					},
+					getSearch: {
+						error: {
+							rows: [],
+						},
+						ok: [
+							{ rows: [{ total: 1 }] },
+							{
+								rows: [
+									{
+										...mockResult,
+										telecom: mockPayload.telecom,
+									},
+								],
+							},
+						],
 					},
 					post: { error: { rowCount: 0 }, ok: { rowCount: 1 } },
 					put: { error: { rowCount: 0 }, ok: { rowCount: 1 } },
@@ -217,7 +280,7 @@ describe("Contact Route", () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
-							testObject.mocks.queryResults.get.ok
+							testObject.mocks.queryResults.getRead.ok
 						);
 
 					server.db = {
@@ -245,7 +308,7 @@ describe("Contact Route", () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
-							testObject.mocks.queryResults.get.error
+							testObject.mocks.queryResults.getRead.error
 						);
 
 					server.db = {
@@ -290,9 +353,176 @@ describe("Contact Route", () => {
 				});
 			});
 
-			// describe("/ GET Requests", () => {
-			// 	test("Should return contact record", async () => {});
-			// });
+			describe("/ GET Requests", () => {
+				test("Should return contact record, using all query string parameters", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockResolvedValue(
+							testObject.mocks.queryResults.getSearch.ok
+						);
+
+					server.db = {
+						query: mockQueryFn,
+					};
+
+					const response = await server.inject({
+						method: "GET",
+						url: "/",
+						query: {
+							"match.type": mockResult.match_type,
+							"match.value": mockResult.match_value,
+							"match.receiver": mockResult.match_receiver,
+							"telecom.value": mockPayload.telecom[0].value,
+							"meta.created": mockDate1,
+							"meta.last_updated": mockDate1,
+							per_page: mockPage,
+							page: mockPage,
+						},
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual(
+						mockSearchResult
+					);
+					expect(response.statusCode).toBe(200);
+				});
+
+				test("Should return contact record, using more than one `meta.created` and `meta.last_updated` query string params", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockResolvedValue(
+							testObject.mocks.queryResults.getSearch.ok
+						);
+
+					server.db = {
+						query: mockQueryFn,
+					};
+
+					const response = await server.inject({
+						method: "GET",
+						url: "/",
+						query: {
+							"meta.created": [mockDate1, mockDate2],
+							"meta.last_updated": [mockDate1, mockDate2],
+						},
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual(
+						mockSearchResult
+					);
+					expect(response.statusCode).toBe(200);
+				});
+
+				test("Should return contact record, using operators in the `meta.created` and `meta.last_updated` query string params", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockResolvedValue(
+							testObject.mocks.queryResults.getSearch.ok
+						);
+
+					server.db = {
+						query: mockQueryFn,
+					};
+
+					const response = await server.inject({
+						method: "GET",
+						url: "/",
+						query: {
+							"meta.created": `ge${mockDate1}`,
+							"meta.last_updated": `ge${mockDate1}`,
+						},
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual(
+						mockSearchResult
+					);
+					expect(response.statusCode).toBe(200);
+				});
+
+				test("Should return no contact records if table empty", async () => {
+					const mockQueryFn = jest.fn().mockResolvedValue({});
+
+					server.db = {
+						query: mockQueryFn,
+					};
+
+					const response = await server.inject({
+						method: "GET",
+						url: "/",
+						query: {
+							"match.type": mockResult.match_type,
+						},
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual({
+						link: expect.any(String),
+						meta: {
+							pagination: {
+								total: 0,
+								per_page: mockPage,
+								current_page: mockPage,
+								total_pages: 0,
+							},
+						},
+						entry: [],
+					});
+					expect(response.statusCode).toBe(200);
+				});
+
+				test("Should return HTTP status code 400 if no query string params present", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockResolvedValue(
+							testObject.mocks.queryResults.getSearch.error
+						);
+
+					server.db = {
+						query: mockQueryFn,
+					};
+
+					const response = await server.inject({
+						method: "GET",
+						url: "/",
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(0);
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Bad Request",
+						message: "No valid query string parameters provided",
+						statusCode: 400,
+					});
+					expect(response.statusCode).toBe(400);
+				});
+
+				test("Should return HTTP status code 500 if connection issue encountered", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockRejectedValue(Error("Failed to connect to DB"));
+
+					server.db = {
+						query: mockQueryFn,
+					};
+
+					const response = await server.inject({
+						method: "GET",
+						url: "/",
+						query: {
+							"match.type": mockResult.match_type,
+						},
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Internal Server Error",
+						message: "Unable to return result(s) from database",
+						statusCode: 500,
+					});
+					expect(response.statusCode).toBe(500);
+				});
+			});
 
 			describe("/:id PUT Requests", () => {
 				test("Should update contact record", async () => {
