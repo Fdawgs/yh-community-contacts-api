@@ -27,6 +27,15 @@ const mockPayload = {
 	],
 };
 
+const mockResult = {
+	id: mockId,
+	match_type: mockPayload.match.type,
+	match_value: mockPayload.match.value,
+	match_receiver: mockPayload.match.receiver,
+	created: "2022-01-18T14:07:48.190Z",
+	last_updated: "2022-01-18T14:07:48.190Z",
+};
+
 describe("Contact Route", () => {
 	const connectionTests = [
 		{
@@ -46,6 +55,23 @@ describe("Contact Route", () => {
 						},
 						ok: {
 							rowsAffected: [1],
+						},
+					},
+					get: {
+						error: {
+							recordsets: [],
+						},
+						ok: {
+							recordsets: [
+								[
+									{
+										...mockResult,
+										telecom: JSON.stringify(
+											mockPayload.telecom
+										),
+									},
+								],
+							],
 						},
 					},
 					put: {
@@ -69,6 +95,19 @@ describe("Contact Route", () => {
 					delete: {
 						error: { rowCount: 0 },
 						ok: { rowCount: 1 },
+					},
+					get: {
+						error: {
+							rows: [],
+						},
+						ok: {
+							rows: [
+								{
+									...mockResult,
+									telecom: mockPayload.telecom,
+								},
+							],
+						},
 					},
 					post: { error: { rowCount: 0 }, ok: { rowCount: 1 } },
 					put: { error: { rowCount: 0 }, ok: { rowCount: 1 } },
@@ -172,8 +211,88 @@ describe("Contact Route", () => {
 					expect(response.statusCode).toBe(500);
 				});
 			});
-			describe("/:id GET Requests", () => {});
-			describe("/ GET Requests", () => {});
+
+			describe("/:id GET Requests", () => {
+				test("Should return contact record", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockResolvedValue(
+							testObject.mocks.queryResults.get.ok
+						);
+
+					server.db = {
+						query: mockQueryFn,
+					};
+
+					const response = await server.inject({
+						method: "GET",
+						url: `/${mockId}`,
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual({
+						id: mockId,
+						meta: {
+							created: "2022-01-18T14:07:48.190Z",
+							last_updated: "2022-01-18T14:07:48.190Z",
+						},
+						...mockPayload,
+					});
+					expect(response.statusCode).toBe(200);
+				});
+
+				test("Should return HTTP status code 404 if contact record missing", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockResolvedValue(
+							testObject.mocks.queryResults.get.error
+						);
+
+					server.db = {
+						query: mockQueryFn,
+					};
+
+					const response = await server.inject({
+						method: "GET",
+						url: `/${mockId}`,
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Not Found",
+						message: "Contact record(s) not found",
+						statusCode: 404,
+					});
+					expect(response.statusCode).toBe(404);
+				});
+
+				test("Should return HTTP status code 500 if connection issue encountered", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockRejectedValue(Error("Failed to connect to DB"));
+
+					server.db = {
+						query: mockQueryFn,
+					};
+
+					const response = await server.inject({
+						method: "GET",
+						url: `/${mockId}`,
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Internal Server Error",
+						message: "Unable to return result(s) from database",
+						statusCode: 500,
+					});
+					expect(response.statusCode).toBe(500);
+				});
+			});
+
+			// describe("/ GET Requests", () => {
+			// 	test("Should return contact record", async () => {});
+			// });
 
 			describe("/:id PUT Requests", () => {
 				test("Should update contact record", async () => {
