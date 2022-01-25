@@ -38,7 +38,7 @@ WHERE id = '${id}';`;
  * @returns {string} Query string.
  */
 const contactGetSearch = ({ client, whereClausePredicates, page, perPage }) => `
-SELECT COUNT(*) AS total
+SELECT COUNT(DISTINCT id) AS total
 FROM lookup.contacts
 ${
 	client === "mssql"
@@ -47,7 +47,7 @@ ${
 }
 WHERE ${whereClausePredicates};
 
-SELECT
+SELECT DISTINCT
     id,
     match_type,
     match_value,
