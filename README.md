@@ -44,7 +44,7 @@ Perform the following steps before deployment:
 
 ## Deployment
 
-**Note:** Live records have not been included in SQL queries in `./migrations/**` (called by `db:migrate` script) as this would create an easily available list of NHS and local government email addresses for spambots to harvest and take advantage of
+**Note:** Live records have not been included in SQL queries in `./migrations/**` (called by `db:migrate` script) as this would present an easily available list of NHS and local government email addresses for spambots to harvest
 
 ### Standard Deployment
 
