@@ -3,6 +3,9 @@ const { URL } = require("url");
 // Import plugins
 const cors = require("fastify-cors");
 
+// Import utils
+const escSq = require("../../utils/escape-single-quotes");
+
 const {
 	contactDeleteSchema,
 	contactGetReadSchema,
@@ -170,7 +173,7 @@ async function route(server, options) {
 				// match.type - Type of matching value
 				if (req?.query?.["match.type"]) {
 					whereArray.push(
-						`(match_type = '${req.query["match.type"]}')`
+						escSq`(match_type = '${req.query["match.type"]}')`
 					);
 				}
 
@@ -178,7 +181,7 @@ async function route(server, options) {
 				if (req?.query?.["match.value"]) {
 					// _ and % act as wildcards in SQL LIKE clauses, so need to be escaped
 					whereArray.push(
-						`(match_value LIKE '${req.query["match.value"]
+						escSq`(match_value LIKE '${req.query["match.value"]
 							.replace(/%/g, "!%")
 							.replace(/_/g, "!_")
 							.replace(/\*/g, "%")}' ESCAPE '!')`
@@ -188,7 +191,7 @@ async function route(server, options) {
 				// match.receiver - Receiving organisation or area
 				if (req?.query?.["match.receiver"]) {
 					whereArray.push(
-						`(match_receiver = '${req.query["match.receiver"]}')`
+						escSq`(match_receiver = '${req.query["match.receiver"]}')`
 					);
 				}
 
@@ -197,14 +200,14 @@ async function route(server, options) {
 					switch (options.database.client) {
 						case "postgresql":
 							whereArray.push(
-								`(EXISTS (SELECT * FROM jsonb_array_elements(lookup.contacts.telecom) AS x(o) WHERE x.o @> '{"value": "${req.query["telecom.value"]}"}'))`
+								escSq`(EXISTS (SELECT * FROM jsonb_array_elements(lookup.contacts.telecom) AS x(o) WHERE x.o @> '{"value": "${req.query["telecom.value"]}"}'))`
 							);
 							break;
 
 						case "mssql":
 						default:
 							whereArray.push(
-								`(ISJSON(telecom) = 1 AND JSON_VALUE(telecom_parsed.[value], '$.value') = '${req.query["telecom.value"]}')`
+								escSq`(ISJSON(telecom) = 1 AND JSON_VALUE(telecom_parsed.[value], '$.value') = '${req.query["telecom.value"]}')`
 							);
 							break;
 					}
@@ -232,7 +235,7 @@ async function route(server, options) {
 							date = date.substring(2, date.length);
 						}
 
-						whereArray.push(`(created ${operator} '${date}')`);
+						whereArray.push(escSq`(created ${operator} '${date}')`);
 					});
 				}
 
@@ -258,7 +261,9 @@ async function route(server, options) {
 							date = date.substring(2, date.length);
 						}
 
-						whereArray.push(`(last_updated ${operator} '${date}')`);
+						whereArray.push(
+							escSq`(last_updated ${operator} '${date}')`
+						);
 					});
 				}
 

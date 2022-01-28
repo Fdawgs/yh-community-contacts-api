@@ -20,8 +20,32 @@ const contactBaseSchema = S.object()
 		S.array()
 			.items(
 				S.object()
-					.prop("system", S.string().examples(["email"]))
-					.prop("value", S.string().examples(["example@ydh.nhs.uk"]))
+					.prop(
+						"system",
+						S.string().enum([
+							"email",
+							"fax",
+							"pager",
+							"phone",
+							"url",
+						])
+					)
+					.prop(
+						"value",
+						S.anyOf([
+							S.string().format("email"),
+							S.string().format("url"),
+							S.string()
+								.examples([
+									"+44 1935 475122",
+									"+441935475122",
+									"+441935 475122",
+									"01935 475122",
+									"01935475122",
+								])
+								.pattern(/^\+?(?:\d\s?){10,12}$/im),
+						])
+					)
 					.prop(
 						"use",
 						S.string().examples([
@@ -160,7 +184,19 @@ const contactGetSearchSchema = {
 		)
 		.prop(
 			"telecom.value",
-			S.string().description().examples(["example@ydh.nhs.uk"])
+			S.anyOf([
+				S.string().format("email"),
+				S.string().format("url"),
+				S.string()
+					.examples([
+						"+44 1935 475122",
+						"+441935475122",
+						"+441935 475122",
+						"01935 475122",
+						"01935475122",
+					])
+					.pattern(/^\+?(?:\d\s?){10,12}$/im),
+			])
 		)
 		.prop(
 			"meta.created",
