@@ -44,6 +44,8 @@ Perform the following steps before deployment:
 
 ## Deployment
 
+**Note:** Live records have not been included in SQL queries in `./migrations/**` (called by `db:migrate` script) as this would create an easily available list of NHS and local government email addresses for spambots to harvest and take advantage of
+
 ### Standard Deployment
 
 1. Run `npm install --ignore-scripts --production` to install dependencies
