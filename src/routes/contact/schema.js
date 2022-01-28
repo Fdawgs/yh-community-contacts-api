@@ -7,6 +7,7 @@ const contactBaseSchema = S.object()
 	.prop(
 		"match",
 		S.object()
+			.additionalProperties(false)
 			.prop(
 				"type",
 				S.string().examples(["gp_id", "postcode", "school_code"])
@@ -20,6 +21,7 @@ const contactBaseSchema = S.object()
 		S.array()
 			.items(
 				S.object()
+					.additionalProperties(false)
 					.prop(
 						"system",
 						S.string().enum([
@@ -60,6 +62,7 @@ const contactBaseSchema = S.object()
 	.prop(
 		"meta",
 		S.object()
+			.additionalProperties(false)
 			.prop(
 				"created",
 				S.string()
@@ -293,6 +296,7 @@ const contactGetSearchSchema = {
 		),
 	responses: {
 		200: S.object()
+			.additionalProperties(false)
 			.prop("link", S.string().format("uri"))
 			.prop(
 				"entry",
@@ -304,24 +308,29 @@ const contactGetSearchSchema = {
 			)
 			.prop(
 				"meta",
-				S.object().prop(
-					"pagination",
-					S.object()
-						.prop("total", S.number().examples([0, 1, 10]))
-						.prop(
-							"per_page",
-							S.number()
-								.default(1)
-								.examples([1, 10])
-								.minimum(1)
-								.maximum(100)
-						)
-						.prop(
-							"current_page",
-							S.number().default(1).examples([1, 10]).minimum(1)
-						)
-						.prop("total_pages", S.number().examples([1, 10]))
-				)
+				S.object()
+					.additionalProperties(false)
+					.prop(
+						"pagination",
+						S.object()
+							.prop("total", S.number().examples([0, 1, 10]))
+							.prop(
+								"per_page",
+								S.number()
+									.default(1)
+									.examples([1, 10])
+									.minimum(1)
+									.maximum(100)
+							)
+							.prop(
+								"current_page",
+								S.number()
+									.default(1)
+									.examples([1, 10])
+									.minimum(1)
+							)
+							.prop("total_pages", S.number().examples([1, 10]))
+					)
 			),
 		400: S.ref("responses#/definitions/badRequest").description(
 			"Bad Request"
