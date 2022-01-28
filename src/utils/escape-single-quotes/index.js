@@ -4,7 +4,7 @@
 /**
  * @author Frazer Smith
  * @description Tagged template function to replace single-quote characters
- * in expressions with two adjacent single quotes, which allows
+ * in string expressions with two adjacent single quotes, which allows
  * a single-quote character within a string constant in SQL.
  * @param {*} strings
  * @param  {...any} expressions
@@ -17,7 +17,7 @@ function escapeSingleQuote(strings, ...expressions) {
 
 	expressions.forEach((value, i) => {
 		result += raw[i];
-		result += value.replace(/'/g, "''");
+		result += typeof value === "string" ? value.replace(/'/g, "''") : value;
 	});
 
 	// Add last literal section
