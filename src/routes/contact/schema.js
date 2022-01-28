@@ -166,7 +166,6 @@ const contactGetSearchSchema = {
 	operationId: "getSearchContact",
 	produces: ["application/json"],
 	query: S.object()
-		.additionalProperties(false)
 		.prop(
 			"match.type",
 			S.string()
@@ -313,6 +312,7 @@ const contactGetSearchSchema = {
 					.prop(
 						"pagination",
 						S.object()
+							.additionalProperties(false)
 							.prop("total", S.number().examples([0, 1, 10]))
 							.prop(
 								"per_page",
