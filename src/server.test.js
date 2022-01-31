@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable security-node/detect-crlf */
 const { chromium, firefox } = require("playwright");
 const Fastify = require("fastify");
 const isHtml = require("is-html");
