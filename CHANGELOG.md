@@ -1,5 +1,29 @@
 # Changelog
 
+### [1.0.2](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v1.0.1...v1.0.2) (2022-02-01)
+
+
+### Bug Fixes
+
+* **routes/contact:** ignore additional properties in pagination object ([#25](https://github.com/Fdawgs/ydh-community-contacts-api/issues/25)) ([55ad339](https://github.com/Fdawgs/ydh-community-contacts-api/commit/55ad33928a0d903c114cf15685ca22d86f4a6c7f))
+* **utils/escape-single-quotes:** ignore non-string expressions ([#27](https://github.com/Fdawgs/ydh-community-contacts-api/issues/27)) ([2379a86](https://github.com/Fdawgs/ydh-community-contacts-api/commit/2379a86dcadc4e2c3fc64b422665be29b2e49958))
+
+
+### Continuous Integration
+
+* install playwright ([0ed046b](https://github.com/Fdawgs/ydh-community-contacts-api/commit/0ed046b3f1c2199982b04d9b67f7b8073f19034d))
+
+
+### Dependencies
+
+* **deps-dev:** add playwright ([81c4aa9](https://github.com/Fdawgs/ydh-community-contacts-api/commit/81c4aa9c9180ea389a3cec2ca9cc0a53b90b78eb))
+* **deps-dev:** bump eslint from 8.7.0 to 8.8.0 ([7b60adc](https://github.com/Fdawgs/ydh-community-contacts-api/commit/7b60adc631d9978d0ed65d29dc64afb9aa2e47c0))
+* **deps:** bump dotenv from 14.3.2 to 15.0.0 ([e13a52a](https://github.com/Fdawgs/ydh-community-contacts-api/commit/e13a52a6dd885601df6d0d5b8afaed75935f6f8d))
+* **deps:** bump fastify-helmet from 5.3.2 to 7.0.1 ([#12](https://github.com/Fdawgs/ydh-community-contacts-api/issues/12)) ([fc3320e](https://github.com/Fdawgs/ydh-community-contacts-api/commit/fc3320ee86ccaaad52b97858510c87b20d934028))
+* **deps:** bump mssql from 7.3.0 to 8.0.1 ([91b2e73](https://github.com/Fdawgs/ydh-community-contacts-api/commit/91b2e73c638f20a398b8829aafbab326ddfaeec8))
+* **deps:** bump pino from 7.6.4 to 7.6.5 ([0d5ced4](https://github.com/Fdawgs/ydh-community-contacts-api/commit/0d5ced4283dbf6587e806f1baaff9ad2111297d4))
+* **deps:** bump sub-dependencies ([#33](https://github.com/Fdawgs/ydh-community-contacts-api/issues/33)) ([2235ef4](https://github.com/Fdawgs/ydh-community-contacts-api/commit/2235ef495c97451e3a5c4fdffd97818c553845f4))
+
 ### [1.0.1](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v1.0.0...v1.0.1) (2022-01-28)
 
 
