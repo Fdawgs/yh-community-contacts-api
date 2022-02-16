@@ -7,13 +7,13 @@ const cleanObject = require("../../plugins/clean-object");
 const convertDateParamOperator = require("../../plugins/convert-date-param-operator");
 const sharedSchemas = require("../../plugins/shared-schemas");
 
-const mockPage = 1;
+const testPage = 1;
 
-const mockDate1 = faker.date.past().toISOString().split("T")[0];
-const mockDate2 = faker.date.past().toISOString().split("T")[0];
+const testDate1 = faker.date.past().toISOString().split("T")[0];
+const testDate2 = faker.date.past().toISOString().split("T")[0];
 
-const mockId = "b8e7265c-4733-44be-9238-7d7b8718fb88";
-const mockPayload = {
+const testId = "b8e7265c-4733-44be-9238-7d7b8718fb88";
+const testPayload = {
 	match: {
 		type: "postcode",
 		value: "TA126JU",
@@ -33,34 +33,34 @@ const mockPayload = {
 	],
 };
 
-const mockResult = {
-	id: mockId,
-	match_type: mockPayload.match.type,
-	match_value: mockPayload.match.value,
-	match_receiver: mockPayload.match.receiver,
+const testResult = {
+	id: testId,
+	match_type: testPayload.match.type,
+	match_value: testPayload.match.value,
+	match_receiver: testPayload.match.receiver,
 	created: "2022-01-18T14:07:48.190Z",
 	last_updated: "2022-01-18T14:07:48.190Z",
 };
 
-const mockSearchResult = {
+const expSearchResult = {
 	link: expect.any(String),
 	meta: {
 		pagination: {
 			total: expect.any(Number),
-			per_page: mockPage,
-			current_page: mockPage,
+			per_page: testPage,
+			current_page: testPage,
 			total_pages: expect.any(Number),
 		},
 	},
 	entry: [
 		{
 			url: expect.any(String),
-			id: mockId,
+			id: testId,
 			meta: {
-				created: mockResult.created,
-				last_updated: mockResult.last_updated,
+				created: testResult.created,
+				last_updated: testResult.last_updated,
 			},
-			...mockPayload,
+			...testPayload,
 		},
 	],
 };
@@ -94,9 +94,9 @@ describe("Contact Route", () => {
 							recordsets: [
 								[
 									{
-										...mockResult,
+										...testResult,
 										telecom: JSON.stringify(
-											mockPayload.telecom
+											testPayload.telecom
 										),
 									},
 								],
@@ -112,9 +112,9 @@ describe("Contact Route", () => {
 								[{ total: 1 }],
 								[
 									{
-										...mockResult,
+										...testResult,
 										telecom: JSON.stringify(
-											mockPayload.telecom
+											testPayload.telecom
 										),
 									},
 								],
@@ -150,8 +150,8 @@ describe("Contact Route", () => {
 						ok: {
 							rows: [
 								{
-									...mockResult,
-									telecom: mockPayload.telecom,
+									...testResult,
+									telecom: testPayload.telecom,
 								},
 							],
 						},
@@ -165,8 +165,8 @@ describe("Contact Route", () => {
 							{
 								rows: [
 									{
-										...mockResult,
-										telecom: mockPayload.telecom,
+										...testResult,
+										telecom: testPayload.telecom,
 									},
 								],
 							},
@@ -216,7 +216,7 @@ describe("Contact Route", () => {
 
 					const response = await server.inject({
 						method: "DELETE",
-						url: `/${mockId}`,
+						url: `/${testId}`,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -237,7 +237,7 @@ describe("Contact Route", () => {
 
 					const response = await server.inject({
 						method: "DELETE",
-						url: `/${mockId}`,
+						url: `/${testId}`,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -261,7 +261,7 @@ describe("Contact Route", () => {
 
 					const response = await server.inject({
 						method: "DELETE",
-						url: `/${mockId}`,
+						url: `/${testId}`,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -289,17 +289,17 @@ describe("Contact Route", () => {
 
 					const response = await server.inject({
 						method: "GET",
-						url: `/${mockId}`,
+						url: `/${testId}`,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.payload)).toEqual({
-						id: mockId,
+						id: testId,
 						meta: {
 							created: "2022-01-18T14:07:48.190Z",
 							last_updated: "2022-01-18T14:07:48.190Z",
 						},
-						...mockPayload,
+						...testPayload,
 					});
 					expect(response.statusCode).toBe(200);
 				});
@@ -317,7 +317,7 @@ describe("Contact Route", () => {
 
 					const response = await server.inject({
 						method: "GET",
-						url: `/${mockId}`,
+						url: `/${testId}`,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -340,7 +340,7 @@ describe("Contact Route", () => {
 
 					const response = await server.inject({
 						method: "GET",
-						url: `/${mockId}`,
+						url: `/${testId}`,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -369,20 +369,20 @@ describe("Contact Route", () => {
 						method: "GET",
 						url: "/",
 						query: {
-							"match.type": mockResult.match_type,
-							"match.value": mockResult.match_value,
-							"match.receiver": mockResult.match_receiver,
-							"telecom.value": mockPayload.telecom[0].value,
-							"meta.created": mockDate1,
-							"meta.last_updated": mockDate1,
-							per_page: mockPage,
-							page: mockPage,
+							"match.type": testResult.match_type,
+							"match.value": testResult.match_value,
+							"match.receiver": testResult.match_receiver,
+							"telecom.value": testPayload.telecom[0].value,
+							"meta.created": testDate1,
+							"meta.last_updated": testDate1,
+							per_page: testPage,
+							page: testPage,
 						},
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.payload)).toEqual(
-						mockSearchResult
+						expSearchResult
 					);
 					expect(response.statusCode).toBe(200);
 				});
@@ -402,14 +402,14 @@ describe("Contact Route", () => {
 						method: "GET",
 						url: "/",
 						query: {
-							"meta.created": [mockDate1, mockDate2],
-							"meta.last_updated": [mockDate1, mockDate2],
+							"meta.created": [testDate1, testDate2],
+							"meta.last_updated": [testDate1, testDate2],
 						},
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.payload)).toEqual(
-						mockSearchResult
+						expSearchResult
 					);
 					expect(response.statusCode).toBe(200);
 				});
@@ -429,14 +429,14 @@ describe("Contact Route", () => {
 						method: "GET",
 						url: "/",
 						query: {
-							"meta.created": `ge${mockDate1}`,
-							"meta.last_updated": `ge${mockDate1}`,
+							"meta.created": `ge${testDate1}`,
+							"meta.last_updated": `ge${testDate1}`,
 						},
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.payload)).toEqual(
-						mockSearchResult
+						expSearchResult
 					);
 					expect(response.statusCode).toBe(200);
 				});
@@ -452,7 +452,7 @@ describe("Contact Route", () => {
 						method: "GET",
 						url: "/",
 						query: {
-							"match.type": mockResult.match_type,
+							"match.type": testResult.match_type,
 						},
 					});
 
@@ -462,8 +462,8 @@ describe("Contact Route", () => {
 						meta: {
 							pagination: {
 								total: 0,
-								per_page: mockPage,
-								current_page: mockPage,
+								per_page: testPage,
+								current_page: testPage,
 								total_pages: 0,
 							},
 						},
@@ -510,7 +510,7 @@ describe("Contact Route", () => {
 						method: "GET",
 						url: "/",
 						query: {
-							"match.type": mockResult.match_type,
+							"match.type": testResult.match_type,
 						},
 					});
 
@@ -538,11 +538,11 @@ describe("Contact Route", () => {
 
 					const response = await server.inject({
 						method: "PUT",
-						url: `/${mockId}`,
+						url: `/${testId}`,
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: mockPayload,
+						payload: testPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -563,11 +563,11 @@ describe("Contact Route", () => {
 
 					const response = await server.inject({
 						method: "PUT",
-						url: `/${mockId}`,
+						url: `/${testId}`,
 						headers: {
 							"content-type": "application/javascript",
 						},
-						payload: mockPayload,
+						payload: testPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(0);
@@ -593,11 +593,11 @@ describe("Contact Route", () => {
 
 					const response = await server.inject({
 						method: "PUT",
-						url: `/${mockId}`,
+						url: `/${testId}`,
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: mockPayload,
+						payload: testPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -621,11 +621,11 @@ describe("Contact Route", () => {
 
 					const response = await server.inject({
 						method: "PUT",
-						url: `/${mockId}`,
+						url: `/${testId}`,
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: mockPayload,
+						payload: testPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -648,11 +648,11 @@ describe("Contact Route", () => {
 
 					const response = await server.inject({
 						method: "PUT",
-						url: `/${mockId}`,
+						url: `/${testId}`,
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: mockPayload,
+						payload: testPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -684,7 +684,7 @@ describe("Contact Route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: mockPayload,
+						payload: testPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -709,7 +709,7 @@ describe("Contact Route", () => {
 						headers: {
 							"content-type": "application/javascript",
 						},
-						payload: mockPayload,
+						payload: testPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(0);
@@ -739,7 +739,7 @@ describe("Contact Route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: mockPayload,
+						payload: testPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -766,7 +766,7 @@ describe("Contact Route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: mockPayload,
+						payload: testPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -793,7 +793,7 @@ describe("Contact Route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: mockPayload,
+						payload: testPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);

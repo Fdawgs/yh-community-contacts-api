@@ -212,13 +212,13 @@ describe("Server Deployment", () => {
 				});
 
 				describe("/contacts Route", () => {
-					const mockId = "b8e7265c-4733-44be-9238-7d7b8718fb88";
+					const testId = "b8e7265c-4733-44be-9238-7d7b8718fb88";
 
 					describe("/:id GET Requests", () => {
 						test("Should return HTTP status code 401 if bearer token invalid", async () => {
 							const response = await server.inject({
 								method: "GET",
-								url: `/contact/${mockId}`,
+								url: `/contact/${testId}`,
 								headers: {
 									accept: "application/json",
 									authorization: "Bearer invalid",
@@ -235,7 +235,7 @@ describe("Server Deployment", () => {
 						test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
 							const response = await server.inject({
 								method: "GET",
-								url: `/contact/${mockId}`,
+								url: `/contact/${testId}`,
 								headers: {
 									accept: "application/javascript",
 									authorization: "Bearer testtoken",
@@ -254,7 +254,7 @@ describe("Server Deployment", () => {
 						test("Should return response if media type in `Accept` request header is supported", async () => {
 							const response = await server.inject({
 								method: "GET",
-								url: `/contact/${mockId}`,
+								url: `/contact/${testId}`,
 								headers: {
 									accept: "application/json",
 									authorization: "Bearer testtoken",
