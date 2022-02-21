@@ -366,7 +366,15 @@ const contactPostSchema = {
 		.additionalProperties(false)
 		.only(["match", "telecom"]),
 	response: {
-		204: S.string().raw({ nullable: true }).description("No Content"),
+		201: S.object().prop(
+			"id",
+			S.string()
+				.description(
+					"Unique identifier of newly created community contact record"
+				)
+				.examples(["A972C577-DFB0-064E-1189-0154C99310DAAC12"])
+				.format("uuid")
+		),
 		401: S.ref("responses#/definitions/unauthorized").description(
 			"Unauthorized"
 		),
