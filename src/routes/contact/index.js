@@ -337,6 +337,7 @@ async function route(server, options) {
 			try {
 				const results = await server.db.query(
 					contactPost({
+						client: options.database.client,
 						matchType: req.body.match.type,
 						matchValue: req.body.match.value,
 						matchReceiver: req.body.match.receiver,
@@ -346,11 +347,16 @@ async function route(server, options) {
 
 				/**
 				 * Database client packages return results in different structures,
-				 * (mssql uses rowsAffected, pg uses rowCount) thus the optional chaining
+				 * (mssql uses recordsets, pg uses rows) thus the optional chaining
 				 */
-				if (results?.rowsAffected?.[0] > 0 || results?.rowCount > 0) {
-					res.status(204);
+				let contact = results?.recordsets?.[0] ?? results?.rows;
+
+				if (contact && contact.length > 0) {
+					contact = contact[0];
+
+					res.status(201).send(contact);
 				} else {
+					// TODO: resolve "Promise errored, but reply.sent = true was set" being logged, should be fixed in Fastify v4.x.x
 					throw new Error();
 				}
 			} catch (err) {

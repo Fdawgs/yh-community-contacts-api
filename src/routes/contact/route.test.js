@@ -78,14 +78,6 @@ describe("Contact Route", () => {
 						error: { rowsAffected: [0] },
 						ok: { rowsAffected: [1] },
 					},
-					post: {
-						error: {
-							rowsAffected: [0],
-						},
-						ok: {
-							rowsAffected: [1],
-						},
-					},
 					getRead: {
 						error: {
 							recordsets: [],
@@ -116,6 +108,20 @@ describe("Contact Route", () => {
 										telecom: JSON.stringify(
 											testPayload.telecom
 										),
+									},
+								],
+							],
+						},
+					},
+					post: {
+						error: {
+							recordsets: [],
+						},
+						ok: {
+							recordsets: [
+								[
+									{
+										id: testId,
 									},
 								],
 							],
@@ -172,7 +178,18 @@ describe("Contact Route", () => {
 							},
 						],
 					},
-					post: { error: { rowCount: 0 }, ok: { rowCount: 1 } },
+					post: {
+						error: {
+							rows: [],
+						},
+						ok: {
+							rows: [
+								{
+									id: testId,
+								},
+							],
+						},
+					},
 					put: { error: { rowCount: 0 }, ok: { rowCount: 1 } },
 				},
 			},
@@ -688,8 +705,10 @@ describe("Contact Route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(response.payload).toBe("");
-					expect(response.statusCode).toBe(204);
+					expect(JSON.parse(response.payload)).toEqual({
+						id: testId,
+					});
+					expect(response.statusCode).toBe(201);
 				});
 
 				test("Should return HTTP status code 415 if content-type in `Content-Type` request header unsupported", async () => {
