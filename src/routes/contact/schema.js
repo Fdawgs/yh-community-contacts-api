@@ -126,7 +126,7 @@ const contactGetReadSchema = {
 	summary: "Read community contact",
 	description: "Return a single community contact record.",
 	operationId: "getReadContact",
-	produces: ["application/json"],
+	produces: ["application/json", "application/xml"],
 	params: S.object()
 		.prop(
 			"id",
@@ -164,7 +164,7 @@ const contactGetSearchSchema = {
 	summary: "Search community contact",
 	description: "Return community contact records.",
 	operationId: "getSearchContact",
-	produces: ["application/json"],
+	produces: ["application/json", "application/xml"],
 	query: S.object()
 		.prop(
 			"match.type",
@@ -362,6 +362,7 @@ const contactPostSchema = {
 	description: "Add a new community contact record.",
 	operationId: "postContact",
 	consumes: ["application/json"],
+	produces: ["application/json", "application/xml"],
 	body: contactBaseSchema
 		.additionalProperties(false)
 		.only(["match", "telecom"]),
