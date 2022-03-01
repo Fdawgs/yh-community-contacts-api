@@ -177,14 +177,16 @@ async function route(server, options) {
 					);
 				}
 
-				// match.value - Matching value, supports `*` wildcards
+				// match.value - Matching value, case-insensitive and supports `*` wildcards
 				if (req?.query?.["match.value"]) {
 					// _ and % act as wildcards in SQL LIKE clauses, so need to be escaped
 					whereArray.push(
-						escSq`(match_value LIKE '${req.query["match.value"]
+						escSq`(LOWER(match_value) LIKE LOWER('${req.query[
+							"match.value"
+						]
 							.replace(/%/g, "!%")
 							.replace(/_/g, "!_")
-							.replace(/\*/g, "%")}' ESCAPE '!')`
+							.replace(/\*/g, "%")}') ESCAPE '!')`
 					);
 				}
 

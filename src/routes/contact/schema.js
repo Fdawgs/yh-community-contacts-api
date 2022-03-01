@@ -175,7 +175,9 @@ const contactGetSearchSchema = {
 		.prop(
 			"match.value",
 			S.string()
-				.description("Matching value, supports `*` wildcards")
+				.description(
+					"Matching value, case-insensitive and supports `*` wildcards"
+				)
 				.examples(["BA229RZ", "BA2*", "BA22*"])
 		)
 		.prop(
