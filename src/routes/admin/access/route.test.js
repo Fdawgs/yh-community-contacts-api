@@ -389,6 +389,7 @@ describe("Access Route", () => {
 							"access.name": testResult.name,
 							"access.email": testResult.email,
 							"access.expires": testResult.expires,
+							"access.scopes": "contact.search",
 							"meta.created": testDate1,
 							"meta.last_updated": testDate1,
 							per_page: testPage,

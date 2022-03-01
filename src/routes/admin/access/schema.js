@@ -22,6 +22,13 @@ const accessRecordBaseSchema = S.object()
 						"Contact email of client or service accessing API"
 					)
 			)
+			.prop(
+				"expires",
+				S.string()
+					.description("Expiry date of bearer token")
+					.examples(["2022-01-13T14:05:54.000Z"])
+					.format("date-time")
+			)
 			.prop("hash", S.string().description("Hashed API key"))
 			.prop("salt", S.string().description("Salt used on hashed API key"))
 			.prop(
@@ -31,13 +38,6 @@ const accessRecordBaseSchema = S.object()
 					.description(
 						"Actions the API key has been granted access to perform"
 					)
-			)
-			.prop(
-				"expires",
-				S.string()
-					.description("Expiry date of bearer token")
-					.examples(["2022-01-13T14:05:54.000Z"])
-					.format("date-time")
 			)
 	)
 	.prop(
@@ -194,6 +194,10 @@ const accessGetSearchSchema = {
 					.maxItems(2)
 					.uniqueItems(true),
 			])
+		)
+		.prop(
+			"access.scopes",
+			S.string().description("An action the bearer token can perform")
 		)
 		.prop(
 			"meta.created",
@@ -374,12 +378,6 @@ const accessPostSchema = {
 				)
 		)
 		.prop(
-			"scopes",
-			S.array()
-				.uniqueItems(true)
-				.description("Actions the bearer token can perform")
-		)
-		.prop(
 			"expires",
 			S.string()
 				.description("Expiry date of bearer token")
@@ -393,6 +391,12 @@ const accessPostSchema = {
 				.pattern(
 					/^\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)(?:.\d{3}|)(?:Z|)$/im
 				)
+		)
+		.prop(
+			"scopes",
+			S.array()
+				.uniqueItems(true)
+				.description("Actions the bearer token can perform")
 		)
 		.required(["name", "scopes"]),
 	response: {

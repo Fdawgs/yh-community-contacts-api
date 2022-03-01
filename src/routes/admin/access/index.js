@@ -221,6 +221,18 @@ async function route(server, options) {
 					);
 				}
 
+				// access.scopes - One of the values in the scopes array
+				if (req?.query?.["access.scopes"]) {
+					// _ and % act as wildcards in SQL LIKE clauses, so need to be escaped
+					whereArray.push(
+						escSq`(LOWER(scopes) LIKE LOWER('%${req.query[
+							"access.scopes"
+						]
+							.replace(/%/g, "!%")
+							.replace(/_/g, "!_")}%') ESCAPE '!')`
+					);
+				}
+
 				/**
 				 * access.expires - Datetime when API key expires,
 				 * can be a string or array
@@ -402,11 +414,11 @@ async function route(server, options) {
 						client: options.database.client,
 						name: req.body.name,
 						email: req?.body?.email ?? "",
-						scopes: JSON.stringify(req.body.scopes),
-						hash,
-						salt,
 						// If not set then provide a date ridiculously far into the future
 						expires: req?.body?.expires ?? "9999-12-31",
+						hash,
+						salt,
+						scopes: JSON.stringify(req.body.scopes),
 					})
 				);
 
