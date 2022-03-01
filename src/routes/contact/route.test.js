@@ -340,7 +340,7 @@ describe("Contact Route", () => {
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.payload)).toEqual({
 						error: "Not Found",
-						message: "Contact record(s) not found",
+						message: "Contact record not found",
 						statusCode: 404,
 					});
 					expect(response.statusCode).toBe(404);
@@ -363,7 +363,7 @@ describe("Contact Route", () => {
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.payload)).toEqual({
 						error: "Internal Server Error",
-						message: "Unable to return result(s) from database",
+						message: "Unable to return result from database",
 						statusCode: 500,
 					});
 					expect(response.statusCode).toBe(500);

@@ -50,7 +50,7 @@ async function plugin(server) {
 						"message",
 						S.string().examples([
 							"Contact record does not exist or has already been deleted",
-							"Contact record(s) not found",
+							"Contact record not found",
 						])
 					)
 			)
@@ -104,6 +104,7 @@ async function plugin(server) {
 							"A contact record with already exists with this match.type and match.value combination",
 							"Unable to add contact record to database",
 							"Unable to delete contact record from database",
+							"Unable to return result(s) from database",
 							"Unable to update contact record in database",
 						])
 					)

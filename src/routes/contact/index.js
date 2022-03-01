@@ -150,12 +150,12 @@ async function route(server, options) {
 
 					res.send(server.cleanObject(buildContact(contact)));
 				} else {
-					res.notFound("Contact record(s) not found");
+					res.notFound("Contact record not found");
 				}
 			} catch (err) {
 				req.log.error({ req, res, err }, err && err.message);
 				throw res.internalServerError(
-					"Unable to return result(s) from database"
+					"Unable to return result from database"
 				);
 			}
 		},
