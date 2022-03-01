@@ -161,7 +161,7 @@ const contactGetReadSchema = {
 
 const contactGetSearchSchema = {
 	tags,
-	summary: "Search community contact",
+	summary: "Search community contacts",
 	description: "Return community contact records.",
 	operationId: "getSearchContact",
 	produces: ["application/json", "application/xml"],
