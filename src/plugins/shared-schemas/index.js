@@ -48,7 +48,7 @@ async function plugin(server) {
 					.prop("error", S.string().const("Not Found"))
 					.prop(
 						"message",
-						S.string().enum([
+						S.string().examples([
 							"Contact record does not exist or has already been deleted",
 							"Contact record(s) not found",
 						])
