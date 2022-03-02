@@ -5,6 +5,7 @@ const secJSON = require("secure-json-parse");
 
 // Import plugins
 const accepts = require("fastify-accepts");
+const basic = require("fastify-basic-auth");
 const bearer = require("fastify-bearer-auth");
 const compress = require("fastify-compress");
 const disableCache = require("fastify-disablecache");
@@ -91,14 +92,14 @@ async function plugin(server, config) {
 			return res;
 		})
 
-		// Import and register admin routes
+		// Import and register healthcheck route
 		.register(autoLoad, {
-			dir: path.joinSafe(__dirname, "routes", "admin"),
-			options: { ...config, prefix: "admin" },
+			dir: path.joinSafe(__dirname, "routes", "admin", "healthcheck"),
+			options: { ...config, prefix: "admin/healthcheck" },
 		})
 
 		/**
-		 * Encapsulate plugins and routes into secured child context, so that admin and docs
+		 * Encapsulate plugins and routes into secured child context, so that other
 		 * routes do not inherit `accepts` preHandler or bearer token auth plugin.
 		 * See https://www.fastify.io/docs/latest/Encapsulation/ for more info
 		 */
@@ -164,6 +165,41 @@ async function plugin(server, config) {
 					dir: path.joinSafe(__dirname, "routes"),
 					ignorePattern: /(admin|docs)/,
 					options: config,
+				});
+		})
+
+		// const testAdminUsername = "admin";
+		// const testAdminPassword = "password";
+		// const testBasicAuthHeader = `Basic ${Buffer.from(
+		// 	`${testAdminUsername}:${testAdminPassword}`
+		// ).toString("base64")}`;
+
+		/**
+		 * Encapsulate the admin/access routes into a child context, so that the other
+		 * routes do not inherit `accepts` preHandler or basic auth plugin.
+		 */
+		.register(async (adminContext) => {
+			await adminContext
+				// Protect routes with Basic auth
+				.register(basic, {
+					validate: async (username, password, req, res) => {
+						if (
+							username !== config.admin.username &&
+							password !== config.admin.password
+						) {
+							throw res.unauthorized();
+						}
+					},
+					authenticate: false,
+				});
+
+			adminContext
+				.addHook("onRequest", adminContext.basicAuth)
+				// Import and register service routes
+				.register(autoLoad, {
+					dir: path.joinSafe(__dirname, "routes", "admin"),
+					ignorePattern: /(healthcheck)/,
+					options: { ...config, prefix: "admin" },
 				});
 		})
 

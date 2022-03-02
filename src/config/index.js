@@ -132,6 +132,10 @@ async function getConfig() {
 			// API Keys
 			.prop("AUTH_BEARER_TOKEN_ARRAY", S.anyOf([S.string(), S.null()]))
 
+			// Admin login
+			.prop("ADMIN_USERNAME", S.string())
+			.prop("ADMIN_PASSWORD", S.string())
+
 			// Database Connection
 			.prop(
 				"DB_CLIENT",
@@ -145,6 +149,8 @@ async function getConfig() {
 				"NODE_ENV",
 				"SERVICE_HOST",
 				"SERVICE_PORT",
+				"ADMIN_USERNAME",
+				"ADMIN_PASSWORD",
 				"DB_CONNECTION_STRING",
 			]),
 	});
@@ -269,6 +275,10 @@ async function getConfig() {
 					},
 				],
 			},
+		},
+		admin: {
+			username: env.ADMIN_USERNAME,
+			password: env.ADMIN_PASSWORD,
 		},
 		database: {
 			client: env.DB_CLIENT || "mssql",
