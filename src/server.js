@@ -36,7 +36,7 @@ async function plugin(server, config) {
 		// Support Content-Encoding
 		.register(compress, { inflateIfDeflated: true })
 
-		// Database Connection
+		// Database connection
 		.register(db, config.database)
 
 		// Opt-out of Google's FLoC advertising-surveillance network
