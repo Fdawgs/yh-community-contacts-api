@@ -99,7 +99,7 @@ async function route(server, options) {
 		method: "DELETE",
 		url: "/:id",
 		schema: contactDeleteSchema,
-		async handler(req, res) {
+		handler: async (req, res) => {
 			try {
 				const results = await server.db.query(
 					contactDelete({
@@ -131,7 +131,7 @@ async function route(server, options) {
 		method: "GET",
 		url: "/:id",
 		schema: contactGetReadSchema,
-		async handler(req, res) {
+		handler: async (req, res) => {
 			try {
 				const results = await server.db.query(
 					contactGetRead({
@@ -165,7 +165,7 @@ async function route(server, options) {
 		method: "GET",
 		url: "/",
 		schema: contactGetSearchSchema,
-		async handler(req, res) {
+		handler: async (req, res) => {
 			try {
 				// Build WHERE clause
 				const whereArray = [];
@@ -335,7 +335,7 @@ async function route(server, options) {
 		method: "POST",
 		url: "/",
 		schema: contactPostSchema,
-		async handler(req, res) {
+		handler: async (req, res) => {
 			try {
 				const results = await server.db.query(
 					contactPost({
@@ -377,7 +377,7 @@ async function route(server, options) {
 		method: "PUT",
 		url: "/:id",
 		schema: contactPutSchema,
-		async handler(req, res) {
+		handler: async (req, res) => {
 			try {
 				const results = await server.db.query(
 					contactPut({
