@@ -104,7 +104,7 @@ async function route(server, options) {
 				throw res.notAcceptable();
 			}
 		},
-		async handler(req, res) {
+		handler: async (req, res) => {
 			try {
 				const results = await server.db.query(
 					accessDelete({
@@ -146,7 +146,7 @@ async function route(server, options) {
 				throw res.notAcceptable();
 			}
 		},
-		async handler(req, res) {
+		handler: async (req, res) => {
 			try {
 				const results = await server.db.query(
 					accessGetRead({
@@ -190,7 +190,7 @@ async function route(server, options) {
 				throw res.notAcceptable();
 			}
 		},
-		async handler(req, res) {
+		handler: async (req, res) => {
 			try {
 				// Build WHERE clause
 				const whereArray = [];
@@ -391,7 +391,7 @@ async function route(server, options) {
 				throw res.notAcceptable();
 			}
 		},
-		async handler(req, res) {
+		handler: async (req, res) => {
 			try {
 				/**
 				 * Token prefixes are a clear way to make tokens identifiable, thus the 'ydhcc'.
