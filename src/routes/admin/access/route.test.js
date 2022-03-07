@@ -1,5 +1,4 @@
 /* eslint-disable jest/no-disabled-tests */
-const accepts = require("fastify-accepts");
 const faker = require("faker");
 const Fastify = require("fastify");
 const sensible = require("fastify-sensible");
@@ -212,7 +211,6 @@ describe("Access Route", () => {
 
 				server = Fastify();
 				server
-					.register(accepts)
 					.register(cleanObject)
 					.register(convertDateParamOperator)
 					.register(sensible)
@@ -404,7 +402,7 @@ describe("Access Route", () => {
 					expect(response.statusCode).toBe(200);
 				});
 
-				test("Should return bearer token record, using more than one `meta.created` and `meta.last_updated` query string params", async () => {
+				test("Should return bearer token record, using more than one `access.expires`, meta.created`, and `meta.last_updated` query string params", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -419,6 +417,7 @@ describe("Access Route", () => {
 						method: "GET",
 						url: "/",
 						query: {
+							"access.expires": [testDate1, testDate2],
 							"meta.created": [testDate1, testDate2],
 							"meta.last_updated": [testDate1, testDate2],
 						},
@@ -431,7 +430,7 @@ describe("Access Route", () => {
 					expect(response.statusCode).toBe(200);
 				});
 
-				test("Should return bearer token record, using operators in the `meta.created` and `meta.last_updated` query string params", async () => {
+				test("Should return bearer token record, using operators in the `access.expires`, meta.created`, and `meta.last_updated` query string params", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -446,6 +445,7 @@ describe("Access Route", () => {
 						method: "GET",
 						url: "/",
 						query: {
+							"access.expires": `ge${testDate1}`,
 							"meta.created": `ge${testDate1}`,
 							"meta.last_updated": `ge${testDate1}`,
 						},
@@ -560,6 +560,41 @@ describe("Access Route", () => {
 							"content-type": "application/json",
 						},
 						payload: testPayload,
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual({
+						id: testId,
+						access: {
+							token: expect.stringMatching(/^ydhcc_/im),
+							scopes: testPayload.scopes,
+						},
+					});
+					expect(response.statusCode).toBe(201);
+				});
+
+				test("Should create bearer token record without optional body properties", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockResolvedValue(
+							testObject.mocks.queryResults.post.ok
+						);
+
+					server.db = {
+						query: mockQueryFn,
+					};
+
+					const trimmedTestPayload = { ...testPayload };
+					delete trimmedTestPayload.email;
+					delete trimmedTestPayload.expires;
+
+					const response = await server.inject({
+						method: "POST",
+						url: "/",
+						headers: {
+							"content-type": "application/json",
+						},
+						payload: trimmedTestPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);

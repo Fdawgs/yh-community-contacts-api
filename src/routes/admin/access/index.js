@@ -94,16 +94,6 @@ async function route(server, options) {
 		method: "DELETE",
 		url: "/:id",
 		schema: accessDeleteSchema,
-		preValidation: async (req, res) => {
-			if (
-				// Catch unsupported Accept header media types
-				!accessDeleteSchema.produces.includes(
-					req.accepts().type(accessDeleteSchema.produces)
-				)
-			) {
-				throw res.notAcceptable();
-			}
-		},
 		handler: async (req, res) => {
 			try {
 				const results = await server.db.query(
@@ -136,16 +126,6 @@ async function route(server, options) {
 		method: "GET",
 		url: "/:id",
 		schema: accessGetReadSchema,
-		preValidation: async (req, res) => {
-			if (
-				// Catch unsupported Accept header media types
-				!accessGetReadSchema.produces.includes(
-					req.accepts().type(accessGetReadSchema.produces)
-				)
-			) {
-				throw res.notAcceptable();
-			}
-		},
 		handler: async (req, res) => {
 			try {
 				const results = await server.db.query(
@@ -180,16 +160,6 @@ async function route(server, options) {
 		method: "GET",
 		url: "/",
 		schema: accessGetSearchSchema,
-		preValidation: async (req, res) => {
-			if (
-				// Catch unsupported Accept header media types
-				!accessGetSearchSchema.produces.includes(
-					req.accepts().type(accessGetSearchSchema.produces)
-				)
-			) {
-				throw res.notAcceptable();
-			}
-		},
 		handler: async (req, res) => {
 			try {
 				// Build WHERE clause
@@ -255,7 +225,7 @@ async function route(server, options) {
 							date = date.substring(2, date.length);
 						}
 
-						whereArray.push(escSq`(created ${operator} '${date}')`);
+						whereArray.push(escSq`(expires ${operator} '${date}')`);
 					});
 				}
 
@@ -381,16 +351,6 @@ async function route(server, options) {
 		method: "POST",
 		url: "/",
 		schema: accessPostSchema,
-		preValidation: async (req, res) => {
-			if (
-				// Catch unsupported Accept header media types
-				!accessPostSchema.produces.includes(
-					req.accepts().type(accessPostSchema.produces)
-				)
-			) {
-				throw res.notAcceptable();
-			}
-		},
 		handler: async (req, res) => {
 			try {
 				/**

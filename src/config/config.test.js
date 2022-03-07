@@ -47,7 +47,7 @@ describe("Configuration", () => {
 		const RATE_LIMIT_EXCLUDED_ARRAY = '["127.0.0.1"]';
 		const ADMIN_USERNAME = "admin";
 		const ADMIN_PASSWORD = "password";
-		const AUTH_BEARER_TOKEN_ARRAY = "";
+		const BEARER_TOKEN_AUTH_ENABLED = "";
 		const DB_CLIENT = "";
 		const DB_CONNECTION_STRING =
 			"Server=localhost,1433;Database=database;User Id=username;Password=password;Encrypt=true";
@@ -74,16 +74,14 @@ describe("Configuration", () => {
 			PROC_LOAD_MAX_RSS_BYTES,
 			RATE_LIMIT_MAX_CONNECTIONS_PER_MIN,
 			RATE_LIMIT_EXCLUDED_ARRAY,
-			AUTH_BEARER_TOKEN_ARRAY,
 			ADMIN_USERNAME,
 			ADMIN_PASSWORD,
+			BEARER_TOKEN_AUTH_ENABLED,
 			DB_CLIENT,
 			DB_CONNECTION_STRING,
 		});
 
 		const config = await getConfig();
-
-		expect(config.bearerTokenAuthKeys).toBeUndefined();
 
 		expect(config.fastify).toEqual({
 			host: SERVICE_HOST,
@@ -135,6 +133,8 @@ describe("Configuration", () => {
 			password: ADMIN_PASSWORD,
 		});
 
+		expect(config.bearerTokenAuthEnabled).toBe(false);
+
 		expect(config.database).toEqual({
 			client: "mssql",
 			connection: DB_CONNECTION_STRING,
@@ -163,10 +163,9 @@ describe("Configuration", () => {
 		const PROC_LOAD_MAX_RSS_BYTES = 100000000;
 		const RATE_LIMIT_MAX_CONNECTIONS_PER_MIN = 2000;
 		const RATE_LIMIT_EXCLUDED_ARRAY = '["127.0.0.1"]';
-		const AUTH_BEARER_TOKEN_ARRAY =
-			'[{"service": "test", "value": "testtoken"}]';
 		const ADMIN_USERNAME = "admin";
 		const ADMIN_PASSWORD = "password";
+		const BEARER_TOKEN_AUTH_ENABLED = true;
 		const DB_CLIENT = "mssql";
 		const DB_CONNECTION_STRING =
 			"Server=localhost,1433;Database=database;User Id=username;Password=password;Encrypt=true";
@@ -190,14 +189,12 @@ describe("Configuration", () => {
 			RATE_LIMIT_EXCLUDED_ARRAY,
 			ADMIN_USERNAME,
 			ADMIN_PASSWORD,
-			AUTH_BEARER_TOKEN_ARRAY,
+			BEARER_TOKEN_AUTH_ENABLED,
 			DB_CLIENT,
 			DB_CONNECTION_STRING,
 		});
 
 		const config = await getConfig();
-
-		expect(config.bearerTokenAuthKeys).toContain("testtoken");
 
 		expect(config.fastify).toEqual({
 			host: SERVICE_HOST,
@@ -247,6 +244,8 @@ describe("Configuration", () => {
 			username: ADMIN_USERNAME,
 			password: ADMIN_PASSWORD,
 		});
+
+		expect(config.bearerTokenAuthEnabled).toBe(true);
 
 		expect(config.database).toEqual({
 			client: DB_CLIENT,

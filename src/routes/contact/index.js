@@ -71,13 +71,13 @@ function buildContact(results, req) {
  * @description Sets routing options for server.
  * @param {object} server - Fastify instance.
  * @param {object} options - Route config values.
- * @param {*=} options.bearerTokenAuthKeys - Apply `bearerToken` security scheme to route if defined.
+ * @param {*=} options.bearerTokenAuthEnabled - Apply `bearerToken` security scheme to route if defined.
  * @param {object} options.cors - CORS settings.
  * @param {object} options.database - Database config values.
  * @param {('mssql'|'postgresql')} options.database.client - Database client.
  */
 async function route(server, options) {
-	if (options.bearerTokenAuthKeys) {
+	if (options.bearerTokenAuthEnabled === true) {
 		const security = [{ bearerToken: [] }];
 
 		contactDeleteSchema.security = security;

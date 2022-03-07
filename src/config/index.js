@@ -129,12 +129,15 @@ async function getConfig() {
 				S.anyOf([S.number().default(1000), S.null()])
 			)
 
-			// API Keys
-			.prop("AUTH_BEARER_TOKEN_ARRAY", S.anyOf([S.string(), S.null()]))
-
 			// Admin login
 			.prop("ADMIN_USERNAME", S.string())
 			.prop("ADMIN_PASSWORD", S.string())
+
+			// Bearer token auth
+			.prop(
+				"BEARER_TOKEN_AUTH_ENABLED",
+				S.anyOf([S.boolean().default(false), S.null()])
+			)
 
 			// Database Connection
 			.prop(
@@ -280,6 +283,7 @@ async function getConfig() {
 			username: env.ADMIN_USERNAME,
 			password: env.ADMIN_PASSWORD,
 		},
+		bearerTokenAuthEnabled: env.BEARER_TOKEN_AUTH_ENABLED === true,
 		database: {
 			client: env.DB_CLIENT || "mssql",
 			connection: env.DB_CONNECTION_STRING,
@@ -304,13 +308,7 @@ async function getConfig() {
 		);
 	}
 
-	if (env.AUTH_BEARER_TOKEN_ARRAY) {
-		const keys = new Set();
-		secJSON.parse(env.AUTH_BEARER_TOKEN_ARRAY).forEach((element) => {
-			keys.add(element.value);
-		});
-		config.bearerTokenAuthKeys = keys;
-
+	if (env.BEARER_TOKEN_AUTH_ENABLED === true) {
 		config.swagger.openapi.components.securitySchemes = {
 			bearerToken: {
 				type: "http",
