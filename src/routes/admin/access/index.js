@@ -2,7 +2,6 @@ const crypto = require("crypto");
 
 // Import plugins
 const cors = require("fastify-cors");
-const disableCache = require("fastify-disablecache");
 
 // Import utils
 const escSq = require("../../../utils/escape-single-quotes");
@@ -81,9 +80,6 @@ function buildBearerTokenRecord(result, req) {
 async function route(server, options) {
 	// Register plugins
 	server
-		// Set response headers to disable client-side caching
-		.register(disableCache)
-
 		// Enable CORS if options passed
 		.register(cors, {
 			...options.cors,

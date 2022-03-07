@@ -1,5 +1,6 @@
 const S = require("fluent-json-schema");
 
+const security = [{ basicAuth: [] }];
 const tags = ["System Administration"];
 
 const accessRecordBaseSchema = S.object()
@@ -101,6 +102,7 @@ const accessDeleteSchema = {
 			"Service Unavailable"
 		),
 	},
+	security,
 };
 
 const accessGetReadSchema = {
@@ -139,6 +141,7 @@ const accessGetReadSchema = {
 			"Service Unavailable"
 		),
 	},
+	security,
 };
 
 const accessGetSearchSchema = {
@@ -353,6 +356,7 @@ const accessGetSearchSchema = {
 			"Service Unavailable"
 		),
 	},
+	security,
 };
 
 const accessPostSchema = {
@@ -452,6 +456,7 @@ const accessPostSchema = {
 			"Service Unavailable"
 		),
 	},
+	security,
 };
 
 module.exports = {

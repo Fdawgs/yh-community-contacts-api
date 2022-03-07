@@ -36,6 +36,7 @@ async function plugin(server) {
 			for (let index = 0; index < tokens.length; index += 1) {
 				// eslint-disable-next-line security/detect-object-injection
 				const token = tokens[index];
+				// TODO: look at making this async with Promise.any and Array.map
 				/* istanbul ignore else */
 				if (
 					crypto

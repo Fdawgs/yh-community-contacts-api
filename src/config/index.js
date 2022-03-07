@@ -265,7 +265,14 @@ async function getConfig() {
 							"Yeovil District Hospital NHS Foundation Trust Logo",
 					},
 				},
-				components: {},
+				components: {
+					securitySchemes: {
+						basicAuth: {
+							type: "http",
+							scheme: "basic",
+						},
+					},
+				},
 				tags: [
 					{
 						name: "Community Contacts",
@@ -309,14 +316,12 @@ async function getConfig() {
 	}
 
 	if (env.BEARER_TOKEN_AUTH_ENABLED === true) {
-		config.swagger.openapi.components.securitySchemes = {
-			bearerToken: {
-				type: "http",
-				description:
-					"Expects the request to contain an `Authorization` header with a bearer token.",
-				scheme: "bearer",
-				bearerFormat: "bearer <token>",
-			},
+		config.swagger.openapi.components.securitySchemes.bearerToken = {
+			type: "http",
+			description:
+				"Expects the request to contain an `Authorization` header with a bearer token.",
+			scheme: "bearer",
+			bearerFormat: "Bearer <token>",
 		};
 	}
 
