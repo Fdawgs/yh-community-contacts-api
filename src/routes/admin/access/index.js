@@ -187,16 +187,23 @@ async function route(server, options) {
 					);
 				}
 
-				// access.scopes - One of the values in the scopes array
+				// access.scopes - One of the values in the scopes array, case-insensitive
 				if (req?.query?.["access.scopes"]) {
-					// _ and % act as wildcards in SQL LIKE clauses, so need to be escaped
-					whereArray.push(
-						escSq`(LOWER(scopes) LIKE LOWER('%${req.query[
-							"access.scopes"
-						]
-							.replace(/%/g, "!%")
-							.replace(/_/g, "!_")}%') ESCAPE '!')`
-					);
+					let scopes = [];
+					if (Array.isArray(req.query["access.scopes"])) {
+						scopes = req.query["access.scopes"];
+					} else {
+						scopes.push(req.query["access.scopes"]);
+					}
+
+					scopes.forEach((scopesValue) => {
+						// _ and % act as wildcards in SQL LIKE clauses, so need to be escaped
+						whereArray.push(
+							escSq`(LOWER(CAST(scopes AS TEXT)) LIKE LOWER('%${scopesValue
+								.replace(/%/g, "!%")
+								.replace(/_/g, "!_")}%') ESCAPE '!')`
+						);
+					});
 				}
 
 				/**

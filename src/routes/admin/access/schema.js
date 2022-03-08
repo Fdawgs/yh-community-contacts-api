@@ -211,7 +211,23 @@ const accessGetSearchSchema = {
 		)
 		.prop(
 			"access.scopes",
-			S.string().description("An action the bearer token can perform")
+			S.anyOf([
+				S.string()
+					.enum(accessRecordScopes)
+					.description(
+						"An action the bearer token can perform, case-insensitive"
+					),
+				S.array()
+					.items(
+						S.string()
+							.enum(accessRecordScopes)
+							.description(
+								"An action the bearer token can perform, case-insensitive"
+							)
+					)
+					.minItems(2)
+					.uniqueItems(true),
+			])
 		)
 		.prop(
 			"meta.created",

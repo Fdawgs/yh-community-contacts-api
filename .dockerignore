@@ -68,10 +68,6 @@ web_modules/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
-.env
-.env.test
-
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 .parcel-cache
@@ -118,8 +114,23 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# lock files
-yarn.lock
-
 # Test files
-test_resources/test_log*
+test_resources/
+src/temp*/
+**/*.test.*
+
+# Development files
+.git/
+.github/
+.husky/
+.vscode/
+docs/
+.env.template
+.eslintrc.js
+.gitignore
+.pm2.config.js
+.prettierignore
+.prettierrc
+CHANGELOG.md
+CODE_OF_CONDUCTING.md
+CONTRIBUTING.md
