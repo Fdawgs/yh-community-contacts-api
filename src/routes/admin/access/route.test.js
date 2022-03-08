@@ -402,7 +402,7 @@ describe("Access Route", () => {
 					expect(response.statusCode).toBe(200);
 				});
 
-				test("Should return bearer token record, using more than one `access.expires`, meta.created`, and `meta.last_updated` query string params", async () => {
+				test("Should return bearer token record, using more than one `access.expires`, `access.scopes`, meta.created`, and `meta.last_updated` query string params", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -418,6 +418,7 @@ describe("Access Route", () => {
 						url: "/",
 						query: {
 							"access.expires": [testDate1, testDate2],
+							"access.scopes": ["contact.search", "contact.read"],
 							"meta.created": [testDate1, testDate2],
 							"meta.last_updated": [testDate1, testDate2],
 						},
