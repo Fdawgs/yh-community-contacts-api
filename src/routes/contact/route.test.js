@@ -201,7 +201,10 @@ describe("Contact Route", () => {
 			let server;
 
 			beforeAll(async () => {
-				Object.assign(process.env, testObject.envVariables);
+				Object.assign(process.env, {
+					BEARER_TOKEN_AUTH_ENABLED: true,
+					...testObject.envVariables,
+				});
 				config = await getConfig();
 
 				server = Fastify();
@@ -841,7 +844,10 @@ describe("Contact Route", () => {
 			let server;
 
 			beforeAll(async () => {
-				Object.assign(process.env, testObject.envVariables);
+				Object.assign(process.env, {
+					BEARER_TOKEN_AUTH_ENABLED: true,
+					...testObject.envVariables,
+				});
 				config = await getConfig();
 
 				server = Fastify();
