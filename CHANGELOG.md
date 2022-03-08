@@ -1,5 +1,26 @@
 # Changelog
 
+## [2.0.0](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v1.1.1...v2.0.0) (2022-03-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* **routes/admin:** * feat(migrations)!: add api key table
+
+### Features
+
+* **routes/admin:** add access route ([#83](https://github.com/Fdawgs/ydh-community-contacts-api/issues/83)) ([f6caf95](https://github.com/Fdawgs/ydh-community-contacts-api/commit/f6caf952f82de47498b75ee613e5eec8eb41e74a))
+
+
+### Bug Fixes
+
+* **config:** redact request auth header from logs ([318f94f](https://github.com/Fdawgs/ydh-community-contacts-api/commit/318f94f849bc0069d22d210b8a1fe301ee7a68fe))
+
+
+### Documentation
+
+* **readme:** add usage section ([158f02e](https://github.com/Fdawgs/ydh-community-contacts-api/commit/158f02eed75bea30a340bacfab273ed5a280e81d))
+
 ### [1.1.1](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v1.1.0...v1.1.1) (2022-03-08)
 
 
