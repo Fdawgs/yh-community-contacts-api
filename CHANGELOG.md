@@ -5,7 +5,9 @@
 
 ### ⚠ BREAKING CHANGES
 
-* **routes/admin:** * feat(migrations)!: add api key table
+* Minimum node engine bumped from `>=14.0.0` to `^14.17.0 || ^15.6.0 || >=16.0.0`
+* `AUTH_BEARER_TOKEN_ARRAY` env variable removed
+* `access.tokens` table added to migration SQL queries
 
 ### Features
 
