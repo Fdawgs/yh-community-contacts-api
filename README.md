@@ -84,8 +84,6 @@ The service should be up and running on the port set in the config. You should s
 }
 ```
 
-You can now navigate to http://0.0.0.0:8204/docs to see the API documentation!
-
 ### Deploying Using Docker
 
 This requires [Docker](https://www.docker.com) installed.
@@ -109,6 +107,12 @@ If using a Microsoft Windows OS utilise [pm2-installer](https://github.com/jesse
 **Note:** PM2 will automatically restart the application if `.env` is modified.
 
 ## Usage
+
+### Accessing API Documentation
+
+API documentation can be found at `/docs`:
+
+<img alttext="Screenshot of YDH Community Contacts API documentation page" src="https://raw.githubusercontent.com/Fdawgs/ydh-community-contacts-api/master/docs/images/api_documentation_screenshot.png" width="720">
 
 ### Generating Bearer Tokens for Access
 
