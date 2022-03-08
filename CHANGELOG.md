@@ -1,5 +1,29 @@
 # Changelog
 
+## [2.1.0](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v2.0.0...v2.1.0) (2022-03-08)
+
+
+### Features
+
+* **admin/access:** allow more than one `access.scopes` search param ([ddb866f](https://github.com/Fdawgs/ydh-community-contacts-api/commit/ddb866f85738ab49bf87cf2a652c852504d9d08f))
+
+
+### Bug Fixes
+
+* **admin/access:** searching using `access.scopes` in postgres ([c3c5b0b](https://github.com/Fdawgs/ydh-community-contacts-api/commit/c3c5b0b8431fa5cedb1d22314310a9f8374ded8d))
+* **docker-compose:** declare `DB_CLIENT` env variable ([c816fef](https://github.com/Fdawgs/ydh-community-contacts-api/commit/c816fef788c7121a094b8cd3b54f59cef163795d))
+
+
+### Documentation
+
+* **readme:** move api docs access to usage section ([22527c6](https://github.com/Fdawgs/ydh-community-contacts-api/commit/22527c6a01151d44e5bb541d455949ebe864e826))
+
+
+### Miscellaneous
+
+* **.gitignore:** remove redundant exclusion ([e9ac060](https://github.com/Fdawgs/ydh-community-contacts-api/commit/e9ac06008e1b2f5acf786be9c0a31631afa1b88f))
+* add .dockerignore file ([55909d3](https://github.com/Fdawgs/ydh-community-contacts-api/commit/55909d39fc5c6ed422b453c71eb00ac519642cfe))
+
 ## [2.0.0](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v1.1.1...v2.0.0) (2022-03-08)
 
 
