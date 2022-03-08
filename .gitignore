@@ -123,6 +123,3 @@ yarn.lock
 
 # Test files
 test_resources/test_log*
-
-# Live records
-migrations/**/005.do.insert_records.sql
