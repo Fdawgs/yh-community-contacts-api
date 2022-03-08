@@ -3,6 +3,27 @@ const S = require("fluent-json-schema");
 const security = [{ basicAuth: [] }];
 const tags = ["System Administration"];
 
+const dateTimeSearchPattern =
+	/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)(?:.\d{3}|)(?:Z|)$/im;
+
+const dateTimeSearchPatternExamples = [
+	"2022-01-13",
+	"2022-01-13T00:00:01",
+	"2022-01-13T00:00:01.001",
+	"2022-01-13T00:00:01Z",
+	"2022-01-13T00:00:01.001Z",
+	"ge2022-01-13T00:00:01",
+	"ge2022-01-13",
+];
+
+const accessRecordScopes = [
+	"contact.delete",
+	"contact.read",
+	"contact.search",
+	"contact.put",
+	"contact.post",
+];
+
 const accessRecordBaseSchema = S.object()
 	.prop("id", S.string().format("uuid"))
 	.prop(
@@ -30,14 +51,18 @@ const accessRecordBaseSchema = S.object()
 					.examples(["2022-01-13T14:05:54.000Z"])
 					.format("date-time")
 			)
-			.prop("hash", S.string().description("Hashed API key"))
-			.prop("salt", S.string().description("Salt used on hashed API key"))
+			.prop("hash", S.string().description("Hashed bearer token"))
+			.prop(
+				"salt",
+				S.string().description("Salt used on hashed bearer token")
+			)
 			.prop(
 				"scopes",
 				S.array()
+					.items(S.string().enum(accessRecordScopes))
 					.uniqueItems(true)
 					.description(
-						"Actions the API key has been granted access to perform"
+						"Actions the bearer token has been granted access to perform"
 					)
 			)
 	)
@@ -170,28 +195,14 @@ const accessGetSearchSchema = {
 			S.anyOf([
 				S.string()
 					.description("Datetime when bearer token expires")
-					.examples([
-						"2022-01-13",
-						"ge2022-01-13T00:00:01",
-						"ge2022-01-13",
-						"2022-01-13T00:00:01",
-					])
-					.pattern(
-						/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)$/im
-					),
+					.examples(dateTimeSearchPatternExamples)
+					.pattern(dateTimeSearchPattern),
 				S.array()
 					.items(
 						S.string()
 							.description("Datetime when bearer token expires")
-							.examples([
-								"2022-01-13",
-								"ge2022-01-13T00:00:01",
-								"ge2022-01-13",
-								"2022-01-13T00:00:01",
-							])
-							.pattern(
-								/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)$/im
-							)
+							.examples(dateTimeSearchPatternExamples)
+							.pattern(dateTimeSearchPattern)
 					)
 					.minItems(2)
 					.maxItems(2)
@@ -209,30 +220,16 @@ const accessGetSearchSchema = {
 					.description(
 						"Datetime when bearer token record was created"
 					)
-					.examples([
-						"2022-01-13",
-						"ge2022-01-13T00:00:01",
-						"ge2022-01-13",
-						"2022-01-13T00:00:01",
-					])
-					.pattern(
-						/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)$/im
-					),
+					.examples(dateTimeSearchPatternExamples)
+					.pattern(dateTimeSearchPattern),
 				S.array()
 					.items(
 						S.string()
 							.description(
 								"Datetime when bearer token record was created"
 							)
-							.examples([
-								"2022-01-13",
-								"ge2022-01-13T00:00:01",
-								"ge2022-01-13",
-								"2022-01-13T00:00:01",
-							])
-							.pattern(
-								/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)$/im
-							)
+							.examples(dateTimeSearchPatternExamples)
+							.pattern(dateTimeSearchPattern)
 					)
 					.minItems(2)
 					.maxItems(2)
@@ -246,30 +243,16 @@ const accessGetSearchSchema = {
 					.description(
 						"Last modified datetime of bearer token record"
 					)
-					.examples([
-						"2022-01-13",
-						"ge2022-01-13T00:00:01",
-						"ge2022-01-13",
-						"2022-01-13T00:00:01",
-					])
-					.pattern(
-						/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)$/im
-					),
+					.examples(dateTimeSearchPatternExamples)
+					.pattern(dateTimeSearchPattern),
 				S.array()
 					.items(
 						S.string()
 							.description(
 								"Last modified datetime of bearer token record"
 							)
-							.examples([
-								"2022-01-13",
-								"ge2022-01-13T00:00:01",
-								"ge2022-01-13",
-								"2022-01-13T00:00:01",
-							])
-							.pattern(
-								/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)$/im
-							)
+							.examples(dateTimeSearchPatternExamples)
+							.pattern(dateTimeSearchPattern)
 					)
 					.minItems(2)
 					.maxItems(2)
@@ -399,6 +382,7 @@ const accessPostSchema = {
 		.prop(
 			"scopes",
 			S.array()
+				.items(S.string().enum(accessRecordScopes))
 				.uniqueItems(true)
 				.description("Actions the bearer token can perform")
 		)
@@ -430,6 +414,7 @@ const accessPostSchema = {
 					.prop(
 						"scopes",
 						S.array()
+							.items(S.string().enum(accessRecordScopes))
 							.uniqueItems(true)
 							.description(
 								"Actions the bearer token has been granted access to perform"

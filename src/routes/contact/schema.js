@@ -2,6 +2,19 @@ const S = require("fluent-json-schema");
 
 const tags = ["Community Contacts"];
 
+const dateTimeSearchPattern =
+	/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)(?:.\d{3}|)(?:Z|)$/im;
+
+const dateTimeSearchPatternExamples = [
+	"2022-01-13",
+	"2022-01-13T00:00:01",
+	"2022-01-13T00:00:01.001",
+	"2022-01-13T00:00:01Z",
+	"2022-01-13T00:00:01.001Z",
+	"ge2022-01-13T00:00:01",
+	"ge2022-01-13",
+];
+
 const contactBaseSchema = S.object()
 	.prop("id", S.string().format("uuid"))
 	.prop(
@@ -209,30 +222,16 @@ const contactGetSearchSchema = {
 					.description(
 						"Datetime when community contact record was created"
 					)
-					.examples([
-						"2022-01-13",
-						"ge2022-01-13T00:00:01",
-						"ge2022-01-13",
-						"2022-01-13T00:00:01",
-					])
-					.pattern(
-						/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)$/im
-					),
+					.examples(dateTimeSearchPatternExamples)
+					.pattern(dateTimeSearchPattern),
 				S.array()
 					.items(
 						S.string()
 							.description(
 								"Datetime when community contact record was created"
 							)
-							.examples([
-								"2022-01-13",
-								"ge2022-01-13T00:00:01",
-								"ge2022-01-13",
-								"2022-01-13T00:00:01",
-							])
-							.pattern(
-								/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)$/im
-							)
+							.examples(dateTimeSearchPatternExamples)
+							.pattern(dateTimeSearchPattern)
 					)
 					.minItems(2)
 					.maxItems(2)
@@ -246,30 +245,16 @@ const contactGetSearchSchema = {
 					.description(
 						"Last modified datetime of community contact record"
 					)
-					.examples([
-						"2022-01-13",
-						"ge2022-01-13T00:00:01",
-						"ge2022-01-13",
-						"2022-01-13T00:00:01",
-					])
-					.pattern(
-						/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)$/im
-					),
+					.examples(dateTimeSearchPatternExamples)
+					.pattern(dateTimeSearchPattern),
 				S.array()
 					.items(
 						S.string()
 							.description(
 								"Last modified datetime of community contact record"
 							)
-							.examples([
-								"2022-01-13",
-								"ge2022-01-13T00:00:01",
-								"ge2022-01-13",
-								"2022-01-13T00:00:01",
-							])
-							.pattern(
-								/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)$/im
-							)
+							.examples(dateTimeSearchPatternExamples)
+							.pattern(dateTimeSearchPattern)
 					)
 					.minItems(2)
 					.maxItems(2)

@@ -196,7 +196,7 @@ describe("Contact Route", () => {
 		},
 	];
 	connectionTests.forEach((testObject) => {
-		describe(`${testObject.testName}`, () => {
+		describe(`${testObject.testName} - With Request Scopes`, () => {
 			let config;
 			let server;
 
@@ -208,6 +208,15 @@ describe("Contact Route", () => {
 				server
 					.register(cleanObject)
 					.register(convertDateParamOperator)
+					.addHook("preValidation", async (req) => {
+						req.scopes = [
+							"contact.read",
+							"contact.search",
+							"contact.delete",
+							"contact.post",
+							"contact.put",
+						];
+					})
 					.register(sensible)
 					.register(sharedSchemas)
 					.register(route, config);
@@ -823,6 +832,129 @@ describe("Contact Route", () => {
 						statusCode: 500,
 					});
 					expect(response.statusCode).toBe(500);
+				});
+			});
+		});
+
+		describe(`${testObject.testName} - Without Request Scopes`, () => {
+			let config;
+			let server;
+
+			beforeAll(async () => {
+				Object.assign(process.env, testObject.envVariables);
+				config = await getConfig();
+
+				server = Fastify();
+				server
+					.register(cleanObject)
+					.register(convertDateParamOperator)
+					.register(sensible)
+					.register(sharedSchemas)
+					.register(route, config);
+
+				await server.ready();
+			});
+
+			afterAll(async () => {
+				await server.close();
+			});
+
+			describe("/:id DELETE Requests", () => {
+				test("Should return HTTP status code 401 if not in permitted access", async () => {
+					const response = await server.inject({
+						method: "DELETE",
+						url: `/${testId}`,
+					});
+
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Unauthorized",
+						message:
+							"You do not have permission to perform an HTTP DELETE request on this route",
+						statusCode: 401,
+					});
+					expect(response.statusCode).toBe(401);
+				});
+			});
+
+			describe("/:id GET Requests", () => {
+				test("Should return HTTP status code 401 if not in permitted access", async () => {
+					const response = await server.inject({
+						method: "GET",
+						url: `/${testId}`,
+					});
+
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Unauthorized",
+						message:
+							"You do not have permission to perform an HTTP GET request on this route",
+						statusCode: 401,
+					});
+					expect(response.statusCode).toBe(401);
+				});
+			});
+
+			describe("/ GET Requests", () => {
+				test("Should return HTTP status code 401 if not in permitted access", async () => {
+					const response = await server.inject({
+						method: "GET",
+						url: "/",
+						query: {
+							"match.type": testResult.match_type,
+							"match.value": testResult.match_value,
+							"match.receiver": testResult.match_receiver,
+							"telecom.value": testPayload.telecom[0].value,
+							"meta.created": testDate1,
+							"meta.last_updated": testDate1,
+							per_page: testPage,
+							page: testPage,
+						},
+					});
+
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Unauthorized",
+						message:
+							"You do not have permission to perform an HTTP GET request on this route",
+						statusCode: 401,
+					});
+					expect(response.statusCode).toBe(401);
+				});
+			});
+
+			describe("/:id PUT Requests", () => {
+				test("Should return HTTP status code 401 if not in permitted access", async () => {
+					const response = await server.inject({
+						method: "PUT",
+						url: `/${testId}`,
+						headers: {
+							"content-type": "application/json",
+						},
+						payload: testPayload,
+					});
+
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Unauthorized",
+						message:
+							"You do not have permission to perform an HTTP PUT request on this route",
+						statusCode: 401,
+					});
+					expect(response.statusCode).toBe(401);
+				});
+			});
+
+			describe("/ POST Requests", () => {
+				test("Should return HTTP status code 401 if not in permitted access", async () => {
+					const response = await server.inject({
+						method: "POST",
+						url: "/",
+					});
+
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Unauthorized",
+						message:
+							"You do not have permission to perform an HTTP POST request on this route",
+						statusCode: 401,
+					});
+					expect(response.statusCode).toBe(401);
 				});
 			});
 		});

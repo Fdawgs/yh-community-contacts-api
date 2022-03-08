@@ -150,11 +150,11 @@ async function plugin(server, config) {
 					return newPayload;
 				});
 
-			/**
-			 * Encapsulate plugins and routes into secured child context, so that other
-			 * routes do not inherit bearer token auth plugin (if enabled).
-			 */
 			serializedContext
+				/**
+				 * Encapsulate plugins and routes into secured child context, so that other
+				 * routes do not inherit bearer token auth plugin (if enabled).
+				 */
 				.register(async (securedContext) => {
 					// Protect routes with Bearer token auth if enabled
 					if (config.bearerTokenAuthEnabled === true) {
