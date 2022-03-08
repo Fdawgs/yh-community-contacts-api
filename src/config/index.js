@@ -269,6 +269,8 @@ async function getConfig() {
 					securitySchemes: {
 						basicAuth: {
 							type: "http",
+							description:
+								"Expects the request to contain an `Authorization` header with basic auth credentials.",
 							scheme: "basic",
 						},
 					},
