@@ -92,6 +92,7 @@ describe("Configuration", () => {
 			formatters: { level: expect.any(Function) },
 			level: "info",
 			prettyPrint: false,
+			redact: ["req.headers.authorization"],
 			serializers: {
 				req: expect.any(Function),
 				res: expect.any(Function),
@@ -205,6 +206,7 @@ describe("Configuration", () => {
 			formatters: { level: expect.any(Function) },
 			level: LOG_LEVEL,
 			prettyPrint: false,
+			redact: ["req.headers.authorization"],
 			serializers: {
 				req: expect.any(Function),
 				res: expect.any(Function),
