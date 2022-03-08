@@ -71,13 +71,13 @@ function buildContact(results, req) {
  * @description Sets routing options for server.
  * @param {object} server - Fastify instance.
  * @param {object} options - Route config values.
- * @param {*=} options.bearerTokenAuthKeys - Apply `bearerToken` security scheme to route if defined.
+ * @param {boolean=} options.bearerTokenAuthEnabled - Apply `bearerToken` security scheme to route if defined.
  * @param {object} options.cors - CORS settings.
  * @param {object} options.database - Database config values.
  * @param {('mssql'|'postgresql')} options.database.client - Database client.
  */
 async function route(server, options) {
-	if (options.bearerTokenAuthKeys) {
+	if (options.bearerTokenAuthEnabled === true) {
 		const security = [{ bearerToken: [] }];
 
 		contactDeleteSchema.security = security;
@@ -99,6 +99,16 @@ async function route(server, options) {
 		method: "DELETE",
 		url: "/:id",
 		schema: contactDeleteSchema,
+		preValidation: async (req, res) => {
+			if (
+				options.bearerTokenAuthEnabled &&
+				!req?.scopes?.includes("contact.delete")
+			) {
+				throw res.unauthorized(
+					"You do not have permission to perform an HTTP DELETE request on this route"
+				);
+			}
+		},
 		handler: async (req, res) => {
 			try {
 				const results = await server.db.query(
@@ -131,6 +141,16 @@ async function route(server, options) {
 		method: "GET",
 		url: "/:id",
 		schema: contactGetReadSchema,
+		preValidation: async (req, res) => {
+			if (
+				options.bearerTokenAuthEnabled &&
+				!req?.scopes?.includes("contact.read")
+			) {
+				throw res.unauthorized(
+					"You do not have permission to perform an HTTP GET request on this route"
+				);
+			}
+		},
 		handler: async (req, res) => {
 			try {
 				const results = await server.db.query(
@@ -165,6 +185,16 @@ async function route(server, options) {
 		method: "GET",
 		url: "/",
 		schema: contactGetSearchSchema,
+		preValidation: async (req, res) => {
+			if (
+				options.bearerTokenAuthEnabled &&
+				!req?.scopes?.includes("contact.search")
+			) {
+				throw res.unauthorized(
+					"You do not have permission to perform an HTTP GET request on this route"
+				);
+			}
+		},
 		handler: async (req, res) => {
 			try {
 				// Build WHERE clause
@@ -335,6 +365,16 @@ async function route(server, options) {
 		method: "POST",
 		url: "/",
 		schema: contactPostSchema,
+		preValidation: async (req, res) => {
+			if (
+				options.bearerTokenAuthEnabled &&
+				!req?.scopes?.includes("contact.post")
+			) {
+				throw res.unauthorized(
+					"You do not have permission to perform an HTTP POST request on this route"
+				);
+			}
+		},
 		handler: async (req, res) => {
 			try {
 				const results = await server.db.query(
@@ -377,6 +417,16 @@ async function route(server, options) {
 		method: "PUT",
 		url: "/:id",
 		schema: contactPutSchema,
+		preValidation: async (req, res) => {
+			if (
+				options.bearerTokenAuthEnabled &&
+				!req?.scopes?.includes("contact.put")
+			) {
+				throw res.unauthorized(
+					"You do not have permission to perform an HTTP PUT request on this route"
+				);
+			}
+		},
 		handler: async (req, res) => {
 			try {
 				const results = await server.db.query(

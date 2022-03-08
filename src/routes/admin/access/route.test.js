@@ -1,11 +1,12 @@
+/* eslint-disable jest/no-disabled-tests */
 const faker = require("faker");
 const Fastify = require("fastify");
 const sensible = require("fastify-sensible");
 const route = require(".");
-const getConfig = require("../../config");
-const cleanObject = require("../../plugins/clean-object");
-const convertDateParamOperator = require("../../plugins/convert-date-param-operator");
-const sharedSchemas = require("../../plugins/shared-schemas");
+const getConfig = require("../../../config");
+const cleanObject = require("../../../plugins/clean-object");
+const convertDateParamOperator = require("../../../plugins/convert-date-param-operator");
+const sharedSchemas = require("../../../plugins/shared-schemas");
 
 const testPage = 1;
 
@@ -14,32 +15,37 @@ const testDate2 = faker.date.past().toISOString().split("T")[0];
 
 const testId = "b8e7265c-4733-44be-9238-7d7b8718fb88";
 const testPayload = {
-	match: {
-		type: "postcode",
-		value: "TA126JU",
-		receiver: "Area North",
-	},
-	telecom: [
-		{
-			system: "email",
-			value: "examplehv@nhs.net",
-			use: "Health Visitors",
-		},
-		{
-			system: "email",
-			value: "examplemidwife@ydh.nhs.uk",
-			use: "Community Midwives",
-		},
-	],
+	name: "Community Contacts SPA",
+	email: "example@example.com",
+	expires: faker.date.past().toISOString().split("T")[0],
+	scopes: ["contact.read", "contact.search"],
 };
 
 const testResult = {
 	id: testId,
-	match_type: testPayload.match.type,
-	match_value: testPayload.match.value,
-	match_receiver: testPayload.match.receiver,
+	name: testPayload.name,
+	email: testPayload.email,
+	hash: "testhash",
+	salt: "testsalt",
+	expires: testPayload.expires,
 	created: "2022-01-18T14:07:48.190Z",
 	last_updated: "2022-01-18T14:07:48.190Z",
+};
+
+const testRecord = {
+	id: testId,
+	access: {
+		name: testResult.name,
+		email: testResult.email,
+		expires: testResult.expires,
+		hash: testResult.hash,
+		salt: testResult.salt,
+		scopes: testPayload.scopes,
+	},
+	meta: {
+		created: testResult.created,
+		last_updated: testResult.last_updated,
+	},
 };
 
 const expSearchResult = {
@@ -55,17 +61,12 @@ const expSearchResult = {
 	entry: [
 		{
 			url: expect.any(String),
-			id: testId,
-			meta: {
-				created: testResult.created,
-				last_updated: testResult.last_updated,
-			},
-			...testPayload,
+			...testRecord,
 		},
 	],
 };
 
-describe("Contact Route", () => {
+describe("Access Route", () => {
 	const connectionTests = [
 		{
 			testName: "MSSQL Connection",
@@ -87,8 +88,8 @@ describe("Contact Route", () => {
 								[
 									{
 										...testResult,
-										telecom: JSON.stringify(
-											testPayload.telecom
+										scopes: JSON.stringify(
+											testPayload.scopes
 										),
 									},
 								],
@@ -105,8 +106,8 @@ describe("Contact Route", () => {
 								[
 									{
 										...testResult,
-										telecom: JSON.stringify(
-											testPayload.telecom
+										scopes: JSON.stringify(
+											testPayload.scopes
 										),
 									},
 								],
@@ -122,6 +123,9 @@ describe("Contact Route", () => {
 								[
 									{
 										id: testId,
+										scopes: JSON.stringify(
+											testPayload.scopes
+										),
 									},
 								],
 							],
@@ -157,7 +161,7 @@ describe("Contact Route", () => {
 							rows: [
 								{
 									...testResult,
-									telecom: testPayload.telecom,
+									scopes: testPayload.scopes,
 								},
 							],
 						},
@@ -172,7 +176,7 @@ describe("Contact Route", () => {
 								rows: [
 									{
 										...testResult,
-										telecom: testPayload.telecom,
+										scopes: testPayload.scopes,
 									},
 								],
 							},
@@ -186,6 +190,7 @@ describe("Contact Route", () => {
 							rows: [
 								{
 									id: testId,
+									scopes: testPayload.scopes,
 								},
 							],
 						},
@@ -196,30 +201,18 @@ describe("Contact Route", () => {
 		},
 	];
 	connectionTests.forEach((testObject) => {
-		describe(`${testObject.testName} - With Request Scopes`, () => {
+		describe(`${testObject.testName}`, () => {
 			let config;
 			let server;
 
 			beforeAll(async () => {
-				Object.assign(process.env, {
-					BEARER_TOKEN_AUTH_ENABLED: true,
-					...testObject.envVariables,
-				});
+				Object.assign(process.env, testObject.envVariables);
 				config = await getConfig();
 
 				server = Fastify();
 				server
 					.register(cleanObject)
 					.register(convertDateParamOperator)
-					.addHook("preValidation", async (req) => {
-						req.scopes = [
-							"contact.read",
-							"contact.search",
-							"contact.delete",
-							"contact.post",
-							"contact.put",
-						];
-					})
 					.register(sensible)
 					.register(sharedSchemas)
 					.register(route, config);
@@ -232,7 +225,7 @@ describe("Contact Route", () => {
 			});
 
 			describe("/:id DELETE Requests", () => {
-				test("Should delete a contact record", async () => {
+				test("Should delete a bearer token record", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -248,12 +241,12 @@ describe("Contact Route", () => {
 						url: `/${testId}`,
 					});
 
-					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					// expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(response.payload).toBe("");
 					expect(response.statusCode).toBe(204);
 				});
 
-				test("Should return HTTP status code 404 if contact record missing or already deleted", async () => {
+				test("Should return HTTP status code 404 if bearer token record missing or already deleted", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -273,7 +266,7 @@ describe("Contact Route", () => {
 					expect(JSON.parse(response.payload)).toEqual({
 						error: "Not Found",
 						message:
-							"Contact record does not exist or has already been deleted",
+							"Bearer token record does not exist or has already been deleted",
 						statusCode: 404,
 					});
 					expect(response.statusCode).toBe(404);
@@ -297,7 +290,7 @@ describe("Contact Route", () => {
 					expect(JSON.parse(response.payload)).toEqual({
 						error: "Internal Server Error",
 						message:
-							"Unable to delete contact record from database",
+							"Unable to delete bearer token record from database",
 						statusCode: 500,
 					});
 					expect(response.statusCode).toBe(500);
@@ -305,7 +298,7 @@ describe("Contact Route", () => {
 			});
 
 			describe("/:id GET Requests", () => {
-				test("Should return contact record", async () => {
+				test("Should return bearer token record", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -322,18 +315,11 @@ describe("Contact Route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
-						id: testId,
-						meta: {
-							created: "2022-01-18T14:07:48.190Z",
-							last_updated: "2022-01-18T14:07:48.190Z",
-						},
-						...testPayload,
-					});
+					expect(JSON.parse(response.payload)).toEqual(testRecord);
 					expect(response.statusCode).toBe(200);
 				});
 
-				test("Should return HTTP status code 404 if contact record missing", async () => {
+				test("Should return HTTP status code 404 if bearer token record missing", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -352,7 +338,7 @@ describe("Contact Route", () => {
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.payload)).toEqual({
 						error: "Not Found",
-						message: "Contact record not found",
+						message: "Bearer token record not found",
 						statusCode: 404,
 					});
 					expect(response.statusCode).toBe(404);
@@ -383,7 +369,7 @@ describe("Contact Route", () => {
 			});
 
 			describe("/ GET Requests", () => {
-				test("Should return contact record, using all query string parameters", async () => {
+				test("Should return bearer token record, using all query string parameters", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -398,10 +384,10 @@ describe("Contact Route", () => {
 						method: "GET",
 						url: "/",
 						query: {
-							"match.type": testResult.match_type,
-							"match.value": testResult.match_value,
-							"match.receiver": testResult.match_receiver,
-							"telecom.value": testPayload.telecom[0].value,
+							"access.name": testResult.name,
+							"access.email": testResult.email,
+							"access.expires": testResult.expires,
+							"access.scopes": "contact.search",
 							"meta.created": testDate1,
 							"meta.last_updated": testDate1,
 							per_page: testPage,
@@ -416,7 +402,7 @@ describe("Contact Route", () => {
 					expect(response.statusCode).toBe(200);
 				});
 
-				test("Should return contact record, using more than one `meta.created` and `meta.last_updated` query string params", async () => {
+				test("Should return bearer token record, using more than one `access.expires`, meta.created`, and `meta.last_updated` query string params", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -431,6 +417,7 @@ describe("Contact Route", () => {
 						method: "GET",
 						url: "/",
 						query: {
+							"access.expires": [testDate1, testDate2],
 							"meta.created": [testDate1, testDate2],
 							"meta.last_updated": [testDate1, testDate2],
 						},
@@ -443,7 +430,7 @@ describe("Contact Route", () => {
 					expect(response.statusCode).toBe(200);
 				});
 
-				test("Should return contact record, using operators in the `meta.created` and `meta.last_updated` query string params", async () => {
+				test("Should return bearer token record, using operators in the `access.expires`, meta.created`, and `meta.last_updated` query string params", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -458,6 +445,7 @@ describe("Contact Route", () => {
 						method: "GET",
 						url: "/",
 						query: {
+							"access.expires": `ge${testDate1}`,
 							"meta.created": `ge${testDate1}`,
 							"meta.last_updated": `ge${testDate1}`,
 						},
@@ -470,7 +458,7 @@ describe("Contact Route", () => {
 					expect(response.statusCode).toBe(200);
 				});
 
-				test("Should return no contact records if table empty", async () => {
+				test("Should return no bearer token records if table empty", async () => {
 					const mockQueryFn = jest.fn().mockResolvedValue({});
 
 					server.db = {
@@ -481,7 +469,7 @@ describe("Contact Route", () => {
 						method: "GET",
 						url: "/",
 						query: {
-							"match.type": testResult.match_type,
+							"access.name": testResult.name,
 						},
 					});
 
@@ -539,7 +527,7 @@ describe("Contact Route", () => {
 						method: "GET",
 						url: "/",
 						query: {
-							"match.type": testResult.match_type,
+							"access.name": testResult.name,
 						},
 					});
 
@@ -553,150 +541,8 @@ describe("Contact Route", () => {
 				});
 			});
 
-			describe("/:id PUT Requests", () => {
-				test("Should update contact record", async () => {
-					const mockQueryFn = jest
-						.fn()
-						.mockResolvedValue(
-							testObject.mocks.queryResults.put.ok
-						);
-
-					server.db = {
-						query: mockQueryFn,
-					};
-
-					const response = await server.inject({
-						method: "PUT",
-						url: `/${testId}`,
-						headers: {
-							"content-type": "application/json",
-						},
-						payload: testPayload,
-					});
-
-					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(response.payload).toBe("");
-					expect(response.statusCode).toBe(204);
-				});
-
-				test("Should return HTTP status code 415 if content-type in `Content-Type` request header unsupported", async () => {
-					const mockQueryFn = jest
-						.fn()
-						.mockResolvedValue(
-							testObject.mocks.queryResults.put.ok
-						);
-
-					server.db = {
-						query: mockQueryFn,
-					};
-
-					const response = await server.inject({
-						method: "PUT",
-						url: `/${testId}`,
-						headers: {
-							"content-type": "application/javascript",
-						},
-						payload: testPayload,
-					});
-
-					expect(mockQueryFn).toHaveBeenCalledTimes(0);
-					expect(JSON.parse(response.payload)).toEqual({
-						error: "Unsupported Media Type",
-						message:
-							"Unsupported Media Type: application/javascript",
-						statusCode: 415,
-					});
-					expect(response.statusCode).toBe(415);
-				});
-
-				test("Should return HTTP status code 404 if contact record with id not found", async () => {
-					const mockQueryFn = jest
-						.fn()
-						.mockResolvedValue(
-							testObject.mocks.queryResults.put.error
-						);
-
-					server.db = {
-						query: mockQueryFn,
-					};
-
-					const response = await server.inject({
-						method: "PUT",
-						url: `/${testId}`,
-						headers: {
-							"content-type": "application/json",
-						},
-						payload: testPayload,
-					});
-
-					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
-						error: "Not Found",
-						message:
-							"Contact record does not exist or has already been deleted",
-						statusCode: 404,
-					});
-					expect(response.statusCode).toBe(404);
-				});
-
-				test("Should return HTTP status code 500 if connection issue encountered", async () => {
-					const mockQueryFn = jest
-						.fn()
-						.mockRejectedValue(Error("Failed to connect to DB"));
-
-					server.db = {
-						query: mockQueryFn,
-					};
-
-					const response = await server.inject({
-						method: "PUT",
-						url: `/${testId}`,
-						headers: {
-							"content-type": "application/json",
-						},
-						payload: testPayload,
-					});
-
-					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
-						error: "Internal Server Error",
-						message: "Unable to update contact record in database",
-						statusCode: 500,
-					});
-					expect(response.statusCode).toBe(500);
-				});
-
-				test("Should return HTTP status code 500 if primary key constraint violation occurs", async () => {
-					const mockQueryFn = jest
-						.fn()
-						.mockRejectedValue(Error("ck_destination_match"));
-
-					server.db = {
-						query: mockQueryFn,
-					};
-
-					const response = await server.inject({
-						method: "PUT",
-						url: `/${testId}`,
-						headers: {
-							"content-type": "application/json",
-						},
-						payload: testPayload,
-					});
-
-					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
-						error: "Internal Server Error",
-						message:
-							"A contact record with this match.type and match.value combination already exists",
-						statusCode: 500,
-					});
-					expect(response.statusCode).toBe(500);
-				});
-			});
-
 			describe("/ POST Requests", () => {
-				test("Should create contact record", async () => {
+				test("Should create bearer token record", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -719,6 +565,45 @@ describe("Contact Route", () => {
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.payload)).toEqual({
 						id: testId,
+						access: {
+							token: expect.stringMatching(/^ydhcc_/im),
+							scopes: testPayload.scopes,
+						},
+					});
+					expect(response.statusCode).toBe(201);
+				});
+
+				test("Should create bearer token record without optional body properties", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockResolvedValue(
+							testObject.mocks.queryResults.post.ok
+						);
+
+					server.db = {
+						query: mockQueryFn,
+					};
+
+					const trimmedTestPayload = { ...testPayload };
+					delete trimmedTestPayload.email;
+					delete trimmedTestPayload.expires;
+
+					const response = await server.inject({
+						method: "POST",
+						url: "/",
+						headers: {
+							"content-type": "application/json",
+						},
+						payload: trimmedTestPayload,
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual({
+						id: testId,
+						access: {
+							token: expect.stringMatching(/^ydhcc_/im),
+							scopes: testPayload.scopes,
+						},
 					});
 					expect(response.statusCode).toBe(201);
 				});
@@ -753,7 +638,7 @@ describe("Contact Route", () => {
 					expect(response.statusCode).toBe(415);
 				});
 
-				test("Should return HTTP status code 500 if unable to update a contact record", async () => {
+				test("Should return HTTP status code 500 if unable to update a bearer token record", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -776,7 +661,8 @@ describe("Contact Route", () => {
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.payload)).toEqual({
 						error: "Internal Server Error",
-						message: "Unable to add contact record to database",
+						message:
+							"Unable to add bearer token record to database",
 						statusCode: 500,
 					});
 					expect(response.statusCode).toBe(500);
@@ -803,164 +689,11 @@ describe("Contact Route", () => {
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.payload)).toEqual({
 						error: "Internal Server Error",
-						message: "Unable to add contact record to database",
+						message:
+							"Unable to add bearer token record to database",
 						statusCode: 500,
 					});
 					expect(response.statusCode).toBe(500);
-				});
-
-				test("Should return HTTP status code 500 if primary key constraint violation occurs", async () => {
-					const mockQueryFn = jest
-						.fn()
-						.mockRejectedValue(Error("ck_destination_match"));
-
-					server.db = {
-						query: mockQueryFn,
-					};
-
-					const response = await server.inject({
-						method: "POST",
-						url: "/",
-						headers: {
-							"content-type": "application/json",
-						},
-						payload: testPayload,
-					});
-
-					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
-						error: "Internal Server Error",
-						message:
-							"A contact record with this match.type and match.value combination already exists",
-						statusCode: 500,
-					});
-					expect(response.statusCode).toBe(500);
-				});
-			});
-		});
-
-		describe(`${testObject.testName} - Without Request Scopes`, () => {
-			let config;
-			let server;
-
-			beforeAll(async () => {
-				Object.assign(process.env, {
-					BEARER_TOKEN_AUTH_ENABLED: true,
-					...testObject.envVariables,
-				});
-				config = await getConfig();
-
-				server = Fastify();
-				server
-					.register(cleanObject)
-					.register(convertDateParamOperator)
-					.register(sensible)
-					.register(sharedSchemas)
-					.register(route, config);
-
-				await server.ready();
-			});
-
-			afterAll(async () => {
-				await server.close();
-			});
-
-			describe("/:id DELETE Requests", () => {
-				test("Should return HTTP status code 401 if not in permitted access", async () => {
-					const response = await server.inject({
-						method: "DELETE",
-						url: `/${testId}`,
-					});
-
-					expect(JSON.parse(response.payload)).toEqual({
-						error: "Unauthorized",
-						message:
-							"You do not have permission to perform an HTTP DELETE request on this route",
-						statusCode: 401,
-					});
-					expect(response.statusCode).toBe(401);
-				});
-			});
-
-			describe("/:id GET Requests", () => {
-				test("Should return HTTP status code 401 if not in permitted access", async () => {
-					const response = await server.inject({
-						method: "GET",
-						url: `/${testId}`,
-					});
-
-					expect(JSON.parse(response.payload)).toEqual({
-						error: "Unauthorized",
-						message:
-							"You do not have permission to perform an HTTP GET request on this route",
-						statusCode: 401,
-					});
-					expect(response.statusCode).toBe(401);
-				});
-			});
-
-			describe("/ GET Requests", () => {
-				test("Should return HTTP status code 401 if not in permitted access", async () => {
-					const response = await server.inject({
-						method: "GET",
-						url: "/",
-						query: {
-							"match.type": testResult.match_type,
-							"match.value": testResult.match_value,
-							"match.receiver": testResult.match_receiver,
-							"telecom.value": testPayload.telecom[0].value,
-							"meta.created": testDate1,
-							"meta.last_updated": testDate1,
-							per_page: testPage,
-							page: testPage,
-						},
-					});
-
-					expect(JSON.parse(response.payload)).toEqual({
-						error: "Unauthorized",
-						message:
-							"You do not have permission to perform an HTTP GET request on this route",
-						statusCode: 401,
-					});
-					expect(response.statusCode).toBe(401);
-				});
-			});
-
-			describe("/:id PUT Requests", () => {
-				test("Should return HTTP status code 401 if not in permitted access", async () => {
-					const response = await server.inject({
-						method: "PUT",
-						url: `/${testId}`,
-						headers: {
-							"content-type": "application/json",
-						},
-						payload: testPayload,
-					});
-
-					expect(JSON.parse(response.payload)).toEqual({
-						error: "Unauthorized",
-						message:
-							"You do not have permission to perform an HTTP PUT request on this route",
-						statusCode: 401,
-					});
-					expect(response.statusCode).toBe(401);
-				});
-			});
-
-			describe("/ POST Requests", () => {
-				test("Should return HTTP status code 401 if not in permitted access", async () => {
-					const response = await server.inject({
-						method: "POST",
-						url: "/",
-					});
-
-					expect(JSON.parse(response.payload)).toEqual({
-						error: "Unauthorized",
-						message:
-							"You do not have permission to perform an HTTP POST request on this route",
-						statusCode: 401,
-					});
-					expect(response.statusCode).toBe(401);
 				});
 			});
 		});

@@ -129,8 +129,15 @@ async function getConfig() {
 				S.anyOf([S.number().default(1000), S.null()])
 			)
 
-			// API Keys
-			.prop("AUTH_BEARER_TOKEN_ARRAY", S.anyOf([S.string(), S.null()]))
+			// Admin login
+			.prop("ADMIN_USERNAME", S.string())
+			.prop("ADMIN_PASSWORD", S.string())
+
+			// Bearer token auth
+			.prop(
+				"BEARER_TOKEN_AUTH_ENABLED",
+				S.anyOf([S.boolean().default(false), S.null()])
+			)
 
 			// Database Connection
 			.prop(
@@ -145,6 +152,8 @@ async function getConfig() {
 				"NODE_ENV",
 				"SERVICE_HOST",
 				"SERVICE_PORT",
+				"ADMIN_USERNAME",
+				"ADMIN_PASSWORD",
 				"DB_CONNECTION_STRING",
 			]),
 	});
@@ -256,7 +265,16 @@ async function getConfig() {
 							"Yeovil District Hospital NHS Foundation Trust Logo",
 					},
 				},
-				components: {},
+				components: {
+					securitySchemes: {
+						basicAuth: {
+							type: "http",
+							description:
+								"Expects the request to contain an `Authorization` header with basic auth credentials.",
+							scheme: "basic",
+						},
+					},
+				},
 				tags: [
 					{
 						name: "Community Contacts",
@@ -270,6 +288,11 @@ async function getConfig() {
 				],
 			},
 		},
+		admin: {
+			username: env.ADMIN_USERNAME,
+			password: env.ADMIN_PASSWORD,
+		},
+		bearerTokenAuthEnabled: env.BEARER_TOKEN_AUTH_ENABLED === true,
 		database: {
 			client: env.DB_CLIENT || "mssql",
 			connection: env.DB_CONNECTION_STRING,
@@ -294,21 +317,13 @@ async function getConfig() {
 		);
 	}
 
-	if (env.AUTH_BEARER_TOKEN_ARRAY) {
-		const keys = new Set();
-		secJSON.parse(env.AUTH_BEARER_TOKEN_ARRAY).forEach((element) => {
-			keys.add(element.value);
-		});
-		config.bearerTokenAuthKeys = keys;
-
-		config.swagger.openapi.components.securitySchemes = {
-			bearerToken: {
-				type: "http",
-				description:
-					"Expects the request to contain an `Authorization` header with a bearer token.",
-				scheme: "bearer",
-				bearerFormat: "bearer <token>",
-			},
+	if (env.BEARER_TOKEN_AUTH_ENABLED === true) {
+		config.swagger.openapi.components.securitySchemes.bearerToken = {
+			type: "http",
+			description:
+				"Expects the request to contain an `Authorization` header with a bearer token.",
+			scheme: "bearer",
+			bearerFormat: "Bearer <token>",
 		};
 	}
 
