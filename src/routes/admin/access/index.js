@@ -191,7 +191,7 @@ async function route(server, options) {
 				if (req?.query?.["access.scopes"]) {
 					// _ and % act as wildcards in SQL LIKE clauses, so need to be escaped
 					whereArray.push(
-						escSq`(LOWER(scopes) LIKE LOWER('%${req.query[
+						escSq`(LOWER(CAST(scopes AS TEXT)) LIKE LOWER('%${req.query[
 							"access.scopes"
 						]
 							.replace(/%/g, "!%")
