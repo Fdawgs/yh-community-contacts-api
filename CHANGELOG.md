@@ -1,5 +1,45 @@
 # Changelog
 
+### [1.1.1](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v1.1.0...v1.1.1) (2022-03-08)
+
+
+### Bug Fixes
+
+* **plugins/shared-schemas:** use `examples` not `enum` for 404 responses ([2fc06e2](https://github.com/Fdawgs/ydh-community-contacts-api/commit/2fc06e27899ef973c1f0b4f52f471cf0b8d4c4fb))
+* **routes/contact:** make `match.value` param case-insensitive ([1dd1a4c](https://github.com/Fdawgs/ydh-community-contacts-api/commit/1dd1a4cd2f334e3b35f170293dd959e8d8a74dde))
+* **routes/contact:** use singular not plurals in read responses ([441a20c](https://github.com/Fdawgs/ydh-community-contacts-api/commit/441a20c703595513968d45e07e22bf17d9627df4))
+
+
+### Continuous Integration
+
+* only install chromium and firefox with playwright ([0ddb239](https://github.com/Fdawgs/ydh-community-contacts-api/commit/0ddb239e31404fd5776812d0723b1d0f7c552b46))
+
+
+### Improvements
+
+* **public/images/icons:** compress apple-touch-icons ([#85](https://github.com/Fdawgs/ydh-community-contacts-api/issues/85)) ([b357954](https://github.com/Fdawgs/ydh-community-contacts-api/commit/b357954b9f77f4adc57ef97ce863b72a5b65116e))
+* **routes/docs:** move html and redoc out of root context ([ac6bfb8](https://github.com/Fdawgs/ydh-community-contacts-api/commit/ac6bfb8c7c705b21d8210dbb0bf878ca5404f430))
+* **routes:** add `preValidation` hooks directly into routes ([1dd4a94](https://github.com/Fdawgs/ydh-community-contacts-api/commit/1dd4a9495ad6249b004fe3555d3e39349e68901e))
+* **server:** move db and db util functions to root context ([1d4d784](https://github.com/Fdawgs/ydh-community-contacts-api/commit/1d4d78418d5cdd49cb33cce0a695b9978b7ebc5c))
+
+
+### Miscellaneous
+
+* **.env.template:** double-quote example strings ([#86](https://github.com/Fdawgs/ydh-community-contacts-api/issues/86)) ([cd48d62](https://github.com/Fdawgs/ydh-community-contacts-api/commit/cd48d6267defbd24f133eb22e8ef3fcfa10ebfdc))
+* **routes/contact/schema:** use plural in search summary ([911b3da](https://github.com/Fdawgs/ydh-community-contacts-api/commit/911b3da1b6cac5d4018393b8c9507e585b0d1332))
+
+
+### Dependencies
+
+* **deps-dev:** bump eslint-config-prettier from 8.4.0 to 8.5.0 ([fd88774](https://github.com/Fdawgs/ydh-community-contacts-api/commit/fd887747842811e1693ce94d72f2561e9f050b61))
+* **deps-dev:** bump eslint-plugin-jsdoc from 37.9.4 to 37.9.5 ([d0da88a](https://github.com/Fdawgs/ydh-community-contacts-api/commit/d0da88a82adea2c30c932429023452f0a1716b9d))
+* **deps-dev:** bump eslint-plugin-jsdoc from 37.9.5 to 37.9.7 ([20e8a9c](https://github.com/Fdawgs/ydh-community-contacts-api/commit/20e8a9cf14f98a3d4d21dd4a53aa99109cbb95f5))
+* **deps:** bump actions/checkout from 2 to 3 ([4881ba8](https://github.com/Fdawgs/ydh-community-contacts-api/commit/4881ba8332df39cfa87aafa2c2008eed0d37154b))
+* **deps:** bump fastify from 3.27.2 to 3.27.3 ([ca5e5dc](https://github.com/Fdawgs/ydh-community-contacts-api/commit/ca5e5dcedcb3b87006c15846ae096773c414b0f5))
+* **deps:** bump fluent-json-schema from 3.0.1 to 3.1.0 ([1d2e80e](https://github.com/Fdawgs/ydh-community-contacts-api/commit/1d2e80e666bd7eca071e957f1d5bd5ae104a0a38))
+* **deps:** bump jstoxml from 2.2.9 to 3.1.0 ([af1e3b8](https://github.com/Fdawgs/ydh-community-contacts-api/commit/af1e3b88c520ab7902aa26650bd7871930027e30))
+* **deps:** bump pino-pretty from 7.5.1 to 7.5.3 ([99685a7](https://github.com/Fdawgs/ydh-community-contacts-api/commit/99685a78018d418138ece3b983c53e5764b110f0))
+
 ## [1.1.0](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v1.0.2...v1.1.0) (2022-02-28)
 
 
