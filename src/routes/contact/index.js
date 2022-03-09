@@ -77,7 +77,7 @@ function buildContact(results, req) {
  * @param {('mssql'|'postgresql')} options.database.client - Database client.
  */
 async function route(server, options) {
-	if (options.bearerTokenAuthEnabled === true) {
+	if (options.bearerTokenAuthEnabled) {
 		const security = [{ bearerToken: [] }];
 
 		contactDeleteSchema.security = security;

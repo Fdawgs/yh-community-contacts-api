@@ -157,7 +157,7 @@ async function plugin(server, config) {
 				 */
 				.register(async (securedContext) => {
 					// Protect routes with Bearer token auth if enabled
-					if (config.bearerTokenAuthEnabled === true) {
+					if (config.bearerTokenAuthEnabled) {
 						securedContext.register(hashedBearerAuth);
 					}
 					securedContext
