@@ -36,7 +36,7 @@ WHERE id = '${id}';`;
  * @param {('mssql'|'postgresql')} options.client - Database client.
  * @param {string} options.whereClausePredicates - WHERE clause predicates.
  * @param {number} options.page - Page to retrieve.
- * @param {number} options.perPage - Number of community contact records to return per page.
+ * @param {number} options.perPage - Number of bearer token records to return per page.
  * @returns {string} Query string.
  */
 const contactGetSearch = ({ client, whereClausePredicates, page, perPage }) => `
