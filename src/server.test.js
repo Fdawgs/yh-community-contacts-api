@@ -405,11 +405,11 @@ describe("Server Deployment", () => {
 					await server.ready();
 				});
 
-				describe("/admin/access/:id Route", () => {
+				describe("/admin/access/bearer-token/:id Route", () => {
 					test("Should return HTTP status code 401 if basic auth username invalid", async () => {
 						const response = await server.inject({
 							method: "GET",
-							url: `/admin/access/${testId}`,
+							url: `/admin/access/bearer-token/${testId}`,
 							headers: {
 								authorization: `Basic ${Buffer.from(
 									"invalidadmin:password"
@@ -432,7 +432,7 @@ describe("Server Deployment", () => {
 					test("Should return HTTP status code 401 if basic auth password invalid", async () => {
 						const response = await server.inject({
 							method: "GET",
-							url: `/admin/access/${testId}`,
+							url: `/admin/access/bearer-token/${testId}`,
 							headers: {
 								authorization: `Basic ${Buffer.from(
 									"admin:invalidpassword"
@@ -455,7 +455,7 @@ describe("Server Deployment", () => {
 					test("Should return HTTP status code 406 if basic auth username and password valid, and media type in `Accept` request header is unsupported", async () => {
 						const response = await server.inject({
 							method: "GET",
-							url: "/admin/access",
+							url: "/admin/access/bearer-token",
 							headers: {
 								accept: "application/javascript",
 								authorization: `Basic ${Buffer.from(

@@ -102,6 +102,7 @@ const contactDeleteSchema = {
 	summary: "Delete community contact",
 	description: "Delete a community contact record.",
 	operationId: "deleteContact",
+	produces: ["application/json", "application/xml"],
 	params: S.object()
 		.prop(
 			"id",
@@ -390,6 +391,7 @@ const contactPutSchema = {
 	description: "Update an existing community contact record.",
 	operationId: "putContact",
 	consumes: ["application/json"],
+	produces: ["application/json", "application/xml"],
 	params: S.object()
 		.prop(
 			"id",
