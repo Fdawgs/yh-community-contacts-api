@@ -1,5 +1,48 @@
 # Changelog
 
+## [3.0.0](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v2.1.0...v3.0.0) (2022-03-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **admin/access:** `access.scopes` search param no longer case-insensitive
+* **config:** `ADMIN_PASSWORD` env variable now has minimum length of 8 characters
+* **routes:** `admin/access` route moved to `admin/access/bearer-token`
+
+### Bug Fixes
+
+* **admin/access:** searching using `access.scopes` ([9c8c24f](https://github.com/Fdawgs/ydh-community-contacts-api/commit/9c8c24f58337eeb2d4a919ab3ccd965e556eb25f))
+* **config:** enforce minimum length for `ADMIN_PASSWORD` env variable ([7decdca](https://github.com/Fdawgs/ydh-community-contacts-api/commit/7decdca273a8066cd6945640fe4d74850c374eb5))
+* **plugins/hashed-bearer-auth:** log client name ([48de80e](https://github.com/Fdawgs/ydh-community-contacts-api/commit/48de80ef17984f85bdd1cc88ee67fc82ff3a7429))
+
+
+### Continuous Integration
+
+* add image optimisation workflow ([#99](https://github.com/Fdawgs/ydh-community-contacts-api/issues/99)) ([78e10db](https://github.com/Fdawgs/ydh-community-contacts-api/commit/78e10dbe2c44b2d89741dcb5abad5cd6c89c5fe2))
+
+
+### Miscellaneous
+
+* auto-compress images ([#101](https://github.com/Fdawgs/ydh-community-contacts-api/issues/101)) ([2a52749](https://github.com/Fdawgs/ydh-community-contacts-api/commit/2a52749bab0d00a1121318e78e6c6ae4ea0b9fd0))
+* **plugins/db:** whitespace in switch statement ([90b4e33](https://github.com/Fdawgs/ydh-community-contacts-api/commit/90b4e33b15888c1eca921f36e06830bf0446f0cb))
+* **routes/contact/query:** correct jsdoc tag ([a14c857](https://github.com/Fdawgs/ydh-community-contacts-api/commit/a14c8571ce9f8ce225d3d6591793fce3146166c1))
+* **routes/schemas:** update `produces` and `consumes` values ([b00ed08](https://github.com/Fdawgs/ydh-community-contacts-api/commit/b00ed08dc1cfe3a0f7d6f6a1d25626087bcaa587))
+
+
+### Dependencies
+
+* **deps:** bump fastify from 3.27.3 to 3.27.4 ([276f9c3](https://github.com/Fdawgs/ydh-community-contacts-api/commit/276f9c37c7bd7d24fed8b28d726e5a430a774c43))
+* **deps:** bump jstoxml from 3.1.0 to 3.2.0 ([adc026c](https://github.com/Fdawgs/ydh-community-contacts-api/commit/adc026c6008661e48babbf37d5b2c1ddff929417))
+* **deps:** bump pino from 7.8.0 to 7.8.1 ([75dfea1](https://github.com/Fdawgs/ydh-community-contacts-api/commit/75dfea1f0dafc8f47dc8745f5afa7c37893c1ca2))
+
+
+### Improvements
+
+* **migrate:** use db variable in switch statement ([985bcbb](https://github.com/Fdawgs/ydh-community-contacts-api/commit/985bcbb20c209fb2b72396fc89966c0bbc3a8a35))
+* remove redundant strict equality operators ([494a7c4](https://github.com/Fdawgs/ydh-community-contacts-api/commit/494a7c489374272bb6c4b106c870fdf046c53616))
+* **routes/admin/access/b-t:** remove unused param ([7bfc9b3](https://github.com/Fdawgs/ydh-community-contacts-api/commit/7bfc9b31f3f507bfb4f49dd0898b1c9adf68c8a2))
+* **routes:** move `admin/access` to `admin/access/bearer-token` ([f21c9a9](https://github.com/Fdawgs/ydh-community-contacts-api/commit/f21c9a957b32f6cc681a35bcf89c2b624bb065df))
+
 ## [2.1.0](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v2.0.0...v2.1.0) (2022-03-08)
 
 
