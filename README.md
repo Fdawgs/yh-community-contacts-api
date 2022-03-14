@@ -22,8 +22,8 @@ A case study detailing the benefits of this API (and calling workflows) can be f
 
 ## Prerequisites
 
--   [Node.js](https://nodejs.org/en/) >=14.0.0 (if running outside of Docker)
--   [SQL Server](https://www.microsoft.com/en-gb/sql-server/sql-server-downloads) >=13.x or [PostgreSQL](https://www.postgresql.org/download/) (either as services/instances or Docker containers)
+-   [Node.js](https://nodejs.org/en/) ^14.17.0, ^15.6.0, or >=16.0.0 (if running outside of Docker)
+-   [SQL Server](https://www.microsoft.com/en-gb/sql-server/sql-server-downloads) >=13.0.1601.5 or [PostgreSQL](https://www.postgresql.org/download/) >=9.4 (either as services/instances or Docker containers)
 
 ## Setup
 
