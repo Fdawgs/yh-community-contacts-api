@@ -15,6 +15,16 @@ const dateTimeSearchPatternExamples = [
 	"ge2022-01-13",
 ];
 
+const phoneNumberPattern = /^\+?(?:\d\s?){10,12}$/im;
+
+const phoneNumberPatternExamples = [
+	"+44 1935 475122",
+	"+441935475122",
+	"+441935 475122",
+	"01935 475122",
+	"01935475122",
+];
+
 const contactBaseSchema = S.object()
 	.prop("id", S.string().format("uuid"))
 	.prop(
@@ -51,14 +61,8 @@ const contactBaseSchema = S.object()
 							S.string().format("email"),
 							S.string().format("url"),
 							S.string()
-								.examples([
-									"+44 1935 475122",
-									"+441935475122",
-									"+441935 475122",
-									"01935 475122",
-									"01935475122",
-								])
-								.pattern(/^\+?(?:\d\s?){10,12}$/im),
+								.examples(phoneNumberPatternExamples)
+								.pattern(phoneNumberPattern),
 						])
 					)
 					.prop(
@@ -206,14 +210,8 @@ const contactGetSearchSchema = {
 				S.string().format("email"),
 				S.string().format("url"),
 				S.string()
-					.examples([
-						"+44 1935 475122",
-						"+441935475122",
-						"+441935 475122",
-						"01935 475122",
-						"01935475122",
-					])
-					.pattern(/^\+?(?:\d\s?){10,12}$/im),
+					.examples(phoneNumberPatternExamples)
+					.pattern(phoneNumberPattern),
 			])
 		)
 		.prop(
