@@ -720,6 +720,9 @@ describe("Contact Route", () => {
 					expect(JSON.parse(response.payload)).toEqual({
 						id: testId,
 					});
+					expect(response.headers).toMatchObject({
+						location: expect.stringContaining(`/contact/${testId}`),
+					});
 					expect(response.statusCode).toBe(201);
 				});
 

@@ -571,6 +571,11 @@ describe("Access Route", () => {
 							scopes: testPayload.scopes,
 						},
 					});
+					expect(response.headers).toMatchObject({
+						location: expect.stringContaining(
+							`/admin/access/bearer-token/${testId}`
+						),
+					});
 					expect(response.statusCode).toBe(201);
 				});
 
