@@ -396,6 +396,13 @@ async function route(server, options) {
 				if (contact && contact.length > 0) {
 					contact = contact[0];
 
+					res.header(
+						"location",
+						new URL(
+							`/contact/${contact.id}`,
+							`${req.protocol}://${req.hostname}`
+						).href
+					);
 					res.status(201).send(contact);
 				} else {
 					// TODO: resolve "Promise errored, but reply.sent = true was set" being logged, should be fixed in Fastify v4.x.x
