@@ -70,7 +70,7 @@
 		]
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^16.2.1",
+		"@commitlint/cli": "^16.2.3",
 		"@commitlint/config-conventional": "^16.2.1",
 		"autocannon": "^7.7.0",
 		"eslint": "^8.10.0",
@@ -112,14 +112,14 @@
 		"fastify-swagger": "4.12.0",
 		"file-stream-rotator": "^0.6.1",
 		"fluent-json-schema": "^3.1.0",
-		"jstoxml": "^3.2.0",
+		"jstoxml": "^3.2.2",
 		"mssql": "^8.0.2",
 		"pg": "^8.7.3",
 		"pg-connection-string": "^2.5.0",
-		"pino": "^7.8.1",
+		"pino": "^7.9.2",
 		"pino-pretty": "^7.5.3",
 		"postgrator": "^5.0.1",
-		"redoc": "^2.0.0-rc.64",
+		"redoc": "^2.0.0-rc.65",
 		"secure-json-parse": "^2.4.0",
 		"under-pressure": "^5.8.0",
 		"upath": "^2.0.1"
