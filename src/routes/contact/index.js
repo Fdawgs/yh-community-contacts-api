@@ -129,7 +129,6 @@ async function route(server, options) {
 					);
 				}
 			} catch (err) {
-				req.log.error({ req, res, err }, err && err.message);
 				throw res.internalServerError(
 					"Unable to delete contact record from database"
 				);
@@ -173,7 +172,6 @@ async function route(server, options) {
 					res.notFound("Contact record not found");
 				}
 			} catch (err) {
-				req.log.error({ req, res, err }, err && err.message);
 				throw res.internalServerError(
 					"Unable to return result from database"
 				);
@@ -353,7 +351,6 @@ async function route(server, options) {
 					res.send(server.cleanObject(contactsObject));
 				}
 			} catch (err) {
-				req.log.error({ req, res, err }, err && err.message);
 				throw res.internalServerError(
 					"Unable to return result(s) from database"
 				);
@@ -409,7 +406,6 @@ async function route(server, options) {
 					throw new Error();
 				}
 			} catch (err) {
-				req.log.error({ req, res, err }, err && err.message);
 				// Primary key constraint 'ck_destination_match'
 				throw res.internalServerError(
 					err.message.includes("ck_destination_match")
@@ -458,7 +454,6 @@ async function route(server, options) {
 					);
 				}
 			} catch (err) {
-				req.log.error({ req, res, err }, err && err.message);
 				// Primary key constraint 'ck_destination_match'
 				throw res.internalServerError(
 					err.message.includes("ck_destination_match")
