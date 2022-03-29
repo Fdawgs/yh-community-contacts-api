@@ -9,8 +9,8 @@ CREATE TABLE IF NOT EXISTS lookup.contacts
         match_value VARCHAR(100) NOT NULL,
         match_receiver VARCHAR NOT NULL,
         telecom JSONB NOT NULL,
-        created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        created TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        last_updated TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
         CONSTRAINT ck_destination_match PRIMARY KEY (match_type, match_value)
     );
 
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS access.tokens
         hash VARCHAR NOT NULL,
         salt VARCHAR NOT NULL,
         scopes JSONB NOT NULL,
-        expires TIMESTAMP NOT NULL,
-        created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        expires TIMESTAMPTZ NOT NULL,
+        created TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        last_updated TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
     );
