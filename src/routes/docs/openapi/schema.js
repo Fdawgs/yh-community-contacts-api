@@ -9,7 +9,7 @@ const S = require("fluent-json-schema");
 const docsOpenapiGetSchema = {
 	hide: true,
 	summary: "List OpenAPI specification",
-	description: "Retrieves OpenAPI specification in JSON format.",
+	description: "Retrieves OpenAPI specification.",
 	operationId: "getDocsOpenapi",
 	produces: ["application/json"],
 	response: {
