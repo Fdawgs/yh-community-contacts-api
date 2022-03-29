@@ -10,7 +10,6 @@ const compress = require("fastify-compress");
 const disableCache = require("fastify-disablecache");
 const flocOff = require("fastify-floc-off");
 const helmet = require("fastify-helmet");
-const js2xmlparser = require("js2xmlparser");
 const rateLimit = require("fastify-rate-limit");
 const sensible = require("fastify-sensible");
 const staticPlugin = require("fastify-static");
@@ -20,6 +19,7 @@ const clean = require("./plugins/clean-object");
 const convertDateParamOperator = require("./plugins/convert-date-param-operator");
 const db = require("./plugins/db");
 const hashedBearerAuth = require("./plugins/hashed-bearer-auth");
+const serializeJsonToXml = require("./plugins/serialize-json-to-xml");
 const sharedSchemas = require("./plugins/shared-schemas");
 
 /**
@@ -51,6 +51,9 @@ async function plugin(server, config) {
 
 		// Utility functions and error handlers
 		.register(sensible)
+
+		// Serialization support for XML responses
+		.register(serializeJsonToXml)
 
 		// Re-usable schemas
 		.register(sharedSchemas)
@@ -91,44 +94,6 @@ async function plugin(server, config) {
 					.removeHeader("x-xss-protection");
 			}
 			return res;
-		})
-
-		// Serialize response to XML if requested and supported by route
-		.addHook("onSend", async (req, res, payload) => {
-			/**
-			 * Ensure it does not attempt to serialise non-JSON responses,
-			 * by default Fastify sets response type to json if it has not
-			 * been explicitly defined
-			 */
-			if (res.getHeader("content-type").includes("json")) {
-				let parsedPayload = payload;
-
-				try {
-					parsedPayload = JSON.parse(payload);
-				} catch (err) {
-					// Do nothing, payload already object
-				}
-
-				if (
-					typeof parsedPayload === "object" &&
-					req
-						.accepts()
-						.type(["application/json", "application/xml"]) ===
-						"application/xml"
-				) {
-					res.type("application/xml, charset=utf-8");
-					return js2xmlparser.parse("response", parsedPayload, {
-						format: {
-							doubleQuotes: true,
-						},
-						declaration: {
-							encoding: "UTF-8",
-						},
-					});
-				}
-			}
-
-			return payload;
 		})
 
 		// Import and register healthcheck route
