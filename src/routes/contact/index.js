@@ -1,4 +1,5 @@
 const { URL } = require("url");
+const secJSON = require("secure-json-parse");
 
 // Import plugins
 const cors = require("fastify-cors");
@@ -57,7 +58,7 @@ function buildContact(results, req) {
 		 */
 		telecom:
 			typeof results.telecom === "string"
-				? JSON.parse(results.telecom)
+				? secJSON.parse(results.telecom)
 				: results.telecom,
 		meta: {
 			created: results.created,
