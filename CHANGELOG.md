@@ -1,5 +1,51 @@
 # Changelog
 
+## [4.0.0](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v3.1.0...v4.0.0) (2022-03-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **routes:** datetime search params require timezone if time provided
+* **migrations:** `DATETIME2` replaced with `DATETIMEOFFSET` in MSSQL. `TIMESTAMP` replaced with `TIMESTAMPTZ` in Postgres
+* **routes/docs:** `docs/json` route renamed to `docs/openapi`
+
+### Bug Fixes
+
+* **migrations:** datetime with timezone data types now used ([d160e7e](https://github.com/Fdawgs/ydh-community-contacts-api/commit/d160e7eed7581e00e1bfe17baad1e33e05f7491a))
+* **routes/docs/json:** add cors support ([#138](https://github.com/Fdawgs/ydh-community-contacts-api/issues/138)) ([b550a01](https://github.com/Fdawgs/ydh-community-contacts-api/commit/b550a01e0a97f9adc81566f9a7154d8c9bdc52b8))
+* **routes:** datetime search params require timezone if time provided ([9d447be](https://github.com/Fdawgs/ydh-community-contacts-api/commit/9d447be5b4ee4fc7d91cf90f25f33c0872dbc522))
+* **server:** enable xml serialisation api-wide; fix missing route elem ([531ffbf](https://github.com/Fdawgs/ydh-community-contacts-api/commit/531ffbfb4546d8b61506b5a70a1b4b892cd0ae0a))
+
+
+### Miscellaneous
+
+* **routes/docs:** rename `docs/json` to `docs/openapi` ([#141](https://github.com/Fdawgs/ydh-community-contacts-api/issues/141)) ([4cb4213](https://github.com/Fdawgs/ydh-community-contacts-api/commit/4cb4213f6c0f799c49931f4ec09aa1a7acb528e0))
+
+
+### Dependencies
+
+* **deps-dev:** bump @faker-js/faker from 6.0.0 to 6.1.1 ([7985584](https://github.com/Fdawgs/ydh-community-contacts-api/commit/798558495a9f594c6028561b5b7296614382f8a6))
+* **deps-dev:** bump autocannon from 7.8.0 to 7.8.1 ([5438a60](https://github.com/Fdawgs/ydh-community-contacts-api/commit/5438a6043ca88eede194b08c0748bbb378f6c790))
+* **deps-dev:** bump eslint from 8.11.0 to 8.12.0 ([68ae534](https://github.com/Fdawgs/ydh-community-contacts-api/commit/68ae5349363f1ced07d408578b1ef71122a68f1e))
+* **deps-dev:** bump eslint-plugin-jsdoc from 38.0.6 to 38.1.4 ([a3b88c3](https://github.com/Fdawgs/ydh-community-contacts-api/commit/a3b88c3e6f26dada24c4177354593c6ed851abc0))
+* **deps-dev:** bump prettier from 2.6.0 to 2.6.1 ([8df1f64](https://github.com/Fdawgs/ydh-community-contacts-api/commit/8df1f64a5b683dbf06b06b6ef969fe54dd9e57f2))
+* **deps:** bump fastify-disablecache from 2.0.6 to 2.0.7 ([febf477](https://github.com/Fdawgs/ydh-community-contacts-api/commit/febf477c77460cec53e41e77643ff24b41372cc0))
+* **deps:** bump fastify-floc-off from 1.0.5 to 1.0.6 ([890f423](https://github.com/Fdawgs/ydh-community-contacts-api/commit/890f4239b397ad28435d6b9980568b68cacdac4f))
+* **deps:** bump hadolint/hadolint-action from 1.7.0 to 2.0.0 ([c0e4d73](https://github.com/Fdawgs/ydh-community-contacts-api/commit/c0e4d736a276cc8881e71384f72179077a9414b7))
+* **deps:** bump pino-pretty from 7.5.4 to 7.6.0 ([3f05ba3](https://github.com/Fdawgs/ydh-community-contacts-api/commit/3f05ba3e8ab15219fddf48915638ebdc6701a6c7))
+* **deps:** replace `jstoxml` with `js2xmlparser` ([d44cee0](https://github.com/Fdawgs/ydh-community-contacts-api/commit/d44cee0313a45ba68b7b659358fa02a820d3e585))
+
+
+### Improvements
+
+* chain response functions ([860c425](https://github.com/Fdawgs/ydh-community-contacts-api/commit/860c425e30a7108b0ec2cee232df629ca5ce27ab))
+* **plugins/serialize-json-to-xml:** target application/json only ([#154](https://github.com/Fdawgs/ydh-community-contacts-api/issues/154)) ([0ab4be5](https://github.com/Fdawgs/ydh-community-contacts-api/commit/0ab4be5a5e2cb8c690ea8ce9b3360cafd0fbafc1))
+* **routes:** clean `accept` header conditionals ([7488032](https://github.com/Fdawgs/ydh-community-contacts-api/commit/7488032ce44394a264f6c40aa20bb4d488b98f58))
+* **server:** add error handler ([1e44e1e](https://github.com/Fdawgs/ydh-community-contacts-api/commit/1e44e1e2373300c94c706e6b95a5bdfc0207b9b5))
+* **server:** move xml serialisation to plugin ([d0d8b9e](https://github.com/Fdawgs/ydh-community-contacts-api/commit/d0d8b9e0907695b9600c860d76acc03517bf35d6))
+* use `type()` alias function to set content-type ([23f782c](https://github.com/Fdawgs/ydh-community-contacts-api/commit/23f782c367b4f7b9549f8882362e28dbddb3b798))
+* use secure-json-parse for json parsing ([633d395](https://github.com/Fdawgs/ydh-community-contacts-api/commit/633d39585775ac31246a4b1b869f59f0f691410b))
+
 ## [3.1.0](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v3.0.0...v3.1.0) (2022-03-25)
 
 
