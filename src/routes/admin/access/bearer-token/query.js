@@ -37,7 +37,7 @@ WHERE id = '${id}';`;
  * @param {object} options - Query string and database config values.
  * @param {string} options.whereClausePredicates - WHERE clause predicates.
  * @param {number} options.page - Page to retrieve.
- * @param {number} options.perPage - Number of community contact records to return per page.
+ * @param {number} options.perPage - Number of bearer token records to return per page.
  * @returns {string} Query string.
  */
 const accessGetSearch = ({ whereClausePredicates, page, perPage }) => `
@@ -68,10 +68,10 @@ FETCH NEXT ${perPage} ROWS ONLY;`;
  * @param {('mssql'|'postgresql')} options.client - Database client.
  * @param {string} options.name - Type of matching value.
  * @param {string} options.email - Matching Value.
- * @param {string} options.scopes - JSON string containing actions the API key can perform.
- * @param {string} options.hash - Hashed API key.
- * @param {string} options.salt - Salt used on hashed API key.
- * @param {string=} options.expires - Datetime the API key expires.
+ * @param {string} options.scopes - JSON string containing actions the bearer token can perform.
+ * @param {string} options.hash - Hashed bearer token.
+ * @param {string} options.salt - Salt used on hashed bearer token.
+ * @param {string=} options.expires - Datetime the bearer token expires.
  * @returns {string} Query string.
  */
 const accessPost = ({ client, name, email, scopes, hash, salt, expires }) =>
