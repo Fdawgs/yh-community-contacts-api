@@ -1,4 +1,3 @@
-const { URL } = require("url");
 const secJSON = require("secure-json-parse");
 
 // Import plugins
