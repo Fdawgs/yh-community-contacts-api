@@ -296,8 +296,7 @@ describe("Contact Route", () => {
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.payload)).toEqual({
 						error: "Internal Server Error",
-						message:
-							"Unable to delete contact record from database",
+						message: "Error: Failed to connect to DB",
 						statusCode: 500,
 					});
 					expect(response.statusCode).toBe(500);
@@ -375,7 +374,7 @@ describe("Contact Route", () => {
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.payload)).toEqual({
 						error: "Internal Server Error",
-						message: "Unable to return result from database",
+						message: "Error: Failed to connect to DB",
 						statusCode: 500,
 					});
 					expect(response.statusCode).toBe(500);
@@ -546,7 +545,7 @@ describe("Contact Route", () => {
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.payload)).toEqual({
 						error: "Internal Server Error",
-						message: "Unable to return result(s) from database",
+						message: "Error: Failed to connect to DB",
 						statusCode: 500,
 					});
 					expect(response.statusCode).toBe(500);
@@ -660,7 +659,7 @@ describe("Contact Route", () => {
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.payload)).toEqual({
 						error: "Internal Server Error",
-						message: "Unable to update contact record in database",
+						message: "Error: Failed to connect to DB",
 						statusCode: 500,
 					});
 					expect(response.statusCode).toBe(500);
@@ -686,12 +685,12 @@ describe("Contact Route", () => {
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.payload)).toEqual({
-						error: "Internal Server Error",
+						error: "Bad Request",
 						message:
 							"A contact record with this match.type and match.value combination already exists",
-						statusCode: 500,
+						statusCode: 400,
 					});
-					expect(response.statusCode).toBe(500);
+					expect(response.statusCode).toBe(400);
 				});
 			});
 
@@ -779,7 +778,7 @@ describe("Contact Route", () => {
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.payload)).toEqual({
 						error: "Internal Server Error",
-						message: "Unable to add contact record to database",
+						message: "Error",
 						statusCode: 500,
 					});
 					expect(response.statusCode).toBe(500);
@@ -806,7 +805,7 @@ describe("Contact Route", () => {
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.payload)).toEqual({
 						error: "Internal Server Error",
-						message: "Unable to add contact record to database",
+						message: "Error: Failed to connect to DB",
 						statusCode: 500,
 					});
 					expect(response.statusCode).toBe(500);
@@ -832,12 +831,12 @@ describe("Contact Route", () => {
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.payload)).toEqual({
-						error: "Internal Server Error",
+						error: "Bad Request",
 						message:
 							"A contact record with this match.type and match.value combination already exists",
-						statusCode: 500,
+						statusCode: 400,
 					});
-					expect(response.statusCode).toBe(500);
+					expect(response.statusCode).toBe(400);
 				});
 			});
 		});
