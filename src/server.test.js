@@ -19,6 +19,7 @@ const testHash = crypto
 const testScopes = ["contact.read", "contact.search"];
 
 const testResult = {
+	name: "Community Contacts SPA",
 	salt: testSalt,
 	hash: testHash,
 };
@@ -227,6 +228,33 @@ describe("Server Deployment", () => {
 					});
 				});
 
+				describe("/contacts Route", () => {
+					test("Should return HTTP status code 500 if connection issue encountered", async () => {
+						const mockQueryFn = jest
+							.fn()
+							.mockRejectedValue(
+								Error("Failed to connect to DB")
+							);
+
+						server.db = {
+							query: mockQueryFn,
+						};
+
+						const response = await server.inject({
+							method: "GET",
+							url: `/contact/${testId}`,
+						});
+
+						expect(mockQueryFn).toHaveBeenCalledTimes(1);
+						expect(JSON.parse(response.payload)).toEqual({
+							error: "Internal Server Error",
+							message: "Internal Server Error",
+							statusCode: 500,
+						});
+						expect(response.statusCode).toBe(500);
+					});
+				});
+
 				describe("/docs Route", () => {
 					test("Should return HTML", async () => {
 						const response = await server.inject({
@@ -324,121 +352,118 @@ describe("Server Deployment", () => {
 				});
 
 				describe("/contacts Route", () => {
-					describe("/:id GET Requests", () => {
-						test("Should return HTTP status code 401 if bearer token invalid", async () => {
-							const mockQueryFn = jest
-								.fn()
-								.mockResolvedValue(
-									testObject.mocks.queryResults.bearerAuth
-										.error
-								);
-
-							server.db = {
-								query: mockQueryFn,
-							};
-
-							const response = await server.inject({
-								method: "GET",
-								url: `/contact/${testId}`,
-								headers: {
-									accept: "application/json",
-									authorization: "Bearer invalid",
-								},
-							});
-
-							expect(JSON.parse(response.payload)).toEqual({
-								error: "Unauthorized",
-								message: expect.any(String),
-								statusCode: 401,
-							});
-							expect(response.headers).toEqual({
-								...expResHeadersJson,
-								vary: "accept-encoding",
-							});
-							expect(response.statusCode).toBe(401);
-						});
-
-						test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
-							const mockQueryFn = jest
-								.fn()
-								.mockResolvedValue(
-									testObject.mocks.queryResults.bearerAuth.ok
-								);
-
-							server.db = {
-								query: mockQueryFn,
-							};
-
-							const response = await server.inject({
-								method: "GET",
-								url: `/contact/${testId}`,
-								headers: {
-									accept: "application/javascript",
-									authorization: `Bearer ${testKey}`,
-								},
-							});
-
-							expect(JSON.parse(response.payload)).toEqual({
-								error: "Not Acceptable",
-								message: "Not Acceptable",
-								statusCode: 406,
-							});
-							expect(response.headers).toEqual(expResHeadersJson);
-							expect(response.statusCode).toBe(406);
-						});
-
-						test("Should return response if media type in `Accept` request header is `application/json`", async () => {
-							const mockQueryFn = jest
-								.fn()
-								.mockResolvedValue(
-									testObject.mocks.queryResults.bearerAuth.ok
-								);
-
-							server.db = {
-								query: mockQueryFn,
-							};
-
-							const response = await server.inject({
-								method: "GET",
-								url: `/contact/${testId}`,
-								headers: {
-									accept: "application/json",
-									authorization: `Bearer ${testKey}`,
-								},
-							});
-
-							expect(response.headers).toEqual(expResHeadersJson);
-							expect(response.statusCode).not.toBe(406);
-						});
-
-						test("Should return response if media type in `Accept` request header is `application/xml`", async () => {
-							const mockQueryFn = jest
-								.fn()
-								.mockResolvedValue(
-									testObject.mocks.queryResults.bearerAuth.ok
-								);
-
-							server.db = {
-								query: mockQueryFn,
-							};
-
-							const response = await server.inject({
-								method: "GET",
-								url: `/contact/${testId}`,
-								headers: {
-									accept: "application/xml",
-									authorization: `Bearer ${testKey}`,
-								},
-							});
-
-							expect(response.payload).toEqual(
-								expect.stringContaining(
-									'<?xml version="1.0" encoding="UTF-8"?>'
-								)
+					test("Should return HTTP status code 401 if bearer token invalid", async () => {
+						const mockQueryFn = jest
+							.fn()
+							.mockResolvedValue(
+								testObject.mocks.queryResults.bearerAuth.error
 							);
-							expect(response.headers).toEqual(expResHeadersXml);
-							expect(response.statusCode).not.toBe(406);
+
+						server.db = {
+							query: mockQueryFn,
+						};
+
+						const response = await server.inject({
+							method: "GET",
+							url: `/contact/${testId}`,
+							headers: {
+								accept: "application/json",
+								authorization: "Bearer invalid",
+							},
 						});
+
+						expect(JSON.parse(response.payload)).toEqual({
+							error: "Unauthorized",
+							message: expect.any(String),
+							statusCode: 401,
+						});
+						expect(response.headers).toEqual({
+							...expResHeadersJson,
+							vary: "accept-encoding",
+						});
+						expect(response.statusCode).toBe(401);
+					});
+
+					test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
+						const mockQueryFn = jest
+							.fn()
+							.mockResolvedValue(
+								testObject.mocks.queryResults.bearerAuth.ok
+							);
+
+						server.db = {
+							query: mockQueryFn,
+						};
+
+						const response = await server.inject({
+							method: "GET",
+							url: `/contact/${testId}`,
+							headers: {
+								accept: "application/javascript",
+								authorization: `Bearer ${testKey}`,
+							},
+						});
+
+						expect(JSON.parse(response.payload)).toEqual({
+							error: "Not Acceptable",
+							message: "Not Acceptable",
+							statusCode: 406,
+						});
+						expect(response.headers).toEqual(expResHeadersJson);
+						expect(response.statusCode).toBe(406);
+					});
+
+					test("Should return response if media type in `Accept` request header is `application/json`", async () => {
+						const mockQueryFn = jest
+							.fn()
+							.mockResolvedValue(
+								testObject.mocks.queryResults.bearerAuth.ok
+							);
+
+						server.db = {
+							query: mockQueryFn,
+						};
+
+						const response = await server.inject({
+							method: "GET",
+							url: `/contact/${testId}`,
+							headers: {
+								accept: "application/json",
+								authorization: `Bearer ${testKey}`,
+							},
+						});
+
+						expect(response.headers).toEqual(expResHeadersJson);
+						expect(response.statusCode).not.toBe(406);
+					});
+
+					test("Should return response if media type in `Accept` request header is `application/xml`", async () => {
+						const mockQueryFn = jest
+							.fn()
+							.mockResolvedValue(
+								testObject.mocks.queryResults.bearerAuth.ok
+							);
+
+						server.db = {
+							query: mockQueryFn,
+						};
+
+						const response = await server.inject({
+							method: "GET",
+							url: `/contact/${testId}`,
+							headers: {
+								accept: "application/xml",
+								authorization: `Bearer ${testKey}`,
+							},
+						});
+
+						expect(response.payload).toEqual(
+							expect.stringContaining(
+								'<?xml version="1.0" encoding="UTF-8"?>'
+							)
+						);
+						expect(response.headers).toEqual(expResHeadersXml);
+						expect(response.statusCode).not.toBe(406);
 					});
 				});
 			});

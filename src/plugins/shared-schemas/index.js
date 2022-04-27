@@ -98,16 +98,7 @@ async function plugin(server) {
 					.title("500 Internal Server Error Response")
 					.prop("statusCode", S.number().const(500))
 					.prop("error", S.string().const("Internal Server Error"))
-					.prop(
-						"message",
-						S.string().examples([
-							"A contact record with already exists with this match.type and match.value combination",
-							"Unable to add contact record to database",
-							"Unable to delete contact record from database",
-							"Unable to return result(s) from database",
-							"Unable to update contact record in database",
-						])
-					)
+					.prop("message", S.string().const("Internal Server Error"))
 			)
 			.definition(
 				"serviceUnavailable",

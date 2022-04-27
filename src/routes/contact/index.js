@@ -129,9 +129,7 @@ async function route(server, options) {
 					);
 				}
 			} catch (err) {
-				throw res.internalServerError(
-					"Unable to delete contact record from database"
-				);
+				throw res.internalServerError(err);
 			}
 		},
 	});
@@ -172,9 +170,7 @@ async function route(server, options) {
 					res.notFound("Contact record not found");
 				}
 			} catch (err) {
-				throw res.internalServerError(
-					"Unable to return result from database"
-				);
+				throw res.internalServerError(err);
 			}
 		},
 	});
@@ -351,9 +347,7 @@ async function route(server, options) {
 					res.send(server.cleanObject(contactsObject));
 				}
 			} catch (err) {
-				throw res.internalServerError(
-					"Unable to return result(s) from database"
-				);
+				throw res.internalServerError(err);
 			}
 		},
 	});
@@ -407,11 +401,13 @@ async function route(server, options) {
 				}
 			} catch (err) {
 				// Primary key constraint 'ck_destination_match'
-				throw res.internalServerError(
-					err.message.includes("ck_destination_match")
-						? "A contact record with this match.type and match.value combination already exists"
-						: "Unable to add contact record to database"
-				);
+				if (err.message.includes("ck_destination_match")) {
+					throw res.badRequest(
+						"A contact record with this match.type and match.value combination already exists"
+					);
+				}
+
+				throw res.internalServerError(err);
 			}
 		},
 	});
@@ -455,11 +451,13 @@ async function route(server, options) {
 				}
 			} catch (err) {
 				// Primary key constraint 'ck_destination_match'
-				throw res.internalServerError(
-					err.message.includes("ck_destination_match")
-						? "A contact record with this match.type and match.value combination already exists"
-						: "Unable to update contact record in database"
-				);
+				if (err.message.includes("ck_destination_match")) {
+					throw res.badRequest(
+						"A contact record with this match.type and match.value combination already exists"
+					);
+				}
+
+				throw res.internalServerError(err);
 			}
 		},
 	});
