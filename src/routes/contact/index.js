@@ -1,7 +1,7 @@
 const secJSON = require("secure-json-parse");
 
 // Import plugins
-const cors = require("fastify-cors");
+const cors = require("@fastify/cors");
 
 // Import utils
 const escSq = require("../../utils/escape-single-quotes");
