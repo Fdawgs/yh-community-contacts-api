@@ -54,7 +54,7 @@ const expSearchResult = {
 	},
 	entry: [
 		{
-			url: expect.any(String),
+			url: `http://localhost/contact/${testId}`,
 			id: testId,
 			meta: {
 				created: testResult.created,
