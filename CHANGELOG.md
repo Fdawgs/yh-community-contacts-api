@@ -1,5 +1,34 @@
 # Changelog
 
+### [4.0.3](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v4.0.2...v4.0.3) (2022-05-16)
+
+
+### Bug Fixes
+
+* **routes/admin/access/bearer-token:** missing record url path ([aae13ed](https://github.com/Fdawgs/ydh-community-contacts-api/commit/aae13ed79e3cd490748996e645d350ed13f4f049))
+* **server:** do not transform 503 http err into 500 http err response ([d9c56b1](https://github.com/Fdawgs/ydh-community-contacts-api/commit/d9c56b15d4d62039a8f309b5370dcd1fdeb47880))
+
+
+### Documentation
+
+* update deployment steps to use `npm ci` ([43fe000](https://github.com/Fdawgs/ydh-community-contacts-api/commit/43fe000a34b2fe341586cd67407135da28833b99))
+
+
+### Miscellaneous
+
+* **.eslintrc:** enable `plugin:jest/style` rules ([89d3e90](https://github.com/Fdawgs/ydh-community-contacts-api/commit/89d3e90e772757fd0dcbb5dcc88ba8d12025ac03))
+* **.github/codeql-config:** remove quotation marks ([6a97601](https://github.com/Fdawgs/ydh-community-contacts-api/commit/6a976017726f8d3a8e054a908abb3072417a2fee))
+* **server:** use optional chaining for error message logging ([68a519d](https://github.com/Fdawgs/ydh-community-contacts-api/commit/68a519dab2ce94f963aaf8a6106503eba9a42145))
+
+
+### Continuous Integration
+
+* check `user.login` is dependabot instead of `actor` ([33fd019](https://github.com/Fdawgs/ydh-community-contacts-api/commit/33fd019516c027796ef586a683dba863261771e9))
+* **ci:** require `unit-tests` job to pass for `save-pr-number` job to run ([01f3540](https://github.com/Fdawgs/ydh-community-contacts-api/commit/01f35408cc53b8dc2df3ac8064cab393979a5c02))
+* **codeql:** only run on pr changes to `.html`, `.js`, and `.yml` files ([1fa8213](https://github.com/Fdawgs/ydh-community-contacts-api/commit/1fa8213e5ef8e2b92bc532b70fd423423088de89))
+* **codeql:** resolve missing analyses ([4c5375b](https://github.com/Fdawgs/ydh-community-contacts-api/commit/4c5375b6b759e2a22e82c96db03f2559b4b65d2b))
+* **codeql:** specify which files to scan during analysis ([f609aac](https://github.com/Fdawgs/ydh-community-contacts-api/commit/f609aac5a929ce262dd15cf81671516568ae0c4e))
+
 ### [4.0.2](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v4.0.1...v4.0.2) (2022-05-04)
 
 
