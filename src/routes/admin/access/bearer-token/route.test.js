@@ -12,10 +12,11 @@ const testPage = 1;
 const testDate1 = faker.date.past().toISOString().split("T")[0];
 const testDate2 = faker.date.past().toISOString().split("T")[0];
 
-const testId = "b8e7265c-4733-44be-9238-7d7b8718fb88";
+const testId = faker.datatype.uuid();
+
 const testReqPayload = {
-	name: "Community Contacts SPA",
-	email: "example@example.com",
+	name: faker.commerce.productName(),
+	email: faker.internet.email(),
 	expires: faker.date.past().toISOString().split("T")[0],
 	scopes: ["contact.read", "contact.search"],
 };
