@@ -13,7 +13,7 @@ const testDate1 = faker.date.past().toISOString().split("T")[0];
 const testDate2 = faker.date.past().toISOString().split("T")[0];
 
 const testId = "b8e7265c-4733-44be-9238-7d7b8718fb88";
-const testPayload = {
+const testReqPayload = {
 	match: {
 		type: "postcode",
 		value: "TA126JU",
@@ -33,11 +33,11 @@ const testPayload = {
 	],
 };
 
-const testResult = {
+const testDbResult = {
 	id: testId,
-	match_type: testPayload.match.type,
-	match_value: testPayload.match.value,
-	match_receiver: testPayload.match.receiver,
+	match_type: testReqPayload.match.type,
+	match_value: testReqPayload.match.value,
+	match_receiver: testReqPayload.match.receiver,
 	created: "2022-01-18T14:07:48.190Z",
 	last_updated: "2022-01-18T14:07:48.190Z",
 };
@@ -57,10 +57,10 @@ const expSearchResult = {
 			url: `http://localhost/contact/${testId}`,
 			id: testId,
 			meta: {
-				created: testResult.created,
-				last_updated: testResult.last_updated,
+				created: testDbResult.created,
+				last_updated: testDbResult.last_updated,
 			},
-			...testPayload,
+			...testReqPayload,
 		},
 	],
 };
@@ -86,9 +86,9 @@ describe("Contact Route", () => {
 							recordsets: [
 								[
 									{
-										...testResult,
+										...testDbResult,
 										telecom: JSON.stringify(
-											testPayload.telecom
+											testReqPayload.telecom
 										),
 									},
 								],
@@ -104,9 +104,9 @@ describe("Contact Route", () => {
 								[{ total: 1 }],
 								[
 									{
-										...testResult,
+										...testDbResult,
 										telecom: JSON.stringify(
-											testPayload.telecom
+											testReqPayload.telecom
 										),
 									},
 								],
@@ -156,8 +156,8 @@ describe("Contact Route", () => {
 						ok: {
 							rows: [
 								{
-									...testResult,
-									telecom: testPayload.telecom,
+									...testDbResult,
+									telecom: testReqPayload.telecom,
 								},
 							],
 						},
@@ -171,8 +171,8 @@ describe("Contact Route", () => {
 							{
 								rows: [
 									{
-										...testResult,
-										telecom: testPayload.telecom,
+										...testDbResult,
+										telecom: testReqPayload.telecom,
 									},
 								],
 							},
@@ -327,7 +327,7 @@ describe("Contact Route", () => {
 							created: "2022-01-18T14:07:48.190Z",
 							last_updated: "2022-01-18T14:07:48.190Z",
 						},
-						...testPayload,
+						...testReqPayload,
 					});
 					expect(response.statusCode).toBe(200);
 				});
@@ -397,10 +397,10 @@ describe("Contact Route", () => {
 						method: "GET",
 						url: "/",
 						query: {
-							"match.type": testResult.match_type,
-							"match.value": testResult.match_value,
-							"match.receiver": testResult.match_receiver,
-							"telecom.value": testPayload.telecom[0].value,
+							"match.type": testDbResult.match_type,
+							"match.value": testDbResult.match_value,
+							"match.receiver": testDbResult.match_receiver,
+							"telecom.value": testReqPayload.telecom[0].value,
 							"meta.created": testDate1,
 							"meta.last_updated": testDate1,
 							per_page: testPage,
@@ -480,7 +480,7 @@ describe("Contact Route", () => {
 						method: "GET",
 						url: "/",
 						query: {
-							"match.type": testResult.match_type,
+							"match.type": testDbResult.match_type,
 						},
 					});
 
@@ -538,7 +538,7 @@ describe("Contact Route", () => {
 						method: "GET",
 						url: "/",
 						query: {
-							"match.type": testResult.match_type,
+							"match.type": testDbResult.match_type,
 						},
 					});
 
@@ -570,7 +570,7 @@ describe("Contact Route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testPayload,
+						payload: testReqPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -595,7 +595,7 @@ describe("Contact Route", () => {
 						headers: {
 							"content-type": "application/javascript",
 						},
-						payload: testPayload,
+						payload: testReqPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(0);
@@ -625,7 +625,7 @@ describe("Contact Route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testPayload,
+						payload: testReqPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -653,7 +653,7 @@ describe("Contact Route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testPayload,
+						payload: testReqPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -680,7 +680,7 @@ describe("Contact Route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testPayload,
+						payload: testReqPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -712,7 +712,7 @@ describe("Contact Route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testPayload,
+						payload: testReqPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -742,7 +742,7 @@ describe("Contact Route", () => {
 						headers: {
 							"content-type": "application/javascript",
 						},
-						payload: testPayload,
+						payload: testReqPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(0);
@@ -772,7 +772,7 @@ describe("Contact Route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testPayload,
+						payload: testReqPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -799,7 +799,7 @@ describe("Contact Route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testPayload,
+						payload: testReqPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -826,7 +826,7 @@ describe("Contact Route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testPayload,
+						payload: testReqPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -907,10 +907,10 @@ describe("Contact Route", () => {
 						method: "GET",
 						url: "/",
 						query: {
-							"match.type": testResult.match_type,
-							"match.value": testResult.match_value,
-							"match.receiver": testResult.match_receiver,
-							"telecom.value": testPayload.telecom[0].value,
+							"match.type": testDbResult.match_type,
+							"match.value": testDbResult.match_value,
+							"match.receiver": testDbResult.match_receiver,
+							"telecom.value": testReqPayload.telecom[0].value,
 							"meta.created": testDate1,
 							"meta.last_updated": testDate1,
 							per_page: testPage,
@@ -936,7 +936,7 @@ describe("Contact Route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testPayload,
+						payload: testReqPayload,
 					});
 
 					expect(JSON.parse(response.payload)).toEqual({
