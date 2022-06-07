@@ -1,4 +1,4 @@
-const { faker } = require("@faker-js/faker");
+const { faker } = require("@faker-js/faker/locale/en_GB");
 const { chromium, firefox } = require("playwright");
 const crypto = require("crypto");
 const Fastify = require("fastify");
