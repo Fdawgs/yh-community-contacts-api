@@ -151,7 +151,7 @@ describe("Server Deployment", () => {
 				Object.assign(process.env, testObject.envVariables);
 			});
 
-			describe("End-To-End - Bearer Token Disabled", () => {
+			describe("Bearer Token Disabled", () => {
 				let config;
 				let server;
 
@@ -256,7 +256,7 @@ describe("Server Deployment", () => {
 				});
 			});
 
-			describe("End-To-End - Bearer Token Enabled", () => {
+			describe("Bearer Token Enabled", () => {
 				let config;
 				let server;
 
@@ -450,7 +450,7 @@ describe("Server Deployment", () => {
 				});
 			});
 
-			describe("End-To-End - Basic Auth", () => {
+			describe("Basic Auth", () => {
 				let config;
 				let server;
 
