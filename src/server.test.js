@@ -17,10 +17,46 @@ const testHash = crypto
 
 const testScopes = ["contact.read", "contact.search"];
 
-const testDbResult = {
+const testDbBearerToken = {
 	name: faker.commerce.productName(),
 	salt: testSalt,
 	hash: testHash,
+};
+
+const testDbContact = {
+	id: testId,
+	match_type: "postcode",
+	match_value: "TA126JU",
+	match_receiver: "Area North",
+	created: "2022-01-18T14:07:48.190Z",
+	last_updated: "2022-01-18T14:07:48.190Z",
+};
+
+const testContactTelecom = [
+	{
+		system: "email",
+		value: "examplehv@nhs.net",
+		use: "Health Visitors",
+	},
+	{
+		system: "email",
+		value: "examplemidwife@ydh.nhs.uk",
+		use: "Community Midwives",
+	},
+];
+
+const testContactPayload = {
+	id: testId,
+	match: {
+		type: testDbContact.match_type,
+		value: testDbContact.match_value,
+		receiver: testDbContact.match_receiver,
+	},
+	telecom: testContactTelecom,
+	meta: {
+		created: testDbContact.created,
+		last_updated: testDbContact.last_updated,
+	},
 };
 
 const expResHeaders = {
@@ -109,8 +145,21 @@ describe("Server Deployment", () => {
 							recordsets: [
 								[
 									{
-										...testDbResult,
+										...testDbBearerToken,
 										scopes: JSON.stringify(testScopes),
+									},
+								],
+							],
+						},
+					},
+					contact: {
+						ok: {
+							recordsets: [
+								[
+									{
+										...testDbContact,
+										telecom:
+											JSON.stringify(testContactTelecom),
 									},
 								],
 							],
@@ -135,8 +184,18 @@ describe("Server Deployment", () => {
 						ok: {
 							rows: [
 								{
-									...testDbResult,
+									...testDbBearerToken,
 									scopes: testScopes,
+								},
+							],
+						},
+					},
+					contact: {
+						ok: {
+							rows: [
+								{
+									...testDbContact,
+									telecom: testContactTelecom,
 								},
 							],
 						},
@@ -398,8 +457,11 @@ describe("Server Deployment", () => {
 					test("Should return response if media type in `Accept` request header is `application/json`", async () => {
 						const mockQueryFn = jest
 							.fn()
-							.mockResolvedValue(
+							.mockResolvedValueOnce(
 								testObject.mocks.queryResults.bearerAuth.ok
+							)
+							.mockResolvedValueOnce(
+								testObject.mocks.queryResults.contact.ok
 							);
 
 						server.db = {
@@ -415,15 +477,21 @@ describe("Server Deployment", () => {
 							},
 						});
 
+						expect(JSON.parse(response.payload)).toEqual(
+							testContactPayload
+						);
 						expect(response.headers).toEqual(expResHeadersJson);
-						expect(response.statusCode).not.toBe(406);
+						expect(response.statusCode).toBe(200);
 					});
 
 					test("Should return response if media type in `Accept` request header is `application/xml`", async () => {
 						const mockQueryFn = jest
 							.fn()
-							.mockResolvedValue(
+							.mockResolvedValueOnce(
 								testObject.mocks.queryResults.bearerAuth.ok
+							)
+							.mockResolvedValueOnce(
+								testObject.mocks.queryResults.contact.ok
 							);
 
 						server.db = {
@@ -445,7 +513,7 @@ describe("Server Deployment", () => {
 							)
 						);
 						expect(response.headers).toEqual(expResHeadersXml);
-						expect(response.statusCode).not.toBe(406);
+						expect(response.statusCode).toBe(200);
 					});
 				});
 			});
