@@ -23,6 +23,13 @@ const testDbBearerToken = {
 	hash: testHash,
 };
 
+// Tests "No match" error thrown in hashed-bearer-auth plugin
+const testDbBearerTokenInvalid = {
+	name: faker.commerce.productName(),
+	salt: testSalt,
+	hash: "brown",
+};
+
 const testDbContact = {
 	id: testId,
 	match_type: "postcode",
@@ -148,6 +155,10 @@ describe("Server Deployment", () => {
 										...testDbBearerToken,
 										scopes: JSON.stringify(testScopes),
 									},
+									{
+										...testDbBearerTokenInvalid,
+										scopes: JSON.stringify(testScopes),
+									},
 								],
 							],
 						},
@@ -185,6 +196,10 @@ describe("Server Deployment", () => {
 							rows: [
 								{
 									...testDbBearerToken,
+									scopes: testScopes,
+								},
+								{
+									...testDbBearerTokenInvalid,
 									scopes: testScopes,
 								},
 							],
