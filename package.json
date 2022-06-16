@@ -72,13 +72,13 @@
 	"devDependencies": {
 		"@commitlint/cli": "^17.0.2",
 		"@commitlint/config-conventional": "^17.0.2",
-		"@faker-js/faker": "^7.1.0",
+		"@faker-js/faker": "^7.2.0",
 		"autocannon": "^7.9.0",
 		"eslint": "^8.17.0",
 		"eslint-config-airbnb-base": "^15.0.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-import": "^2.26.0",
-		"eslint-plugin-jest": "^26.4.6",
+		"eslint-plugin-jest": "^26.5.3",
 		"eslint-plugin-jsdoc": "^39.3.2",
 		"eslint-plugin-promise": "^6.0.0",
 		"eslint-plugin-security": "^1.5.0",
@@ -91,7 +91,7 @@
 		"nodemon": "^2.0.16",
 		"pino-pretty": "^8.0.0",
 		"playwright": "^1.22.2",
-		"prettier": "^2.6.2"
+		"prettier": "^2.7.1"
 	},
 	"dependencies": {
 		"@fastify/accepts": "^3.0.0",
@@ -119,9 +119,9 @@
 		"pg-connection-string": "^2.5.0",
 		"pino": "^8.0.0",
 		"postgrator": "^5.0.1",
-		"redoc": "^2.0.0-rc.71",
+		"redoc": "^2.0.0-rc.72",
 		"secure-json-parse": "^2.4.0",
-		"under-pressure": "^5.8.1",
+		"under-pressure": "^6.1.0",
 		"upath": "^2.0.1"
 	}
 }
