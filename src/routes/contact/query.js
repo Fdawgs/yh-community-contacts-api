@@ -40,7 +40,10 @@ WHERE id = '${id}';`;
  * @returns {string} Query string.
  */
 const contactGetSearch = ({ client, whereClausePredicates, page, perPage }) => `
-SELECT COUNT(DISTINCT id) AS total
+SELECT COUNT(DISTINCT id)${
+	// Cast from string to int - https://node-postgres.com/features/types
+	client === "postgresql" ? "::int" : ""
+} AS total
 FROM lookup.contacts
 ${
 	client === "mssql"
