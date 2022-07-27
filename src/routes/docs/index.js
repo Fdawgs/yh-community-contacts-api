@@ -46,14 +46,15 @@ async function route(server) {
 
 			return req;
 		},
-		handler: async (req, res) =>
-			res
-				.header("cache-control", "private, max-age=180")
+		handler: async (req, res) => {
+			res.header("cache-control", "private, max-age=180")
 				.removeHeader("pragma")
 				.removeHeader("expires")
 				.removeHeader("surrogate-control")
-				.type("text/html; charset=utf-8")
-				.sendFile("index.html"),
+				.type("text/html; charset=utf-8");
+
+			return res.sendFile("index.html");
+		},
 	});
 }
 

@@ -124,14 +124,13 @@ async function route(server, options) {
 				 * (mssql uses rowsAffected, pg uses rowCount) thus the optional chaining
 				 */
 				if (results?.rowsAffected?.[0] > 0 || results?.rowCount > 0) {
-					res.status(204);
-				} else {
-					res.notFound(
-						"Contact record does not exist or has already been deleted"
-					);
+					return res.status(204).send();
 				}
+				return res.notFound(
+					"Contact record does not exist or has already been deleted"
+				);
 			} catch (err) {
-				throw res.internalServerError(err);
+				return res.internalServerError(err);
 			}
 		},
 	});
@@ -173,7 +172,7 @@ async function route(server, options) {
 				}
 				return res.notFound("Contact record not found");
 			} catch (err) {
-				throw res.internalServerError(err);
+				return res.internalServerError(err);
 			}
 		},
 	});
@@ -351,7 +350,7 @@ async function route(server, options) {
 				});
 				return server.cleanObject(contactsObject);
 			} catch (err) {
-				throw res.internalServerError(err);
+				return res.internalServerError(err);
 			}
 		},
 	});
@@ -407,12 +406,12 @@ async function route(server, options) {
 			} catch (err) {
 				// Primary key constraint 'ck_destination_match'
 				if (err.message.includes("ck_destination_match")) {
-					throw res.badRequest(
+					return res.badRequest(
 						"A contact record with this match.type and match.value combination already exists"
 					);
 				}
 
-				throw res.internalServerError(err);
+				return res.internalServerError(err);
 			}
 		},
 	});
@@ -450,21 +449,20 @@ async function route(server, options) {
 				 * (mssql uses rowsAffected, pg uses rowCount) thus the optional chaining
 				 */
 				if (results?.rowsAffected?.[0] > 0 || results?.rowCount > 0) {
-					res.status(204);
-				} else {
-					res.notFound(
-						"Contact record does not exist or has already been deleted"
-					);
+					return res.status(204).send();
 				}
+				return res.notFound(
+					"Contact record does not exist or has already been deleted"
+				);
 			} catch (err) {
 				// Primary key constraint 'ck_destination_match'
 				if (err.message.includes("ck_destination_match")) {
-					throw res.badRequest(
+					return res.badRequest(
 						"A contact record with this match.type and match.value combination already exists"
 					);
 				}
 
-				throw res.internalServerError(err);
+				return res.internalServerError(err);
 			}
 		},
 	});

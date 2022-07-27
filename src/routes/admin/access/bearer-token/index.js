@@ -104,14 +104,13 @@ async function route(server, options) {
 				 * (mssql uses rowsAffected, pg uses rowCount) thus the optional chaining
 				 */
 				if (results?.rowsAffected?.[0] > 0 || results?.rowCount > 0) {
-					res.status(204);
-				} else {
-					res.notFound(
-						"Bearer token record does not exist or has already been deleted"
-					);
+					return res.status(204).send();
 				}
+				return res.notFound(
+					"Bearer token record does not exist or has already been deleted"
+				);
 			} catch (err) {
-				throw res.internalServerError(err);
+				return res.internalServerError(err);
 			}
 		},
 	});
@@ -142,7 +141,7 @@ async function route(server, options) {
 
 				return res.notFound("Bearer token record not found");
 			} catch (err) {
-				throw res.internalServerError(err);
+				return res.internalServerError(err);
 			}
 		},
 	});
@@ -347,7 +346,7 @@ async function route(server, options) {
 				});
 				return server.cleanObject(tokensObject);
 			} catch (err) {
-				throw res.internalServerError(err);
+				return res.internalServerError(err);
 			}
 		},
 	});
@@ -421,7 +420,7 @@ async function route(server, options) {
 
 				throw new Error();
 			} catch (err) {
-				throw res.internalServerError(err);
+				return res.internalServerError(err);
 			}
 		},
 	});
