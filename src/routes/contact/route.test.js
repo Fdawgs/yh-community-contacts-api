@@ -208,7 +208,7 @@ describe("Contact Route", () => {
 				config = await getConfig();
 
 				server = Fastify();
-				server
+				await server
 					.register(cleanObject)
 					.register(convertDateParamOperator)
 					.addHook("preValidation", async (req) => {
@@ -219,12 +219,13 @@ describe("Contact Route", () => {
 							"contact.post",
 							"contact.put",
 						];
+
+						return req;
 					})
 					.register(sensible)
 					.register(sharedSchemas)
-					.register(route, config);
-
-				await server.ready();
+					.register(route, config)
+					.ready();
 			});
 
 			afterAll(async () => {
@@ -853,14 +854,13 @@ describe("Contact Route", () => {
 				config = await getConfig();
 
 				server = Fastify();
-				server
+				await server
 					.register(cleanObject)
 					.register(convertDateParamOperator)
 					.register(sensible)
 					.register(sharedSchemas)
-					.register(route, config);
-
-				await server.ready();
+					.register(route, config)
+					.ready();
 			});
 
 			afterAll(async () => {
