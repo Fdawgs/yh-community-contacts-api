@@ -207,7 +207,7 @@ async function plugin(server, config) {
 			{
 				preHandler: server.rateLimit(),
 			},
-			(req, res) => {
+			async (req, res) => {
 				res.notFound(`Route ${req.method}:${req.url} not found`);
 			}
 		)

@@ -169,10 +169,9 @@ async function route(server, options) {
 				if (contact && contact.length > 0) {
 					contact = contact[0];
 
-					res.send(server.cleanObject(buildContact(contact)));
-				} else {
-					res.notFound("Contact record not found");
+					return server.cleanObject(buildContact(contact));
 				}
+				return res.notFound("Contact record not found");
 			} catch (err) {
 				throw res.internalServerError(err);
 			}
@@ -306,52 +305,51 @@ async function route(server, options) {
 				// Stops SQL query with empty WHERE clause from being made and throwing errors
 				// TODO: replace with JSON Schema subschemas when supported
 				if (whereArray.length === 0) {
-					res.badRequest("No valid query string parameters provided");
-				} else {
-					const whereClausePredicates = whereArray.join(" AND ");
-
-					const results = await server.db.query(
-						contactGetSearch({
-							client: options.database.client,
-							whereClausePredicates,
-							page,
-							perPage,
-						})
+					return res.badRequest(
+						"No valid query string parameters provided"
 					);
-
-					/**
-					 * Database client packages return results in different structures,
-					 * (mssql uses recordsets, pg uses rows) thus the optional chaining
-					 */
-					const count =
-						results?.recordsets?.[0]?.[0]?.total ??
-						results?.[0]?.rows?.[0]?.total ??
-						0;
-					const contacts = server.cleanObject(
-						results?.recordsets?.[1] ?? results?.[1]?.rows ?? []
-					);
-
-					const contactsObject = {
-						link: new URL(
-							req.url,
-							`${req.protocol}://${req.hostname}`
-						).href,
-						entry: [],
-						meta: {
-							pagination: {
-								total: count,
-								per_page: perPage,
-								current_page: page + 1,
-								total_pages: Math.ceil(count / perPage),
-							},
-						},
-					};
-
-					contacts.forEach((contact) => {
-						contactsObject.entry.push(buildContact(contact, req));
-					});
-					res.send(server.cleanObject(contactsObject));
 				}
+				const whereClausePredicates = whereArray.join(" AND ");
+
+				const results = await server.db.query(
+					contactGetSearch({
+						client: options.database.client,
+						whereClausePredicates,
+						page,
+						perPage,
+					})
+				);
+
+				/**
+				 * Database client packages return results in different structures,
+				 * (mssql uses recordsets, pg uses rows) thus the optional chaining
+				 */
+				const count =
+					results?.recordsets?.[0]?.[0]?.total ??
+					results?.[0]?.rows?.[0]?.total ??
+					0;
+				const contacts = server.cleanObject(
+					results?.recordsets?.[1] ?? results?.[1]?.rows ?? []
+				);
+
+				const contactsObject = {
+					link: new URL(req.url, `${req.protocol}://${req.hostname}`)
+						.href,
+					entry: [],
+					meta: {
+						pagination: {
+							total: count,
+							per_page: perPage,
+							current_page: page + 1,
+							total_pages: Math.ceil(count / perPage),
+						},
+					},
+				};
+
+				contacts.forEach((contact) => {
+					contactsObject.entry.push(buildContact(contact, req));
+				});
+				return server.cleanObject(contactsObject);
 			} catch (err) {
 				throw res.internalServerError(err);
 			}
@@ -401,12 +399,11 @@ async function route(server, options) {
 							`/contact/${contact.id}`,
 							`${req.protocol}://${req.hostname}`
 						).href
-					);
-					res.status(201).send(contact);
-				} else {
-					// TODO: resolve "Promise errored, but reply.sent = true was set" being logged, should be fixed in Fastify v4.x.x
-					throw new Error();
+					).status(201);
+					return contact;
 				}
+
+				throw new Error();
 			} catch (err) {
 				// Primary key constraint 'ck_destination_match'
 				if (err.message.includes("ck_destination_match")) {
