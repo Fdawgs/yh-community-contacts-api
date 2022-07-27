@@ -219,6 +219,8 @@ describe("Contact Route", () => {
 							"contact.post",
 							"contact.put",
 						];
+
+						return req;
 					})
 					.register(sensible)
 					.register(sharedSchemas)
