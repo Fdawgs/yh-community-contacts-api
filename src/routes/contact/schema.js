@@ -127,22 +127,22 @@ const contactDeleteSchema = {
 		.required(["id"]),
 	response: {
 		204: S.string().raw({ nullable: true }).description("No Content"),
-		401: S.ref("responses#/definitions/unauthorized").description(
+		401: S.ref("responses#/properties/unauthorized").description(
 			"Unauthorized"
 		),
-		404: S.ref("responses#/definitions/notFoundDbResults").description(
+		404: S.ref("responses#/properties/notFoundDbResults").description(
 			"Not Found"
 		),
-		406: S.ref("responses#/definitions/notAcceptable").description(
+		406: S.ref("responses#/properties/notAcceptable").description(
 			"Not Acceptable"
 		),
-		429: S.ref("responses#/definitions/tooManyRequests").description(
+		429: S.ref("responses#/properties/tooManyRequests").description(
 			"Too Many Requests"
 		),
-		500: S.ref("responses#/definitions/internalServerError").description(
+		500: S.ref("responses#/properties/internalServerError").description(
 			"Internal Server Error"
 		),
-		503: S.ref("responses#/definitions/serviceUnavailable").description(
+		503: S.ref("responses#/properties/serviceUnavailable").description(
 			"Service Unavailable"
 		),
 	},
@@ -165,22 +165,22 @@ const contactGetReadSchema = {
 		.required(["id"]),
 	response: {
 		200: contactBaseSchema,
-		401: S.ref("responses#/definitions/unauthorized").description(
+		401: S.ref("responses#/properties/unauthorized").description(
 			"Unauthorized"
 		),
-		404: S.ref("responses#/definitions/notFoundDbResults").description(
+		404: S.ref("responses#/properties/notFoundDbResults").description(
 			"Not Found"
 		),
-		406: S.ref("responses#/definitions/notAcceptable").description(
+		406: S.ref("responses#/properties/notAcceptable").description(
 			"Not Acceptable"
 		),
-		429: S.ref("responses#/definitions/tooManyRequests").description(
+		429: S.ref("responses#/properties/tooManyRequests").description(
 			"Too Many Requests"
 		),
-		500: S.ref("responses#/definitions/internalServerError").description(
+		500: S.ref("responses#/properties/internalServerError").description(
 			"Internal Server Error"
 		),
-		503: S.ref("responses#/definitions/serviceUnavailable").description(
+		503: S.ref("responses#/properties/serviceUnavailable").description(
 			"Service Unavailable"
 		),
 	},
@@ -327,25 +327,25 @@ const contactGetSearchSchema = {
 							.prop("total_pages", S.number().examples([1, 10]))
 					)
 			),
-		400: S.ref("responses#/definitions/badRequest").description(
+		400: S.ref("responses#/properties/badRequest").description(
 			"Bad Request"
 		),
-		401: S.ref("responses#/definitions/unauthorized").description(
+		401: S.ref("responses#/properties/unauthorized").description(
 			"Unauthorized"
 		),
-		404: S.ref("responses#/definitions/notFoundDbResults").description(
+		404: S.ref("responses#/properties/notFoundDbResults").description(
 			"Not Found"
 		),
-		406: S.ref("responses#/definitions/notAcceptable").description(
+		406: S.ref("responses#/properties/notAcceptable").description(
 			"Not Acceptable"
 		),
-		429: S.ref("responses#/definitions/tooManyRequests").description(
+		429: S.ref("responses#/properties/tooManyRequests").description(
 			"Too Many Requests"
 		),
-		500: S.ref("responses#/definitions/internalServerError").description(
+		500: S.ref("responses#/properties/internalServerError").description(
 			"Internal Server Error"
 		),
-		503: S.ref("responses#/definitions/serviceUnavailable").description(
+		503: S.ref("responses#/properties/serviceUnavailable").description(
 			"Service Unavailable"
 		),
 	},
@@ -371,22 +371,22 @@ const contactPostSchema = {
 				.examples(["A972C577-DFB0-064E-1189-0154C99310DAAC12"])
 				.format("uuid")
 		),
-		401: S.ref("responses#/definitions/unauthorized").description(
+		401: S.ref("responses#/properties/unauthorized").description(
 			"Unauthorized"
 		),
-		406: S.ref("responses#/definitions/notAcceptable").description(
+		406: S.ref("responses#/properties/notAcceptable").description(
 			"Not Acceptable"
 		),
-		415: S.ref("responses#/definitions/unsupportedMediaType").description(
+		415: S.ref("responses#/properties/unsupportedMediaType").description(
 			"Unsupported Media Type"
 		),
-		429: S.ref("responses#/definitions/tooManyRequests").description(
+		429: S.ref("responses#/properties/tooManyRequests").description(
 			"Too Many Requests"
 		),
-		500: S.ref("responses#/definitions/internalServerError").description(
+		500: S.ref("responses#/properties/internalServerError").description(
 			"Internal Server Error"
 		),
-		503: S.ref("responses#/definitions/serviceUnavailable").description(
+		503: S.ref("responses#/properties/serviceUnavailable").description(
 			"Service Unavailable"
 		),
 	},
@@ -413,25 +413,25 @@ const contactPutSchema = {
 		.only(["match", "telecom"]),
 	response: {
 		204: S.string().raw({ nullable: true }).description("No Content"),
-		401: S.ref("responses#/definitions/unauthorized").description(
+		401: S.ref("responses#/properties/unauthorized").description(
 			"Unauthorized"
 		),
-		404: S.ref("responses#/definitions/notFoundDbResults").description(
+		404: S.ref("responses#/properties/notFoundDbResults").description(
 			"Not Found"
 		),
-		406: S.ref("responses#/definitions/notAcceptable").description(
+		406: S.ref("responses#/properties/notAcceptable").description(
 			"Not Acceptable"
 		),
-		415: S.ref("responses#/definitions/unsupportedMediaType").description(
+		415: S.ref("responses#/properties/unsupportedMediaType").description(
 			"Unsupported Media Type"
 		),
-		429: S.ref("responses#/definitions/tooManyRequests").description(
+		429: S.ref("responses#/properties/tooManyRequests").description(
 			"Too Many Requests"
 		),
-		500: S.ref("responses#/definitions/internalServerError").description(
+		500: S.ref("responses#/properties/internalServerError").description(
 			"Internal Server Error"
 		),
-		503: S.ref("responses#/definitions/serviceUnavailable").description(
+		503: S.ref("responses#/properties/serviceUnavailable").description(
 			"Service Unavailable"
 		),
 	},
