@@ -1,5 +1,25 @@
 # Changelog
 
+## [5.0.4](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v5.0.3...v5.0.4) (2022-08-09)
+
+
+### Bug Fixes
+
+* **config:** log rotation max files ([#335](https://github.com/Fdawgs/ydh-community-contacts-api/issues/335)) ([9fb8123](https://github.com/Fdawgs/ydh-community-contacts-api/commit/9fb81238cf8d81aa8d0f24a70ac56aaa61a5ac51))
+
+
+### Dependencies
+
+* **deps-dev:** bump @faker-js/faker from 7.3.0 to 7.4.0 ([#343](https://github.com/Fdawgs/ydh-community-contacts-api/issues/343)) ([e74a13b](https://github.com/Fdawgs/ydh-community-contacts-api/commit/e74a13b963d744c12270745cfdae73ad3375baa6))
+* **deps-dev:** bump eslint-plugin-jest from 26.7.0 to 26.8.2 ([#338](https://github.com/Fdawgs/ydh-community-contacts-api/issues/338)) ([64b3cd2](https://github.com/Fdawgs/ydh-community-contacts-api/commit/64b3cd25169ed5241e616ffa95dffa2f9d495b2f))
+* **deps-dev:** bump eslint-plugin-jsdoc from 39.3.4 to 39.3.6 ([#339](https://github.com/Fdawgs/ydh-community-contacts-api/issues/339)) ([fb02a6a](https://github.com/Fdawgs/ydh-community-contacts-api/commit/fb02a6a43ee0980e79b1c057200278ce1cea01a3))
+* **deps:** bump @fastify/autoload from 5.1.0 to 5.2.0 ([#342](https://github.com/Fdawgs/ydh-community-contacts-api/issues/342)) ([b63b47d](https://github.com/Fdawgs/ydh-community-contacts-api/commit/b63b47d081486e2884b50c4f5749fa85f157bda6))
+* **deps:** bump fastify from 4.3.0 to 4.4.0 ([#337](https://github.com/Fdawgs/ydh-community-contacts-api/issues/337)) ([77e68d8](https://github.com/Fdawgs/ydh-community-contacts-api/commit/77e68d8590c1a75c7f26d4a77c342af687bcf3bb))
+* **deps:** bump fastify-disablecache from 3.0.1 to 3.0.2 ([#345](https://github.com/Fdawgs/ydh-community-contacts-api/issues/345)) ([322ad1a](https://github.com/Fdawgs/ydh-community-contacts-api/commit/322ad1ac93dd4ba9b51365c2f08eea76be736390))
+* **deps:** bump fastify-floc-off from 2.0.1 to 2.0.2 ([#340](https://github.com/Fdawgs/ydh-community-contacts-api/issues/340)) ([9db14b0](https://github.com/Fdawgs/ydh-community-contacts-api/commit/9db14b095d5ff63d454e6cf7a56db9dd4c96cdf2))
+* **deps:** bump mssql from 8.1.2 to 8.1.3 ([#346](https://github.com/Fdawgs/ydh-community-contacts-api/issues/346)) ([51cf267](https://github.com/Fdawgs/ydh-community-contacts-api/commit/51cf267c2cef2a7b24dc40df090ed934910a341f))
+* **deps:** bump pino from 8.3.1 to 8.4.0 ([#344](https://github.com/Fdawgs/ydh-community-contacts-api/issues/344)) ([e200850](https://github.com/Fdawgs/ydh-community-contacts-api/commit/e200850928488d3157791bd98e98538b980f3ad8))
+
 ## [5.0.3](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v5.0.2...v5.0.3) (2022-08-04)
 
 
