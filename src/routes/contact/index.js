@@ -99,17 +99,15 @@ async function route(server, options) {
 		method: "DELETE",
 		url: "/:id",
 		schema: contactDeleteSchema,
-		preValidation: async (req, res) => {
+		preValidation: async (req) => {
 			if (
 				options.bearerTokenAuthEnabled &&
 				!req?.scopes?.includes("contact.delete")
 			) {
-				return res.unauthorized(
+				throw server.httpErrors.unauthorized(
 					"You do not have permission to perform an HTTP DELETE request on this route"
 				);
 			}
-
-			return req;
 		},
 		handler: async (req, res) => {
 			try {
@@ -139,17 +137,15 @@ async function route(server, options) {
 		method: "GET",
 		url: "/:id",
 		schema: contactGetReadSchema,
-		preValidation: async (req, res) => {
+		preValidation: async (req) => {
 			if (
 				options.bearerTokenAuthEnabled &&
 				!req?.scopes?.includes("contact.read")
 			) {
-				return res.unauthorized(
+				throw server.httpErrors.unauthorized(
 					"You do not have permission to perform an HTTP GET request on this route"
 				);
 			}
-
-			return req;
 		},
 		handler: async (req, res) => {
 			try {
@@ -181,17 +177,15 @@ async function route(server, options) {
 		method: "GET",
 		url: "/",
 		schema: contactGetSearchSchema,
-		preValidation: async (req, res) => {
+		preValidation: async (req) => {
 			if (
 				options.bearerTokenAuthEnabled &&
 				!req?.scopes?.includes("contact.search")
 			) {
-				return res.unauthorized(
+				throw server.httpErrors.unauthorized(
 					"You do not have permission to perform an HTTP GET request on this route"
 				);
 			}
-
-			return req;
 		},
 		handler: async (req, res) => {
 			try {
@@ -359,17 +353,15 @@ async function route(server, options) {
 		method: "POST",
 		url: "/",
 		schema: contactPostSchema,
-		preValidation: async (req, res) => {
+		preValidation: async (req) => {
 			if (
 				options.bearerTokenAuthEnabled &&
 				!req?.scopes?.includes("contact.post")
 			) {
-				return res.unauthorized(
+				throw server.httpErrors.unauthorized(
 					"You do not have permission to perform an HTTP POST request on this route"
 				);
 			}
-
-			return req;
 		},
 		handler: async (req, res) => {
 			try {
@@ -420,17 +412,15 @@ async function route(server, options) {
 		method: "PUT",
 		url: "/:id",
 		schema: contactPutSchema,
-		preValidation: async (req, res) => {
+		preValidation: async (req) => {
 			if (
 				options.bearerTokenAuthEnabled &&
 				!req?.scopes?.includes("contact.put")
 			) {
-				return res.unauthorized(
+				throw server.httpErrors.unauthorized(
 					"You do not have permission to perform an HTTP PUT request on this route"
 				);
 			}
-
-			return req;
 		},
 		handler: async (req, res) => {
 			try {
