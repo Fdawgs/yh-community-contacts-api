@@ -159,12 +159,10 @@ async function route(server, options) {
 				 * Database client packages return results in different structures,
 				 * (mssql uses recordsets, pg uses rows) thus the optional chaining
 				 */
-				let contact = results?.recordsets?.[0] ?? results?.rows;
+				const contact = results?.recordsets?.[0] ?? results?.rows;
 
 				if (contact && contact.length > 0) {
-					contact = contact[0];
-
-					return server.cleanObject(buildContact(contact));
+					return server.cleanObject(buildContact(contact[0]));
 				}
 				return res.notFound("Contact record not found");
 			} catch (err) {
