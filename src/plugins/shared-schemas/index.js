@@ -22,7 +22,6 @@ async function plugin(server) {
 			.prop(
 				"badRequest",
 				S.object()
-					// .id("#badRequest")
 					.title("400 Bad Request")
 					.prop("statusCode", S.number().const(400))
 					.prop("error", S.string().const("Bad Request"))
