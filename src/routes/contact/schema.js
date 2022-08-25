@@ -193,6 +193,7 @@ const contactGetSearchSchema = {
 	operationId: "getSearchContact",
 	produces: ["application/json", "application/xml"],
 	query: S.object()
+		.additionalProperties(false)
 		.prop(
 			"match.type",
 			S.string()
