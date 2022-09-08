@@ -1,4 +1,5 @@
 const crypto = require("crypto");
+const bcrypt = require("bcryptjs");
 const secJSON = require("secure-json-parse");
 
 // Import plugins
@@ -28,8 +29,7 @@ const {
  * @param {string} result.name - Name of client or service accessing API.
  * @param {string} result.email - Contact email of client or service accessing API.
  * @param {string} result.scopes - Stringified JSON object containing actions the bearer token can perform.
- * @param {string} result.hash - Hashed bearer token.
- * @param {string} result.salt - Salt used on hashed bearer token.
+ * @param {string} result.hash - Bcrypt-hashed bearer token.
  * @param {string=} result.expires - Expiry date of bearer token.
  * @param {string} result.created - Date bearer token record was created.
  * @param {string=} result.last_updated - Date bearer token record was last updated.
@@ -51,7 +51,6 @@ function buildBearerTokenRecord(result, req) {
 			name: result.name,
 			email: result?.email,
 			hash: result.hash,
-			salt: result.salt,
 			/**
 			 * Database client packages return result in different structures:
 			 * mssql returns JSON as string; pg returns JSON as object
@@ -366,8 +365,7 @@ async function route(server, options) {
 				 */
 				const key = `ydhcc_${crypto.randomUUID().replace(/-/g, "_")}`;
 
-				const salt = crypto.randomBytes(16).toString("hex");
-				const hash = crypto.scryptSync(key, salt, 64).toString("hex");
+				const hash = await bcrypt.hash(key, 10);
 
 				const results = await server.db.query(
 					accessPost({
@@ -377,7 +375,6 @@ async function route(server, options) {
 						// If not set then provide a date ridiculously far into the future
 						expires: req?.body?.expires ?? "9999-12-31",
 						hash,
-						salt,
 						scopes: JSON.stringify(req.body.scopes),
 					})
 				);

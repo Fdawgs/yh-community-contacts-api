@@ -16,7 +16,6 @@ IF OBJECT_ID('access.tokens', 'U') IS NULL CREATE TABLE access.tokens
         [name] VARCHAR(MAX) NOT NULL,
         email VARCHAR(MAX) NOT NULL,
         [hash] VARCHAR(MAX) NOT NULL,
-        salt VARCHAR(MAX) NOT NULL,
         scopes NVARCHAR(MAX) NOT NULL,
         expires DATETIMEOFFSET NOT NULL,
         created DATETIMEOFFSET NOT NULL DEFAULT CURRENT_TIMESTAMP,
