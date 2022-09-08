@@ -47,8 +47,8 @@ async function getConfig() {
 			.prop("NODE_ENV", S.string())
 
 			// Service
-			.prop("SERVICE_HOST", S.string())
-			.prop("SERVICE_PORT", S.number())
+			.prop("HOST", S.string())
+			.prop("PORT", S.number())
 
 			// CORS
 			.prop("CORS_ORIGIN", S.anyOf([S.string(), S.null()]))
@@ -129,8 +129,8 @@ async function getConfig() {
 			.prop("DB_CONNECTION_STRING", S.string())
 			.required([
 				"NODE_ENV",
-				"SERVICE_HOST",
-				"SERVICE_PORT",
+				"HOST",
+				"PORT",
 				"ADMIN_USERNAME",
 				"ADMIN_PASSWORD",
 				"DB_CONNECTION_STRING",
@@ -139,7 +139,7 @@ async function getConfig() {
 
 	const config = {
 		fastify: {
-			port: env.SERVICE_PORT,
+			port: env.PORT,
 		},
 		fastifyInit: {
 			/**
@@ -273,8 +273,8 @@ async function getConfig() {
 	};
 
 	// Ensure API listens on both IPv4 and IPv6 addresses
-	if (env.SERVICE_HOST) {
-		config.fastify.host = env.SERVICE_HOST;
+	if (env.HOST) {
+		config.fastify.host = env.HOST;
 	}
 
 	if (env.LOG_ROTATION_FILENAME) {
