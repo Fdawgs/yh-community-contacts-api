@@ -143,7 +143,7 @@ async function getConfig() {
 		},
 		fastifyInit: {
 			/**
-			 * See https://www.fastify.io/docs/v3.8.x/Logging/
+			 * See https://fastify.io/docs/latest/Reference/Logging/
 			 * and https://getpino.io/#/docs/api for logger options
 			 */
 			logger: {
@@ -220,7 +220,7 @@ async function getConfig() {
 				info: {
 					title: "YDH Community Contacts API",
 					description:
-						'<a href="https://yeovilhospital.co.uk/">Yeovil District Hospital NHSFT</a>\'s Community Contacts RESTful API, a Node.js application using the <a href="https://www.fastify.io/">Fastify web framework</a>, built to support CRUD (Create, Read, Update, and Delete) functionality of community midwife, health visitor, and school nurse team email addresses in YDH\'s catchment area.',
+						'<a href="https://yeovilhospital.co.uk/">Yeovil District Hospital NHSFT</a>\'s Community Contacts RESTful API, a Node.js application using the <a href="https://fastify.io/">Fastify web framework</a>, built to support CRUD (Create, Read, Update, and Delete) functionality of community midwife, health visitor, and school nurse team email addresses in YDH\'s catchment area.',
 					contact: {
 						name: "Solutions Development Team",
 						email: "servicedesk@ydh.nhs.uk",
