@@ -13,7 +13,7 @@
 
 ## Intro
 
-This is [Yeovil District Hospital NHSFT](https://yeovilhospital.co.uk/)'s Community Contacts RESTful API, a Node.js application using the [Fastify](https://www.fastify.io/) web framework, built to support CRUD (Create, Read, Update, and Delete) functionality of community midwife, health visitor, and school nurse team email addresses in YDH's catchment area.
+This is [Yeovil District Hospital NHSFT](https://yeovilhospital.co.uk/)'s Community Contacts RESTful API, a Node.js application using the [Fastify](https://fastify.io/) web framework, built to support CRUD (Create, Read, Update, and Delete) functionality of community midwife, health visitor, and school nurse team email addresses in YDH's catchment area.
 
 This was built for use by interface engine channels/workflows that automatically dispatch maternity and paediatric discharge summaries via encrypted email to their respective community teams, based on a patient’s postcode, school code, or GP practice code.
 
@@ -22,7 +22,7 @@ A case study detailing the benefits of this API (and calling workflows) can be f
 ## Prerequisites
 
 -   [Node.js](https://nodejs.org/en/) >=16.0.0 (if running outside of Docker)
--   [SQL Server](https://www.microsoft.com/en-gb/sql-server/sql-server-downloads) >=13.0.1601.5 or [PostgreSQL](https://www.postgresql.org/download/) >=9.4 (either as services/instances or Docker containers)
+-   [SQL Server](https://microsoft.com/en-gb/sql-server/sql-server-downloads) >=13.0.1601.5 or [PostgreSQL](https://postgresql.org/download/) >=9.4 (either as services/instances or Docker containers)
 
 ## Setup
 
@@ -89,7 +89,7 @@ To quickly test it, use [Insomnia](https://insomnia.rest/) and import the exampl
 
 ### Deploying Using Docker
 
-This requires [Docker](https://www.docker.com) installed.
+This requires [Docker](https://docker.com) installed.
 
 1. Run `docker compose up` (or `docker compose up -d` to run in the background)
 
