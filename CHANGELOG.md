@@ -1,5 +1,65 @@
 # Changelog
 
+## [6.0.0](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v5.0.7...v6.0.0) (2022-10-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **config:** `SERVICE_HOST` and `SERVICE_PORT` env variables renamed to `HOST` and `PORT` respectively.
+* **routes/admin/access:** bcrypt now used for hashing stored bearer tokens
+
+### Bug Fixes
+
+* **config:** use `HOST` and `PORT` env variables for cloud services ([45ead4f](https://github.com/Fdawgs/ydh-community-contacts-api/commit/45ead4f025abb95e881784b29f1a9a4ee45ffbfb))
+* **plugins/serialize-json-to-xml:** rep invalid xml chars with U+FFFD ([#402](https://github.com/Fdawgs/ydh-community-contacts-api/issues/402)) ([f337601](https://github.com/Fdawgs/ydh-community-contacts-api/commit/f337601128087072ddb44d7e6a2a12e49ad1fa1d))
+
+
+### Improvements
+
+* **plugins/serialize-json-to-xml:** minify xml responses ([deabafa](https://github.com/Fdawgs/ydh-community-contacts-api/commit/deabafa0b9c08170500a05599faa48769fc1cd73))
+* **public/image/icons:** compress mask-icon ([cd5cd50](https://github.com/Fdawgs/ydh-community-contacts-api/commit/cd5cd501c6003f8362f8671c12a8ad719b4920af))
+* **routes/admin/access:** use faster bcrypt over scrypt ([9055943](https://github.com/Fdawgs/ydh-community-contacts-api/commit/905594338556474313ed766c0e4e0a1c851ff28c))
+* **routes/docs:** remove redundant html elem attributes ([368b820](https://github.com/Fdawgs/ydh-community-contacts-api/commit/368b820c74ed3f9146438dd3b453fd36cfaf2b94))
+
+
+### Documentation
+
+* **readme:** remove redundant comma ([3813d70](https://github.com/Fdawgs/ydh-community-contacts-api/commit/3813d70370050a80ce3012f7a46ed5aa4d087d5f))
+* use shorter urls; fix fastify links ([8becde8](https://github.com/Fdawgs/ydh-community-contacts-api/commit/8becde8f17e5589eb5e257d0f706ceade02073ad))
+
+
+### Miscellaneous
+
+* **.env.template:** remove service section ([a0ead40](https://github.com/Fdawgs/ydh-community-contacts-api/commit/a0ead40717bd1ff596d276104b9c92d5fd51a22b))
+* **.vscode:** add `redhat.vscode-xml` as default xml formatter ([3e13f90](https://github.com/Fdawgs/ydh-community-contacts-api/commit/3e13f903a9666abf616777975fbefad96793da8c))
+* ***.ignore:** add clinicjs directory ([b5f8b88](https://github.com/Fdawgs/ydh-community-contacts-api/commit/b5f8b88eb539fa5bbe190348733abb94fb075c0a))
+* import destructuring ([#401](https://github.com/Fdawgs/ydh-community-contacts-api/issues/401)) ([aec20bd](https://github.com/Fdawgs/ydh-community-contacts-api/commit/aec20bd4052fd78ea1ac31c4d2afdeff6560cd39))
+* **LICENSE:** remove trailing whitespace ([ac5681e](https://github.com/Fdawgs/ydh-community-contacts-api/commit/ac5681efa267f219fcf4ca825c7e21fe7c146c1c))
+* prefer object destructuring ([#420](https://github.com/Fdawgs/ydh-community-contacts-api/issues/420)) ([f61ebc0](https://github.com/Fdawgs/ydh-community-contacts-api/commit/f61ebc010e9fb00a47094665f26e0781bf480a52))
+* sort imports alphabetically ([e093e75](https://github.com/Fdawgs/ydh-community-contacts-api/commit/e093e7540b3c42ba4383b3d06e4179e6de9c9e5b))
+
+
+### Dependencies
+
+* **deps-dev:** bump autocannon from 7.9.0 to 7.10.0 ([#416](https://github.com/Fdawgs/ydh-community-contacts-api/issues/416)) ([dae48c8](https://github.com/Fdawgs/ydh-community-contacts-api/commit/dae48c8534a9a246d7dd4f8b5d1b934a39587c42))
+* **deps-dev:** bump eslint from 8.23.0 to 8.24.0 ([#410](https://github.com/Fdawgs/ydh-community-contacts-api/issues/410)) ([83c283d](https://github.com/Fdawgs/ydh-community-contacts-api/commit/83c283d063aa0371b6a148093dfe337ecdd8cb86))
+* **deps-dev:** bump eslint-plugin-jest from 27.0.1 to 27.0.4 ([#417](https://github.com/Fdawgs/ydh-community-contacts-api/issues/417)) ([bd5bb7e](https://github.com/Fdawgs/ydh-community-contacts-api/commit/bd5bb7e672519d3eb4d0f636134afa3ceb4e1961))
+* **deps-dev:** bump jest from 29.0.2 to 29.1.2 ([#418](https://github.com/Fdawgs/ydh-community-contacts-api/issues/418)) ([6e47749](https://github.com/Fdawgs/ydh-community-contacts-api/commit/6e477497871ccda0f2fd3b8f6b72da965dd60782))
+* **deps-dev:** bump nodemon from 2.0.19 to 2.0.20 ([#408](https://github.com/Fdawgs/ydh-community-contacts-api/issues/408)) ([97b294c](https://github.com/Fdawgs/ydh-community-contacts-api/commit/97b294c5e849450c2eaf234a752a27719faa7e4c))
+* **deps-dev:** bump playwright from 1.25.1 to 1.26.1 ([#406](https://github.com/Fdawgs/ydh-community-contacts-api/issues/406)) ([60444e9](https://github.com/Fdawgs/ydh-community-contacts-api/commit/60444e9279b171232833824df5717f120b1d763d))
+* **deps:** bump @fastify/autoload from 5.3.1 to 5.4.0 ([#412](https://github.com/Fdawgs/ydh-community-contacts-api/issues/412)) ([e90e582](https://github.com/Fdawgs/ydh-community-contacts-api/commit/e90e582aed958fef39405e139f65a5ecb1a9c28f))
+* **deps:** bump @fastify/helmet from 10.0.0 to 10.0.1 ([#409](https://github.com/Fdawgs/ydh-community-contacts-api/issues/409)) ([0e89089](https://github.com/Fdawgs/ydh-community-contacts-api/commit/0e89089ed800bd4c4cd9c048eb7df76e287f2093))
+* **deps:** bump @fastify/swagger from 7.5.0 to 7.6.1 ([#419](https://github.com/Fdawgs/ydh-community-contacts-api/issues/419)) ([bee710c](https://github.com/Fdawgs/ydh-community-contacts-api/commit/bee710ce3b2091ee2bc8ca7492855e112ed88812))
+* **deps:** bump dotenv from 16.0.2 to 16.0.3 ([#415](https://github.com/Fdawgs/ydh-community-contacts-api/issues/415)) ([3002d89](https://github.com/Fdawgs/ydh-community-contacts-api/commit/3002d89a391c8a94a65466705c3bd4c63542ae71))
+* **deps:** bump env-schema from 5.0.0 to 5.1.0 ([#414](https://github.com/Fdawgs/ydh-community-contacts-api/issues/414)) ([f3314d6](https://github.com/Fdawgs/ydh-community-contacts-api/commit/f3314d61bc9c43ed9932520256e09e8ae4ebd3c7))
+* **deps:** bump fastify from 4.5.3 to 4.7.0 ([#411](https://github.com/Fdawgs/ydh-community-contacts-api/issues/411)) ([956d3d2](https://github.com/Fdawgs/ydh-community-contacts-api/commit/956d3d2b0730bbf270920bd226089def17dc3910))
+* **deps:** bump fastify-disablecache from 3.0.2 to 3.0.3 ([#422](https://github.com/Fdawgs/ydh-community-contacts-api/issues/422)) ([2f9471f](https://github.com/Fdawgs/ydh-community-contacts-api/commit/2f9471f9db9bf9072ff4114d6badcc3adf7c0b62))
+* **deps:** bump fastify-floc-off from 2.0.2 to 2.0.3 ([#421](https://github.com/Fdawgs/ydh-community-contacts-api/issues/421)) ([a96c371](https://github.com/Fdawgs/ydh-community-contacts-api/commit/a96c371200c28b9f9a433e9df29433b161eb1376))
+* **deps:** bump js2xmlparser from 4.0.2 to 5.0.0 ([#407](https://github.com/Fdawgs/ydh-community-contacts-api/issues/407)) ([2b053d9](https://github.com/Fdawgs/ydh-community-contacts-api/commit/2b053d9f29f57ffce520594a5d900d0306ef479c))
+* **deps:** bump pino from 8.5.0 to 8.6.1 ([#413](https://github.com/Fdawgs/ydh-community-contacts-api/issues/413)) ([ab69de1](https://github.com/Fdawgs/ydh-community-contacts-api/commit/ab69de1871822940c9ea321f7dd67845d8ff352a))
+* **deps:** bump redoc from 2.0.0-rc.76 to 2.0.0 ([#405](https://github.com/Fdawgs/ydh-community-contacts-api/issues/405)) ([5b32e68](https://github.com/Fdawgs/ydh-community-contacts-api/commit/5b32e68cb5dae4fce9541a9fe323b8e7054a6694))
+* **deps:** bump transistive dependencies ([#423](https://github.com/Fdawgs/ydh-community-contacts-api/issues/423)) ([19bf8c4](https://github.com/Fdawgs/ydh-community-contacts-api/commit/19bf8c45e390458680be17905790db7dba1ec248))
+
 ## [5.0.7](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v5.0.6...v5.0.7) (2022-09-05)
 
 
