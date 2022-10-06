@@ -1,5 +1,26 @@
 # Changelog
 
+## [6.1.0](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v6.0.0...v6.1.0) (2022-10-06)
+
+
+### Features
+
+* **config:** use first available open port if `PORT` env variable unset ([#424](https://github.com/Fdawgs/ydh-community-contacts-api/issues/424)) ([a2f3fa4](https://github.com/Fdawgs/ydh-community-contacts-api/commit/a2f3fa4107031369fe87538a4f1a64636cbf46e5))
+
+
+### Continuous Integration
+
+* **cd:** create release asset ([5401e56](https://github.com/Fdawgs/ydh-community-contacts-api/commit/5401e56d4617c411b34b168b367466cb19adf58e))
+
+
+### Dependencies
+
+* **.dockerignore:** add `SECURITY.md` ([56d231f](https://github.com/Fdawgs/ydh-community-contacts-api/commit/56d231f2ab43e94a2b50ec48a8a6be1eb779d6ac))
+* **.dockerignore:** fix `CODE_OF_CONDUCT` entry ([#426](https://github.com/Fdawgs/ydh-community-contacts-api/issues/426)) ([47a2976](https://github.com/Fdawgs/ydh-community-contacts-api/commit/47a2976ce710dcd801efb5b3b7df3aef1f9e4816))
+* **deps-dev:** bump eslint-plugin-jest from 27.0.4 to 27.1.1 ([#430](https://github.com/Fdawgs/ydh-community-contacts-api/issues/430)) ([470d641](https://github.com/Fdawgs/ydh-community-contacts-api/commit/470d641124ad67ad2e37c42d25115e7548005cfd))
+* **deps-dev:** bump pino-pretty from 9.1.0 to 9.1.1 ([#429](https://github.com/Fdawgs/ydh-community-contacts-api/issues/429)) ([2696f7a](https://github.com/Fdawgs/ydh-community-contacts-api/commit/2696f7a31dd7ef6374fa3fd35b704f3c2ddc4dcc))
+* **deps:** bump fluent-json-schema from 3.1.0 to 4.0.0 ([#428](https://github.com/Fdawgs/ydh-community-contacts-api/issues/428)) ([3b2ef89](https://github.com/Fdawgs/ydh-community-contacts-api/commit/3b2ef89dbe672866ad6ebf1d34c9c42231786b5a))
+
 ## [6.0.0](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v5.0.7...v6.0.0) (2022-10-03)
 
 
