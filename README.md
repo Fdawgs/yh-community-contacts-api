@@ -28,8 +28,8 @@ A case study detailing the benefits of this API (and calling workflows) can be f
 
 Perform the following steps before deployment:
 
-1. Clone or download the repo
-2. Navigate to the project directory
+1. Download and extract the [latest release asset](https://github.com/Fdawgs/ydh-community-contacts-api/releases/latest)
+2. Navigate to the extracted directory
 3. Make a copy of `.env.template` in the root directory and rename it to `.env`
 4. Configure the application using the environment variables in `.env`
 
