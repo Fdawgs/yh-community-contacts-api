@@ -128,8 +128,6 @@ async function getConfig() {
 			)
 			.prop("DB_CONNECTION_STRING", S.string())
 			.required([
-				"NODE_ENV",
-				"HOST",
 				"ADMIN_USERNAME",
 				"ADMIN_PASSWORD",
 				"DB_CONNECTION_STRING",

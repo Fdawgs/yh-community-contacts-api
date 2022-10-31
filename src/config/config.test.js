@@ -4,7 +4,7 @@ const glob = require("glob");
 const getConfig = require(".");
 
 describe("Configuration", () => {
-	const currentEnv = { ...process.env };
+	const currentEnv = { ...process.env, NODE_ENV: "development" };
 
 	afterAll(async () => {
 		const files = glob.sync("./test_resources/+(test-log*|.audit.json)", {
@@ -21,8 +21,7 @@ describe("Configuration", () => {
 	});
 
 	test("Should use defaults if values missing and return values according to environment variables", async () => {
-		const NODE_ENV = "development";
-		const HOST = faker.internet.ip();
+		const HOST = "";
 		const PORT = "";
 		const CORS_ORIGIN = "";
 		const CORS_ALLOWED_HEADERS = "";
@@ -50,7 +49,6 @@ describe("Configuration", () => {
 			"Server=localhost,1433;Database=database;User Id=username;Password=password;Encrypt=true";
 
 		Object.assign(process.env, {
-			NODE_ENV,
 			HOST,
 			PORT,
 			CORS_ORIGIN,
@@ -81,7 +79,6 @@ describe("Configuration", () => {
 		const config = await getConfig();
 
 		expect(config.fastify).toEqual({
-			host: HOST,
 			port: 0,
 		});
 
@@ -140,7 +137,6 @@ describe("Configuration", () => {
 	});
 
 	test("Should return values according to environment variables - HTTPS (SSL cert) enabled and HTTP2 enabled", async () => {
-		const NODE_ENV = "development";
 		const HOST = faker.internet.ip();
 		const PORT = faker.datatype.number();
 		const HTTPS_SSL_CERT_PATH =
@@ -171,7 +167,6 @@ describe("Configuration", () => {
 			"Server=localhost,1433;Database=database;User Id=username;Password=password;Encrypt=true";
 
 		Object.assign(process.env, {
-			NODE_ENV,
 			HOST,
 			PORT,
 			HTTPS_SSL_CERT_PATH,
