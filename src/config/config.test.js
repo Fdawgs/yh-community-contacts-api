@@ -1,4 +1,3 @@
-const { faker } = require("@faker-js/faker/locale/en_GB");
 const fs = require("fs/promises");
 const glob = require("glob");
 const getConfig = require(".");
@@ -137,17 +136,13 @@ describe("Configuration", () => {
 	});
 
 	test("Should return values according to environment variables - HTTPS (SSL cert) enabled and HTTP2 enabled", async () => {
-		const HOST = faker.internet.ip();
-		const PORT = faker.datatype.number();
+		const HOST = "0.0.0.0";
+		const PORT = 443;
 		const HTTPS_SSL_CERT_PATH =
 			"./test_resources/test_ssl_cert/server.cert";
 		const HTTPS_SSL_KEY_PATH = "./test_resources/test_ssl_cert/server.key";
 		const HTTPS_HTTP2_ENABLED = true;
-		const LOG_LEVEL = faker.helpers.arrayElement([
-			"debug",
-			"warn",
-			"silent",
-		]);
+		const LOG_LEVEL = "trace";
 		const LOG_ROTATION_DATE_FORMAT = "YYYY-MM";
 		const LOG_ROTATION_FILENAME = "./test_resources/test-log-%DATE%.log";
 		const LOG_ROTATION_FREQUENCY = "custom";
@@ -252,17 +247,13 @@ describe("Configuration", () => {
 	});
 
 	test("Should return values according to environment variables - HTTPS (PFX cert) enabled and HTTP2 enabled", async () => {
-		const HOST = faker.internet.ip();
-		const PORT = faker.datatype.number();
+		const HOST = "0.0.0.0";
+		const PORT = 443;
 		const HTTPS_PFX_FILE_PATH =
 			"./test_resources/test_ssl_cert/server.cert"; // Not an actual PFX file
-		const HTTPS_PFX_PASSPHRASE = faker.lorem.word();
+		const HTTPS_PFX_PASSPHRASE = "TestPassphrase";
 		const HTTPS_HTTP2_ENABLED = true;
-		const LOG_LEVEL = faker.helpers.arrayElement([
-			"debug",
-			"warn",
-			"silent",
-		]);
+		const LOG_LEVEL = "trace";
 		const ADMIN_USERNAME = "admin";
 		const ADMIN_PASSWORD = "password";
 
@@ -344,8 +335,8 @@ describe("Configuration", () => {
 	])(
 		"Should return values according to environment variables - $testName",
 		async ({ envVariables, expected }) => {
-			const HOST = faker.internet.ip();
-			const PORT = faker.datatype.number();
+			const HOST = "0.0.0.0";
+			const PORT = 80;
 			const { CORS_ORIGIN } = envVariables;
 			const CORS_ALLOWED_HEADERS =
 				"Accept, Authorization, Content-Type, Origin, X-Requested-With";
@@ -353,11 +344,7 @@ describe("Configuration", () => {
 				envVariables?.CORS_ALLOW_CREDENTIALS || "";
 			const CORS_EXPOSED_HEADERS = "Location";
 			const CORS_MAX_AGE = 10;
-			const LOG_LEVEL = faker.helpers.arrayElement([
-				"debug",
-				"warn",
-				"silent",
-			]);
+			const LOG_LEVEL = "trace";
 			const ADMIN_USERNAME = "admin";
 			const ADMIN_PASSWORD = "password";
 
@@ -398,7 +385,7 @@ describe("Configuration", () => {
 			testName: "invalid PFX file path",
 			envVariables: {
 				HTTPS_PFX_FILE_PATH: "./test_resources/test_ssl_cert/error.pfx",
-				HTTPS_PFX_PASSPHRASE: faker.lorem.word(),
+				HTTPS_PFX_PASSPHRASE: "TestPassphrase",
 			},
 		},
 		{
@@ -410,17 +397,13 @@ describe("Configuration", () => {
 			},
 		},
 	])("Should throw error if $testName", async ({ envVariables }) => {
-		const HOST = faker.internet.ip();
-		const PORT = faker.datatype.number();
+		const HOST = "0.0.0.0";
+		const PORT = 443;
 		const HTTPS_SSL_KEY_PATH = envVariables?.HTTPS_SSL_KEY_PATH || "";
 		const HTTPS_SSL_CERT_PATH = envVariables?.HTTPS_SSL_CERT_PATH || "";
 		const HTTPS_PFX_FILE_PATH = envVariables?.HTTPS_PFX_FILE_PATH || "";
 		const HTTPS_PFX_PASSPHRASE = envVariables?.HTTPS_PFX_PASSPHRASE || "";
-		const LOG_LEVEL = faker.helpers.arrayElement([
-			"debug",
-			"warn",
-			"silent",
-		]);
+		const LOG_LEVEL = "trace";
 		const ADMIN_USERNAME = "admin";
 		const ADMIN_PASSWORD = "password";
 

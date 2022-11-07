@@ -1,4 +1,3 @@
-const { faker } = require("@faker-js/faker/locale/en_GB");
 const Fastify = require("fastify");
 const sensible = require("@fastify/sensible");
 const route = require(".");
@@ -9,8 +8,8 @@ const sharedSchemas = require("../../plugins/shared-schemas");
 
 const testPage = 1;
 
-const testDate1 = faker.date.past().toISOString().split("T")[0];
-const testDate2 = faker.date.past().toISOString().split("T")[0];
+const testDate1 = "2018-08-01";
+const testDate2 = "2022-11-07";
 
 const testId = "b8e7265c-4733-44be-9238-7d7b8718fb88";
 const testReqPayload = {
