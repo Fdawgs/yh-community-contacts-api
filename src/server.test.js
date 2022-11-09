@@ -637,6 +637,11 @@ describe("Server Deployment", () => {
 				let currentEnv;
 
 				beforeAll(() => {
+					Object.assign(process.env, {
+						CORS_ALLOWED_HEADERS:
+							"Accept, Accept-Encoding, Accept-Language, Authorization, Content-Type, Origin, X-Forwarded-For, X-Requested-With",
+						CORS_MAX_AGE: 7200,
+					});
 					currentEnv = { ...process.env };
 				});
 
@@ -661,7 +666,6 @@ describe("Server Deployment", () => {
 						expected: {
 							response: {
 								headers: {
-									basic: expResHeaders,
 									json: expResHeadersJson,
 									text: expResHeadersText,
 								},
@@ -681,11 +685,6 @@ describe("Server Deployment", () => {
 						expected: {
 							response: {
 								headers: {
-									basic: {
-										...expResHeaders,
-										"access-control-allow-origin":
-											"https://notreal.ydh.nhs.uk",
-									},
 									json: {
 										...expResHeadersJson,
 										"access-control-allow-origin":
@@ -713,11 +712,6 @@ describe("Server Deployment", () => {
 						expected: {
 							response: {
 								headers: {
-									basic: {
-										...expResHeaders,
-										"access-control-allow-origin":
-											"https://notreal.ydh.nhs.uk",
-									},
 									json: {
 										...expResHeadersJson,
 										"access-control-allow-origin":
@@ -748,11 +742,6 @@ describe("Server Deployment", () => {
 						expected: {
 							response: {
 								headers: {
-									basic: {
-										...expResHeaders,
-										"access-control-allow-origin":
-											"https://notreal.ydh.nhs.uk",
-									},
 									json: {
 										...expResHeadersJson,
 										"access-control-allow-origin":
@@ -780,10 +769,6 @@ describe("Server Deployment", () => {
 						expected: {
 							response: {
 								headers: {
-									basic: {
-										...expResHeaders,
-										"access-control-allow-origin": "*",
-									},
 									json: {
 										...expResHeadersJson,
 										"access-control-allow-origin": "*",
@@ -831,6 +816,43 @@ describe("Server Deployment", () => {
 								);
 								expect(response.statusCode).toBe(200);
 							});
+
+							// Only applicable if CORS enabled
+							if (testObject.envVariables.CORS_ORIGIN) {
+								test("Should return response to CORS preflight request", async () => {
+									const response = await server.inject({
+										method: "OPTIONS",
+										url: "/admin/healthcheck",
+										headers: {
+											"access-control-request-method":
+												"GET",
+											origin: testObject.request.headers
+												.origin,
+										},
+									});
+
+									expect(response.payload).toBe("");
+									expect(response.headers).toEqual({
+										...expResHeaders,
+										"access-control-allow-headers":
+											process.env.CORS_ALLOWED_HEADERS,
+										"access-control-allow-methods":
+											"GET, HEAD",
+										"access-control-allow-origin":
+											testObject.envVariables
+												.CORS_ORIGIN === "*"
+												? "*"
+												: testObject.request.headers
+														.origin,
+										"access-control-max-age": String(
+											process.env.CORS_MAX_AGE
+										),
+										"content-type": undefined,
+										vary: "Origin",
+									});
+									expect(response.statusCode).toBe(204);
+								});
+							}
 
 							test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
 								const response = await server.inject({
