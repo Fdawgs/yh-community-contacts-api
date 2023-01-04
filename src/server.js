@@ -19,7 +19,7 @@ const clean = require("./plugins/clean-object");
 const convertDateParamOperator = require("./plugins/convert-date-param-operator");
 const db = require("./plugins/db");
 const hashedBearerAuth = require("./plugins/hashed-bearer-auth");
-const serializeJsonToXml = require("./plugins/serialize-json-to-xml");
+const serialiseJsonToXml = require("./plugins/serialise-json-to-xml");
 const sharedSchemas = require("./plugins/shared-schemas");
 
 /**
@@ -53,7 +53,7 @@ async function plugin(server, config) {
 		.register(sensible)
 
 		// Serialization support for XML responses
-		.register(serializeJsonToXml)
+		.register(serialiseJsonToXml)
 
 		// Reusable schemas
 		.register(sharedSchemas)
@@ -74,7 +74,7 @@ async function plugin(server, config) {
 	// Register routes
 	await server
 		/**
-		 * `x-xss-protection` and `content-security-policy` is set by default by Helmet.
+		 * Helmet sets `x-xss-protection` and `content-security-policy` by default.
 		 * These are only useful for HTML/XML content; the only CSP directive that
 		 * is of use to other content is "frame-ancestors 'none'" to stop responses
 		 * from being wrapped in iframes and used for clickjacking attacks
@@ -167,7 +167,7 @@ async function plugin(server, config) {
 
 		/**
 		 * Encapsulate the docs routes into a child context, so that the
-		 * CSP can be relaxed, and cache enabled, without impacting
+		 * CSP can be relaxed, and cache enabled, without affecting
 		 * security of other routes
 		 */
 		.register(async (publicContext) => {
