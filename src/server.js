@@ -19,7 +19,7 @@ const clean = require("./plugins/clean-object");
 const convertDateParamOperator = require("./plugins/convert-date-param-operator");
 const db = require("./plugins/db");
 const hashedBearerAuth = require("./plugins/hashed-bearer-auth");
-const serializeJsonToXml = require("./plugins/serialize-json-to-xml");
+const serialiseJsonToXml = require("./plugins/serialise-json-to-xml");
 const sharedSchemas = require("./plugins/shared-schemas");
 
 /**
@@ -53,7 +53,7 @@ async function plugin(server, config) {
 		.register(sensible)
 
 		// Serialization support for XML responses
-		.register(serializeJsonToXml)
+		.register(serialiseJsonToXml)
 
 		// Reusable schemas
 		.register(sharedSchemas)
