@@ -67,7 +67,7 @@ ${
 		: ""
 }
 WHERE ${whereClausePredicates}
-ORDER BY match_value DESC
+ORDER BY created ASC
 OFFSET ${page * perPage} ROWS
 FETCH NEXT ${perPage} ROWS ONLY;`;
 
