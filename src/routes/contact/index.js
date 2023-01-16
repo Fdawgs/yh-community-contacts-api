@@ -210,10 +210,16 @@ async function route(server, options) {
 					);
 				}
 
-				// match.receiver - Receiving organisation or area
+				// match.receiver - Receiving organisation or area, case-insensitive and supports `*` wildcards
 				if (req?.query?.["match.receiver"]) {
+					// _ and % act as wildcards in SQL LIKE clauses, so need to be escaped
 					whereArray.push(
-						escSq`(match_receiver = '${req.query["match.receiver"]}')`
+						escSq`(LOWER(match_receiver) LIKE LOWER('${req.query[
+							"match.receiver"
+						]
+							.replace(/%/g, "!%")
+							.replace(/_/g, "!_")
+							.replace(/\*/g, "%")}') ESCAPE '!')`
 					);
 				}
 

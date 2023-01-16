@@ -213,8 +213,14 @@ const contactGetSearchSchema = {
 		.prop(
 			"match.receiver",
 			S.string()
-				.description("Receiving organisation or area")
-				.examples(["Sherborne", "Springmead Surgery, Chard"])
+				.description(
+					"Receiving organisation or area, case-insensitive and supports `*` wildcards"
+				)
+				.examples([
+					"Langport*",
+					"Sherborne",
+					"Springmead Surgery, Chard",
+				])
 		)
 		.prop(
 			"telecom.value",
