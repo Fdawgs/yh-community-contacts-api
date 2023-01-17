@@ -129,6 +129,9 @@ const contactDeleteSchema = {
 		.required(["id"]),
 	response: {
 		204: S.string().raw({ nullable: true }).description("No Content"),
+		400: S.ref("responses#/properties/badRequest").description(
+			"Bad Request"
+		),
 		401: S.ref("responses#/properties/unauthorized").description(
 			"Unauthorized"
 		),
@@ -167,6 +170,9 @@ const contactGetReadSchema = {
 		.required(["id"]),
 	response: {
 		200: contactBaseSchema,
+		400: S.ref("responses#/properties/badRequest").description(
+			"Bad Request"
+		),
 		401: S.ref("responses#/properties/unauthorized").description(
 			"Unauthorized"
 		),
@@ -380,6 +386,9 @@ const contactPostSchema = {
 				.examples(["A972C577-DFB0-064E-1189-0154C99310DAAC12"])
 				.format("uuid")
 		),
+		400: S.ref("responses#/properties/badRequest").description(
+			"Bad Request"
+		),
 		401: S.ref("responses#/properties/unauthorized").description(
 			"Unauthorized"
 		),
@@ -422,6 +431,9 @@ const contactPutSchema = {
 		.only(["match", "telecom"]),
 	response: {
 		204: S.string().raw({ nullable: true }).description("No Content"),
+		400: S.ref("responses#/properties/badRequest").description(
+			"Bad Request"
+		),
 		401: S.ref("responses#/properties/unauthorized").description(
 			"Unauthorized"
 		),
