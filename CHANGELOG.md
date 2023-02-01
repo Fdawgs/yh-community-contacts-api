@@ -1,5 +1,65 @@
 # Changelog
 
+## [7.1.0](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v7.0.2...v7.1.0) (2023-02-01)
+
+
+### Features
+
+* **routes/contact:** add wildcard support to `match.receiver` param ([#547](https://github.com/Fdawgs/ydh-community-contacts-api/issues/547)) ([527d961](https://github.com/Fdawgs/ydh-community-contacts-api/commit/527d961b316a5fb1cb9b10c30831719a2492361d))
+
+
+### Bug Fixes
+
+* pagination skipping concurrently created records ([#546](https://github.com/Fdawgs/ydh-community-contacts-api/issues/546)) ([7a650ea](https://github.com/Fdawgs/ydh-community-contacts-api/commit/7a650ea131b1aee3f319266de88c67f752da6d6e))
+* **routes:** missing 400 response in openapi schema ([#548](https://github.com/Fdawgs/ydh-community-contacts-api/issues/548)) ([e40c575](https://github.com/Fdawgs/ydh-community-contacts-api/commit/e40c575b0a88975dd0532b32fa984f4935d9424f))
+* **server:** response headers for static and 404 routes ([#549](https://github.com/Fdawgs/ydh-community-contacts-api/issues/549)) ([91e7594](https://github.com/Fdawgs/ydh-community-contacts-api/commit/91e7594db515b5e87fed08693330decb8a2ac6d9))
+
+
+### Improvements
+
+* **routes/docs:** increase cache max-age from 3 to 5 minutes ([d9fd504](https://github.com/Fdawgs/ydh-community-contacts-api/commit/d9fd50433ccdfdc20b9f1db96aa8cbf64b0effe8))
+
+
+### Miscellaneous
+
+* **routes/docs/openapi:** reduce cache max-age from 60 to 30 minutes ([a3bf683](https://github.com/Fdawgs/ydh-community-contacts-api/commit/a3bf6836cb2b96722e8b997b9be1e4aeebfb19e7))
+
+
+### Dependencies
+
+* **deps-dev:** bump @commitlint/cli from 17.4.0 to 17.4.1 ([#545](https://github.com/Fdawgs/ydh-community-contacts-api/issues/545)) ([6162510](https://github.com/Fdawgs/ydh-community-contacts-api/commit/6162510aa8500ee8d0c782faee36dcfd2272617c))
+* **deps-dev:** bump @commitlint/cli from 17.4.1 to 17.4.2 ([#553](https://github.com/Fdawgs/ydh-community-contacts-api/issues/553)) ([eb512f6](https://github.com/Fdawgs/ydh-community-contacts-api/commit/eb512f62e2dabe7d58819d27fcb13e15ff06db1f))
+* **deps-dev:** bump @commitlint/config-conventional ([#562](https://github.com/Fdawgs/ydh-community-contacts-api/issues/562)) ([7e13e67](https://github.com/Fdawgs/ydh-community-contacts-api/commit/7e13e67225e86cd33079727f78d113014bcacb53))
+* **deps-dev:** bump esbuild from 0.16.16 to 0.17.5 ([f17314f](https://github.com/Fdawgs/ydh-community-contacts-api/commit/f17314f870ec25cf136bd83453f9cf557a5aa352))
+* **deps-dev:** bump eslint from 8.31.0 to 8.33.0 ([#555](https://github.com/Fdawgs/ydh-community-contacts-api/issues/555)) ([9b68bca](https://github.com/Fdawgs/ydh-community-contacts-api/commit/9b68bcac973ed3de9f2063e3cf5a10e02bf48bc4))
+* **deps-dev:** bump eslint-plugin-import from 2.26.0 to 2.27.5 ([#571](https://github.com/Fdawgs/ydh-community-contacts-api/issues/571)) ([88ccbba](https://github.com/Fdawgs/ydh-community-contacts-api/commit/88ccbbaba17b53d5de32c25abfb71c873c119802))
+* **deps-dev:** bump eslint-plugin-jest from 27.2.0 to 27.2.1 ([#540](https://github.com/Fdawgs/ydh-community-contacts-api/issues/540)) ([0efe5a8](https://github.com/Fdawgs/ydh-community-contacts-api/commit/0efe5a86c7e821397d064c68a121aa7a6cd045d7))
+* **deps-dev:** bump eslint-plugin-jsdoc from 39.6.4 to 39.7.5 ([#566](https://github.com/Fdawgs/ydh-community-contacts-api/issues/566)) ([3d548be](https://github.com/Fdawgs/ydh-community-contacts-api/commit/3d548be182cfdb0ef1c08fffbf197b9c34921eb3))
+* **deps-dev:** bump eslint-plugin-security from 1.5.0 to 1.7.0 ([#570](https://github.com/Fdawgs/ydh-community-contacts-api/issues/570)) ([0f99c57](https://github.com/Fdawgs/ydh-community-contacts-api/commit/0f99c570880001473b34c71714898ffb68307515))
+* **deps-dev:** bump glob from 8.0.3 to 8.1.0 ([#559](https://github.com/Fdawgs/ydh-community-contacts-api/issues/559)) ([0cf71fe](https://github.com/Fdawgs/ydh-community-contacts-api/commit/0cf71fe45e5d7a2e35291256ee0b2a2dd1fec521))
+* **deps-dev:** bump jest from 29.3.1 to 29.4.1 ([#568](https://github.com/Fdawgs/ydh-community-contacts-api/issues/568)) ([7886b95](https://github.com/Fdawgs/ydh-community-contacts-api/commit/7886b955c627b43035abd48daa70644193466dd4))
+* **deps-dev:** bump playwright from 1.29.1 to 1.29.2 ([#544](https://github.com/Fdawgs/ydh-community-contacts-api/issues/544)) ([e421eb0](https://github.com/Fdawgs/ydh-community-contacts-api/commit/e421eb06e74c5ca69b3d0312c94d683499922a30))
+* **deps-dev:** bump playwright from 1.29.2 to 1.30.0 ([#564](https://github.com/Fdawgs/ydh-community-contacts-api/issues/564)) ([b9081f3](https://github.com/Fdawgs/ydh-community-contacts-api/commit/b9081f3a3842c1c715d0c901dee02b40e38258a2))
+* **deps-dev:** bump prettier from 2.8.1 to 2.8.2 ([#543](https://github.com/Fdawgs/ydh-community-contacts-api/issues/543)) ([f1ecee4](https://github.com/Fdawgs/ydh-community-contacts-api/commit/f1ecee4760cae886fbc4845d974345039ecc4f9e))
+* **deps-dev:** bump prettier from 2.8.2 to 2.8.3 ([#567](https://github.com/Fdawgs/ydh-community-contacts-api/issues/567)) ([2f4cc8f](https://github.com/Fdawgs/ydh-community-contacts-api/commit/2f4cc8fbf5af0ec3e254fed2491dc7444ccac476))
+* **deps:** bump @fastify/autoload from 5.7.0 to 5.7.1 ([#557](https://github.com/Fdawgs/ydh-community-contacts-api/issues/557)) ([c390f21](https://github.com/Fdawgs/ydh-community-contacts-api/commit/c390f217a6905d69abc1293a0d2a67fdcfe51fcc))
+* **deps:** bump @fastify/static from 6.6.0 to 6.8.0 ([#561](https://github.com/Fdawgs/ydh-community-contacts-api/issues/561)) ([9c208b9](https://github.com/Fdawgs/ydh-community-contacts-api/commit/9c208b92f9267a47cb49beb55adcd55443848370))
+* **deps:** bump @fastify/swagger from 8.2.1 to 8.3.0 ([#565](https://github.com/Fdawgs/ydh-community-contacts-api/issues/565)) ([8382e31](https://github.com/Fdawgs/ydh-community-contacts-api/commit/8382e318a1a038bd33620ff4369c85d1856bbcec))
+* **deps:** bump fastify from 4.11.0 to 4.12.0 ([#556](https://github.com/Fdawgs/ydh-community-contacts-api/issues/556)) ([5a616f6](https://github.com/Fdawgs/ydh-community-contacts-api/commit/5a616f6d1f61fa9584e0bf9ef5b4cccb1a52f5ed))
+* **deps:** bump fastify-disablecache from 3.0.4 to 3.0.5 ([#560](https://github.com/Fdawgs/ydh-community-contacts-api/issues/560)) ([de426a9](https://github.com/Fdawgs/ydh-community-contacts-api/commit/de426a96cd99cf39a28fb31c21089568635727cc))
+* **deps:** bump fastify-floc-off from 2.0.4 to 2.0.5 ([#558](https://github.com/Fdawgs/ydh-community-contacts-api/issues/558)) ([4bb29cc](https://github.com/Fdawgs/ydh-community-contacts-api/commit/4bb29cc2aceaa5850537e06f892e6a31137b307e))
+* **deps:** bump hadolint/hadolint-action from 3.0.0 to 3.1.0 ([#552](https://github.com/Fdawgs/ydh-community-contacts-api/issues/552)) ([a0fefd6](https://github.com/Fdawgs/ydh-community-contacts-api/commit/a0fefd6ffdd1478c973dbf48cb6dce482a2a4f45))
+* **deps:** bump mssql from 9.0.1 to 9.1.1 ([#563](https://github.com/Fdawgs/ydh-community-contacts-api/issues/563)) ([45a1769](https://github.com/Fdawgs/ydh-community-contacts-api/commit/45a1769b9b01c7224ec6c53df473561c79c5a217))
+* **deps:** bump pg from 8.8.0 to 8.9.0 ([#554](https://github.com/Fdawgs/ydh-community-contacts-api/issues/554)) ([0322295](https://github.com/Fdawgs/ydh-community-contacts-api/commit/03222956c2601d8da3825b910279f6d83150ac29))
+* **deps:** bump secure-json-parse from 2.6.0 to 2.7.0 ([#541](https://github.com/Fdawgs/ydh-community-contacts-api/issues/541)) ([4537068](https://github.com/Fdawgs/ydh-community-contacts-api/commit/4537068e171f15eaa5792b783e4fac4a692741f6))
+* **deps:** bump transistive dependencies ([9e7b368](https://github.com/Fdawgs/ydh-community-contacts-api/commit/9e7b36897da8ea0d21458f934aa24b58bd36214d))
+* use esbuild to compile ([#539](https://github.com/Fdawgs/ydh-community-contacts-api/issues/539)) ([ae41382](https://github.com/Fdawgs/ydh-community-contacts-api/commit/ae413829a56865e1d711325d2adbc18d15cd9c8f))
+
+
+### Continuous Integration
+
+* **cd:** add missing install step ([bf9336d](https://github.com/Fdawgs/ydh-community-contacts-api/commit/bf9336db7b5d452f58192cf17364e74f2570b6c8))
+
 ## [7.0.2](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v7.0.1...v7.0.2) (2023-01-05)
 
 
