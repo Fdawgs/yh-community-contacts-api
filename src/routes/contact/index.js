@@ -1,4 +1,3 @@
-const S = require("fluent-json-schema");
 const secJSON = require("secure-json-parse");
 
 // Import plugins
@@ -80,41 +79,25 @@ function buildContact(results, req) {
 async function route(server, options) {
 	if (options.bearerTokenAuthEnabled) {
 		const security = [{ bearerToken: [] }];
+		const unauthRef = {
+			$ref: "responses#/properties/unauthorized",
+			description: "Unauthorized",
+		};
 
 		contactDeleteSchema.security = security;
-		contactDeleteSchema.response[401] = S.ref(
-			"responses#/properties/unauthorized"
-		)
-			.description("Unauthorized")
-			.valueOf();
+		contactDeleteSchema.response[401] = unauthRef;
 
 		contactGetReadSchema.security = security;
-		contactGetReadSchema.response[401] = S.ref(
-			"responses#/properties/unauthorized"
-		)
-			.description("Unauthorized")
-			.valueOf();
+		contactGetReadSchema.response[401] = unauthRef;
 
 		contactGetSearchSchema.security = security;
-		contactGetSearchSchema.response[401] = S.ref(
-			"responses#/properties/unauthorized"
-		)
-			.description("Unauthorized")
-			.valueOf();
+		contactGetSearchSchema.response[401] = unauthRef;
 
 		contactPostSchema.security = security;
-		contactPostSchema.response[401] = S.ref(
-			"responses#/properties/unauthorized"
-		)
-			.description("Unauthorized")
-			.valueOf();
+		contactPostSchema.response[401] = unauthRef;
 
 		contactPutSchema.security = security;
-		contactPutSchema.response[401] = S.ref(
-			"responses#/properties/unauthorized"
-		)
-			.description("Unauthorized")
-			.valueOf();
+		contactPutSchema.response[401] = unauthRef;
 	}
 
 	// Register plugins
