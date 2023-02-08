@@ -1,3 +1,4 @@
+const S = require("fluent-json-schema");
 const secJSON = require("secure-json-parse");
 
 // Import plugins
@@ -81,10 +82,39 @@ async function route(server, options) {
 		const security = [{ bearerToken: [] }];
 
 		contactDeleteSchema.security = security;
+		contactDeleteSchema.response[401] = S.ref(
+			"responses#/properties/unauthorized"
+		)
+			.description("Unauthorized")
+			.valueOf();
+
 		contactGetReadSchema.security = security;
+		contactGetReadSchema.response[401] = S.ref(
+			"responses#/properties/unauthorized"
+		)
+			.description("Unauthorized")
+			.valueOf();
+
 		contactGetSearchSchema.security = security;
+		contactGetSearchSchema.response[401] = S.ref(
+			"responses#/properties/unauthorized"
+		)
+			.description("Unauthorized")
+			.valueOf();
+
 		contactPostSchema.security = security;
+		contactPostSchema.response[401] = S.ref(
+			"responses#/properties/unauthorized"
+		)
+			.description("Unauthorized")
+			.valueOf();
+
 		contactPutSchema.security = security;
+		contactPutSchema.response[401] = S.ref(
+			"responses#/properties/unauthorized"
+		)
+			.description("Unauthorized")
+			.valueOf();
 	}
 
 	// Register plugins
