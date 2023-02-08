@@ -132,9 +132,6 @@ const contactDeleteSchema = {
 		400: S.ref("responses#/properties/badRequest").description(
 			"Bad Request"
 		),
-		401: S.ref("responses#/properties/unauthorized").description(
-			"Unauthorized"
-		),
 		404: S.ref("responses#/properties/notFoundDbResults").description(
 			"Not Found"
 		),
@@ -172,9 +169,6 @@ const contactGetReadSchema = {
 		200: contactBaseSchema,
 		400: S.ref("responses#/properties/badRequest").description(
 			"Bad Request"
-		),
-		401: S.ref("responses#/properties/unauthorized").description(
-			"Unauthorized"
 		),
 		404: S.ref("responses#/properties/notFoundDbResults").description(
 			"Not Found"
@@ -345,9 +339,6 @@ const contactGetSearchSchema = {
 		400: S.ref("responses#/properties/badRequest").description(
 			"Bad Request"
 		),
-		401: S.ref("responses#/properties/unauthorized").description(
-			"Unauthorized"
-		),
 		404: S.ref("responses#/properties/notFoundDbResults").description(
 			"Not Found"
 		),
@@ -388,9 +379,6 @@ const contactPostSchema = {
 		),
 		400: S.ref("responses#/properties/badRequest").description(
 			"Bad Request"
-		),
-		401: S.ref("responses#/properties/unauthorized").description(
-			"Unauthorized"
 		),
 		406: S.ref("responses#/properties/notAcceptable").description(
 			"Not Acceptable"
@@ -433,9 +421,6 @@ const contactPutSchema = {
 		204: S.string().raw({ nullable: true }).description("No Content"),
 		400: S.ref("responses#/properties/badRequest").description(
 			"Bad Request"
-		),
-		401: S.ref("responses#/properties/unauthorized").description(
-			"Unauthorized"
 		),
 		404: S.ref("responses#/properties/notFoundDbResults").description(
 			"Not Found"
