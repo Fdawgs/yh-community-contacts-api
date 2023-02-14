@@ -64,10 +64,10 @@ const expSearchResult = {
 	],
 };
 
-describe("Contact Route", () => {
+describe("Contact route", () => {
 	const connectionTests = [
 		{
-			testName: "MSSQL Connection",
+			testName: "MSSQL connection",
 			envVariables: {
 				DB_CLIENT: "mssql",
 			},
@@ -138,7 +138,7 @@ describe("Contact Route", () => {
 			},
 		},
 		{
-			testName: "PostgreSQL Connection",
+			testName: "PostgreSQL connection",
 			envVariables: {
 				DB_CLIENT: "postgresql",
 			},
@@ -195,7 +195,7 @@ describe("Contact Route", () => {
 		},
 	];
 	connectionTests.forEach((testObject) => {
-		describe(`${testObject.testName} - With Request Scopes`, () => {
+		describe(`${testObject.testName} - with request scopes`, () => {
 			let config;
 			let server;
 
@@ -229,7 +229,7 @@ describe("Contact Route", () => {
 				await server.close();
 			});
 
-			describe("/:id DELETE Requests", () => {
+			describe("/:id DELETE requests", () => {
 				test("Should delete a contact record", async () => {
 					const mockQueryFn = jest
 						.fn()
@@ -301,7 +301,7 @@ describe("Contact Route", () => {
 				});
 			});
 
-			describe("/:id GET Requests", () => {
+			describe("/:id GET requests", () => {
 				test("Should return contact record", async () => {
 					const mockQueryFn = jest
 						.fn()
@@ -379,7 +379,7 @@ describe("Contact Route", () => {
 				});
 			});
 
-			describe("/ GET Requests", () => {
+			describe("/ GET requests", () => {
 				test("Should return contact record, using all query string parameters", async () => {
 					const mockQueryFn = jest
 						.fn()
@@ -550,7 +550,7 @@ describe("Contact Route", () => {
 				});
 			});
 
-			describe("/:id PUT Requests", () => {
+			describe("/:id PUT requests", () => {
 				test("Should update contact record", async () => {
 					const mockQueryFn = jest
 						.fn()
@@ -692,7 +692,7 @@ describe("Contact Route", () => {
 				});
 			});
 
-			describe("/ POST Requests", () => {
+			describe("/ POST requests", () => {
 				test("Should create contact record", async () => {
 					const mockQueryFn = jest
 						.fn()
@@ -839,7 +839,7 @@ describe("Contact Route", () => {
 			});
 		});
 
-		describe(`${testObject.testName} - Without Request Scopes`, () => {
+		describe(`${testObject.testName} - without request scopes`, () => {
 			let config;
 			let server;
 
@@ -864,7 +864,7 @@ describe("Contact Route", () => {
 				await server.close();
 			});
 
-			describe("/:id DELETE Requests", () => {
+			describe("/:id DELETE requests", () => {
 				test("Should return HTTP status code 401 if not in permitted access", async () => {
 					const response = await server.inject({
 						method: "DELETE",
@@ -881,7 +881,7 @@ describe("Contact Route", () => {
 				});
 			});
 
-			describe("/:id GET Requests", () => {
+			describe("/:id GET requests", () => {
 				test("Should return HTTP status code 401 if not in permitted access", async () => {
 					const response = await server.inject({
 						method: "GET",
@@ -898,7 +898,7 @@ describe("Contact Route", () => {
 				});
 			});
 
-			describe("/ GET Requests", () => {
+			describe("/ GET requests", () => {
 				test("Should return HTTP status code 401 if not in permitted access", async () => {
 					const response = await server.inject({
 						method: "GET",
@@ -925,7 +925,7 @@ describe("Contact Route", () => {
 				});
 			});
 
-			describe("/:id PUT Requests", () => {
+			describe("/:id PUT requests", () => {
 				test("Should return HTTP status code 401 if not in permitted access", async () => {
 					const response = await server.inject({
 						method: "PUT",
@@ -946,7 +946,7 @@ describe("Contact Route", () => {
 				});
 			});
 
-			describe("/ POST Requests", () => {
+			describe("/ POST requests", () => {
 				test("Should return HTTP status code 401 if not in permitted access", async () => {
 					const response = await server.inject({
 						method: "POST",

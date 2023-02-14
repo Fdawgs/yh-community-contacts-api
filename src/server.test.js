@@ -150,10 +150,10 @@ const expResHeaders404Errors = {
 	vary: undefined,
 };
 
-describe("Server Deployment", () => {
+describe("Server deployment", () => {
 	const connectionTests = [
 		{
-			testName: "MSSQL Connection",
+			testName: "MSSQL connection",
 			envVariables: {
 				DB_CLIENT: "mssql",
 				DB_CONNECTION_STRING:
@@ -197,7 +197,7 @@ describe("Server Deployment", () => {
 			},
 		},
 		{
-			testName: "PostgreSQL Connection",
+			testName: "PostgreSQL connection",
 			envVariables: {
 				DB_CLIENT: "postgresql",
 				DB_CONNECTION_STRING:
@@ -242,7 +242,7 @@ describe("Server Deployment", () => {
 				Object.assign(process.env, testObject.envVariables);
 			});
 
-			describe("Bearer Token Disabled", () => {
+			describe("Bearer token disabled", () => {
 				let config;
 				let server;
 
@@ -260,7 +260,7 @@ describe("Server Deployment", () => {
 					await server.close();
 				});
 
-				describe("/admin/healthcheck Route", () => {
+				describe("/admin/healthcheck route", () => {
 					test("Should return `ok`", async () => {
 						const response = await server.inject({
 							method: "GET",
@@ -294,7 +294,7 @@ describe("Server Deployment", () => {
 					});
 				});
 
-				describe("Undeclared Route", () => {
+				describe("Undeclared route", () => {
 					test("Should return HTTP status code 404 if route not found", async () => {
 						const response = await server.inject({
 							method: "GET",
@@ -317,7 +317,7 @@ describe("Server Deployment", () => {
 					});
 				});
 
-				describe("/contacts Route", () => {
+				describe("/contacts route", () => {
 					test("Should return HTTP status code 500 if connection issue encountered", async () => {
 						const mockQueryFn = jest
 							.fn()
@@ -345,7 +345,7 @@ describe("Server Deployment", () => {
 				});
 			});
 
-			describe("Bearer Token Enabled", () => {
+			describe("Bearer token enabled", () => {
 				let config;
 				let server;
 
@@ -363,7 +363,7 @@ describe("Server Deployment", () => {
 					await server.close();
 				});
 
-				describe("/admin/healthcheck Route", () => {
+				describe("/admin/healthcheck route", () => {
 					test("Should return `ok`", async () => {
 						const response = await server.inject({
 							method: "GET",
@@ -397,7 +397,7 @@ describe("Server Deployment", () => {
 					});
 				});
 
-				describe("Undeclared Route", () => {
+				describe("Undeclared route", () => {
 					test("Should return HTTP status code 404 if route not found", async () => {
 						const response = await server.inject({
 							method: "GET",
@@ -420,7 +420,7 @@ describe("Server Deployment", () => {
 					});
 				});
 
-				describe("/contacts Route", () => {
+				describe("/contacts route", () => {
 					test("Should return HTTP status code 401 if bearer token invalid", async () => {
 						const mockQueryFn = jest
 							.fn()
@@ -547,7 +547,7 @@ describe("Server Deployment", () => {
 				});
 			});
 
-			describe("Basic Auth", () => {
+			describe("Basic auth", () => {
 				let config;
 				let server;
 
@@ -566,7 +566,7 @@ describe("Server Deployment", () => {
 					await server.close();
 				});
 
-				describe("/admin/access/bearer-token/:id Route", () => {
+				describe("/admin/access/bearer-token/:id route", () => {
 					const basicAuthTests = [
 						{
 							testName: "basic auth username invalid",
@@ -665,7 +665,7 @@ describe("Server Deployment", () => {
 
 				const corsTests = [
 					{
-						testName: "CORS Disabled",
+						testName: "CORS disabled",
 						envVariables: {
 							CORS_ORIGIN: "",
 						},
@@ -684,7 +684,7 @@ describe("Server Deployment", () => {
 						},
 					},
 					{
-						testName: "CORS Enabled",
+						testName: "CORS enabled",
 						envVariables: {
 							CORS_ORIGIN: true,
 						},
@@ -711,7 +711,7 @@ describe("Server Deployment", () => {
 						},
 					},
 					{
-						testName: "Cors Enabled and Set to String",
+						testName: "CORS enabled and set to string",
 						envVariables: {
 							CORS_ORIGIN: "https://notreal.ydh.nhs.uk",
 						},
@@ -738,7 +738,7 @@ describe("Server Deployment", () => {
 						},
 					},
 					{
-						testName: "Cors Enabled and Set to Array of Strings",
+						testName: "CORS enabled and set to array of strings",
 						envVariables: {
 							CORS_ORIGIN: [
 								"https://notreal.ydh.nhs.uk",
@@ -768,7 +768,7 @@ describe("Server Deployment", () => {
 						},
 					},
 					{
-						testName: "Cors Enabled and Set to Wildcard",
+						testName: "CORS enabled and set to wildcard",
 						envVariables: {
 							CORS_ORIGIN: "*",
 						},
@@ -813,7 +813,7 @@ describe("Server Deployment", () => {
 							await server.close();
 						});
 
-						describe("/admin/healthcheck Route", () => {
+						describe("/admin/healthcheck route", () => {
 							test("Should return `ok`", async () => {
 								const response = await server.inject({
 									method: "GET",
@@ -894,7 +894,7 @@ describe("Server Deployment", () => {
 							});
 						});
 
-						describe("Undeclared Route", () => {
+						describe("Undeclared route", () => {
 							test("Should return HTTP status code 404 if route not found", async () => {
 								const response = await server.inject({
 									method: "GET",
@@ -923,7 +923,7 @@ describe("Server Deployment", () => {
 		});
 	});
 
-	describe("API Documentation", () => {
+	describe("API documentation", () => {
 		let config;
 		let server;
 
@@ -956,7 +956,7 @@ describe("Server Deployment", () => {
 		});
 
 		describe("Content", () => {
-			describe("/docs Route", () => {
+			describe("/docs route", () => {
 				test("Should return HTML", async () => {
 					const response = await server.inject({
 						method: "GET",
@@ -972,7 +972,7 @@ describe("Server Deployment", () => {
 				});
 			});
 
-			describe("/public Route", () => {
+			describe("/public route", () => {
 				test("Should return image", async () => {
 					const response = await server.inject({
 						method: "GET",

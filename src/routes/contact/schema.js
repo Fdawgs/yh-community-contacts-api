@@ -1,6 +1,6 @@
 const S = require("fluent-json-schema");
 
-const tags = ["Community Contacts"];
+const tags = ["Community contacts"];
 
 /**
  * JSON Schema expects a String, `fluent-json-schema` converts this from

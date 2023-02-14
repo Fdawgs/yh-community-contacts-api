@@ -8,7 +8,7 @@
 * **routes/contact:** add wildcard support to `match.receiver` param ([#547](https://github.com/Fdawgs/ydh-community-contacts-api/issues/547)) ([527d961](https://github.com/Fdawgs/ydh-community-contacts-api/commit/527d961b316a5fb1cb9b10c30831719a2492361d))
 
 
-### Bug Fixes
+### Bug fixes
 
 * pagination skipping concurrently created records ([#546](https://github.com/Fdawgs/ydh-community-contacts-api/issues/546)) ([7a650ea](https://github.com/Fdawgs/ydh-community-contacts-api/commit/7a650ea131b1aee3f319266de88c67f752da6d6e))
 * **routes:** missing 400 response in openapi schema ([#548](https://github.com/Fdawgs/ydh-community-contacts-api/issues/548)) ([e40c575](https://github.com/Fdawgs/ydh-community-contacts-api/commit/e40c575b0a88975dd0532b32fa984f4935d9424f))
@@ -56,14 +56,14 @@
 * use esbuild to compile ([#539](https://github.com/Fdawgs/ydh-community-contacts-api/issues/539)) ([ae41382](https://github.com/Fdawgs/ydh-community-contacts-api/commit/ae413829a56865e1d711325d2adbc18d15cd9c8f))
 
 
-### Continuous Integration
+### Continuous integration
 
 * **cd:** add missing install step ([bf9336d](https://github.com/Fdawgs/ydh-community-contacts-api/commit/bf9336db7b5d452f58192cf17364e74f2570b6c8))
 
 ## [7.0.2](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v7.0.1...v7.0.2) (2023-01-05)
 
 
-### Bug Fixes
+### Bug fixes
 
 * **routes/docs:** limit files served from redoc module ([1a0c0ba](https://github.com/Fdawgs/ydh-community-contacts-api/commit/1a0c0ba2dea2899b222d7b217fe410494e132982))
 
@@ -116,7 +116,7 @@
 * **readme:** remove mention of `db:migrate` script ([08d0af6](https://github.com/Fdawgs/ydh-community-contacts-api/commit/08d0af656fd0cd438bd23ff9a02e0fb4826f30a9))
 
 
-### Continuous Integration
+### Continuous integration
 
 * **cd:** remove dev values from `package.json` ([#509](https://github.com/Fdawgs/ydh-community-contacts-api/issues/509)) ([ad7fdfb](https://github.com/Fdawgs/ydh-community-contacts-api/commit/ad7fdfba421f58f19faef25b0ac5e9d64b7bcea5))
 
@@ -161,7 +161,7 @@
 * **config:** use port 3000 if `PORT` env variable unset (#476)
 * **deps:** `LOG_ROTATION_FREQUENCY` env variable accepted values changed from "daily, custom, or test" to "daily, date, [1-12]h, or [1-30]m"
 
-### Bug Fixes
+### Bug fixes
 
 * **config:** use port 3000 if `PORT` env variable unset ([#476](https://github.com/Fdawgs/ydh-community-contacts-api/issues/476)) ([f258daf](https://github.com/Fdawgs/ydh-community-contacts-api/commit/f258daf5db97222a3ca1fca3958192ce833a17d3))
 * **routes:** add `HEAD` to cors allowed methods ([#468](https://github.com/Fdawgs/ydh-community-contacts-api/issues/468)) ([aaae7f6](https://github.com/Fdawgs/ydh-community-contacts-api/commit/aaae7f6fdc59fedfed2ae0b0c334d3a96a7d93a3))
@@ -204,7 +204,7 @@
 ## [6.1.2](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v6.1.1...v6.1.2) (2022-11-01)
 
 
-### Bug Fixes
+### Bug fixes
 
 * **routes:** accept header handling ([e5fbb4b](https://github.com/Fdawgs/ydh-community-contacts-api/commit/e5fbb4bc0a74d3f486817ace425df3d70c372158))
 * **routes:** openapi schema content types ([812ac4f](https://github.com/Fdawgs/ydh-community-contacts-api/commit/812ac4fe585b443b20d15d7de26f8d8c355afb0c))
@@ -247,7 +247,7 @@
 ## [6.1.1](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v6.1.0...v6.1.1) (2022-10-18)
 
 
-### Bug Fixes
+### Bug fixes
 
 * **routes/admin/access/bearer-token:** remove stray `,` ([#434](https://github.com/Fdawgs/ydh-community-contacts-api/issues/434)) ([8b1d4e3](https://github.com/Fdawgs/ydh-community-contacts-api/commit/8b1d4e314e3adc321d702a187544c787254ba308))
 
@@ -275,7 +275,7 @@
 * **deps:** bump fastify-plugin from 4.2.1 to 4.3.0 ([#439](https://github.com/Fdawgs/ydh-community-contacts-api/issues/439)) ([46e3006](https://github.com/Fdawgs/ydh-community-contacts-api/commit/46e30061d0cc0dbe41af811423b9e07e05131818))
 
 
-### Continuous Integration
+### Continuous integration
 
 * **cd:** remove test files from release asset ([#448](https://github.com/Fdawgs/ydh-community-contacts-api/issues/448)) ([f98fd35](https://github.com/Fdawgs/ydh-community-contacts-api/commit/f98fd35a88d1f907e42c26a40c83be71361ee9d3))
 
@@ -287,7 +287,7 @@
 * **config:** use first available open port if `PORT` env variable unset ([#424](https://github.com/Fdawgs/ydh-community-contacts-api/issues/424)) ([a2f3fa4](https://github.com/Fdawgs/ydh-community-contacts-api/commit/a2f3fa4107031369fe87538a4f1a64636cbf46e5))
 
 
-### Continuous Integration
+### Continuous integration
 
 * **cd:** create release asset ([5401e56](https://github.com/Fdawgs/ydh-community-contacts-api/commit/5401e56d4617c411b34b168b367466cb19adf58e))
 
@@ -308,7 +308,7 @@
 * **config:** `SERVICE_HOST` and `SERVICE_PORT` env variables renamed to `HOST` and `PORT` respectively.
 * **routes/admin/access:** bcrypt now used for hashing stored bearer tokens
 
-### Bug Fixes
+### Bug fixes
 
 * **config:** use `HOST` and `PORT` env variables for cloud services ([45ead4f](https://github.com/Fdawgs/ydh-community-contacts-api/commit/45ead4f025abb95e881784b29f1a9a4ee45ffbfb))
 * **plugins/serialize-json-to-xml:** rep invalid xml chars with U+FFFD ([#402](https://github.com/Fdawgs/ydh-community-contacts-api/issues/402)) ([f337601](https://github.com/Fdawgs/ydh-community-contacts-api/commit/f337601128087072ddb44d7e6a2a12e49ad1fa1d))
@@ -363,7 +363,7 @@
 ## [5.0.7](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v5.0.6...v5.0.7) (2022-09-05)
 
 
-### Bug Fixes
+### Bug fixes
 
 * **config:** `default` throws exceptions when used in `anyOf` schemas ([81dd1fd](https://github.com/Fdawgs/ydh-community-contacts-api/commit/81dd1fd0427a2caeb99165ee9cdae5e7726ba2ff))
 * **plugins/shared-schemas:** replace 500 response message const ([d864253](https://github.com/Fdawgs/ydh-community-contacts-api/commit/d864253195156bf71aed41a0f1f1d37dee264fd9))
@@ -455,7 +455,7 @@
 ## [5.0.4](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v5.0.3...v5.0.4) (2022-08-09)
 
 
-### Bug Fixes
+### Bug fixes
 
 * **config:** log rotation max files ([#335](https://github.com/Fdawgs/ydh-community-contacts-api/issues/335)) ([9fb8123](https://github.com/Fdawgs/ydh-community-contacts-api/commit/9fb81238cf8d81aa8d0f24a70ac56aaa61a5ac51))
 
@@ -475,7 +475,7 @@
 ## [5.0.3](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v5.0.2...v5.0.3) (2022-08-04)
 
 
-### Bug Fixes
+### Bug fixes
 
 * **routes:** invalid openapi shared schema definitions ([#331](https://github.com/Fdawgs/ydh-community-contacts-api/issues/331)) ([77c184c](https://github.com/Fdawgs/ydh-community-contacts-api/commit/77c184cd6ae9e11274574146554e4283d200c4f5))
 * **server:** reduce `content-security-policy` for options routes ([#333](https://github.com/Fdawgs/ydh-community-contacts-api/issues/333)) ([e6d216a](https://github.com/Fdawgs/ydh-community-contacts-api/commit/e6d216ab3ad1aff818063ea91447917914fb6345))
@@ -493,7 +493,7 @@
 * migrate from fastify v3 to v4 ([#316](https://github.com/Fdawgs/ydh-community-contacts-api/issues/316)) ([8789d3c](https://github.com/Fdawgs/ydh-community-contacts-api/commit/8789d3c9cb5b0e28ef4997d1a78945508e7de490))
 
 
-### Continuous Integration
+### Continuous integration
 
 * **ci:** audit npm package signatures ([4fe5fb3](https://github.com/Fdawgs/ydh-community-contacts-api/commit/4fe5fb3e9a034f6d5222fb160455af19dd36036f))
 
@@ -549,7 +549,7 @@
 * **plugins/hashed-bearer-auth:** Dropped support for node 14 to be able to use `Promise.any()`
 * scrypt now used for hashing stored bearer tokens
 
-### Bug Fixes
+### Bug fixes
 
 * **plugins/serialize-json-to-xml:** ignore swagger and openapi specs ([#289](https://github.com/Fdawgs/ydh-community-contacts-api/issues/289)) ([982a16c](https://github.com/Fdawgs/ydh-community-contacts-api/commit/982a16c82facc52dee35c74a3c8608c3bb31badc))
 * **routes:** pagination count returning as string for postgres conns ([#288](https://github.com/Fdawgs/ydh-community-contacts-api/issues/288)) ([8541e17](https://github.com/Fdawgs/ydh-community-contacts-api/commit/8541e17fc53b5eabb45f9a1b3bed35a96dfb2201))
@@ -599,7 +599,7 @@
 ### [4.0.4](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v4.0.3...v4.0.4) (2022-06-01)
 
 
-### Bug Fixes
+### Bug fixes
 
 * **plugins/serialize-json-to-xml:** 204 resps do not have content types ([0df37a4](https://github.com/Fdawgs/ydh-community-contacts-api/commit/0df37a46d0dae50c4d292d556467fcfc25f001f1))
 * **routes:** time and timezone suffix are case-sensitive ([ade2c0b](https://github.com/Fdawgs/ydh-community-contacts-api/commit/ade2c0b9f6e2a0502471093ca1b864ee0f1a5059))
@@ -611,7 +611,7 @@
 * **config:** replace `forEach()` with `map()` ([#240](https://github.com/Fdawgs/ydh-community-contacts-api/issues/240)) ([cc62d2a](https://github.com/Fdawgs/ydh-community-contacts-api/commit/cc62d2aa82b18a7f2e8f3967debfca4676a19d06))
 
 
-### Continuous Integration
+### Continuous integration
 
 * **ci:** add node 18 to test matrix ([#216](https://github.com/Fdawgs/ydh-community-contacts-api/issues/216)) ([3911dcf](https://github.com/Fdawgs/ydh-community-contacts-api/commit/3911dcf4636dda5c37255e43e91679a9ae15ad41))
 * remove git credentials after checkout ([#238](https://github.com/Fdawgs/ydh-community-contacts-api/issues/238)) ([a6f9fcc](https://github.com/Fdawgs/ydh-community-contacts-api/commit/a6f9fcc7be54d6f3f0938abf0e541bf51d49fbcc))
@@ -643,7 +643,7 @@
 ### [4.0.3](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v4.0.2...v4.0.3) (2022-05-18)
 
 
-### Bug Fixes
+### Bug fixes
 
 * **routes/admin/access/bearer-token:** missing record url path ([aae13ed](https://github.com/Fdawgs/ydh-community-contacts-api/commit/aae13ed79e3cd490748996e645d350ed13f4f049))
 * **server:** do not transform 503 http err into 500 http err response ([d9c56b1](https://github.com/Fdawgs/ydh-community-contacts-api/commit/d9c56b15d4d62039a8f309b5370dcd1fdeb47880))
@@ -662,7 +662,7 @@
 * **server:** use optional chaining for error message logging ([68a519d](https://github.com/Fdawgs/ydh-community-contacts-api/commit/68a519dab2ce94f963aaf8a6106503eba9a42145))
 
 
-### Continuous Integration
+### Continuous integration
 
 * **automerge:** fix context ([325e14d](https://github.com/Fdawgs/ydh-community-contacts-api/commit/325e14d8dd718d119b84879d40970883a6ac5a00))
 * check `user.login` is dependabot instead of `actor` ([33fd019](https://github.com/Fdawgs/ydh-community-contacts-api/commit/33fd019516c027796ef586a683dba863261771e9))
@@ -702,7 +702,7 @@
 ### [4.0.2](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v4.0.1...v4.0.2) (2022-05-04)
 
 
-### Bug Fixes
+### Bug fixes
 
 * log error stack trace; adjust http 500 error responses ([#188](https://github.com/Fdawgs/ydh-community-contacts-api/issues/188)) ([1140481](https://github.com/Fdawgs/ydh-community-contacts-api/commit/1140481382ed4e0cdc52c0988407d8219e15dc33))
 
@@ -712,7 +712,7 @@
 * **routes/contact:** remove implicit require of `URL` ([#185](https://github.com/Fdawgs/ydh-community-contacts-api/issues/185)) ([070e09c](https://github.com/Fdawgs/ydh-community-contacts-api/commit/070e09c43e93b9e5ea3ee7b8507f9d292b66b296))
 
 
-### Continuous Integration
+### Continuous integration
 
 * add dependency-review job ([6777345](https://github.com/Fdawgs/ydh-community-contacts-api/commit/677734577f90c388ab6b60a14d395be97dc0a189))
 * **link-check:** replace `npx linkinator` call with github action ([9b5fa72](https://github.com/Fdawgs/ydh-community-contacts-api/commit/9b5fa7256af9508c2cb5f1f952963c15954a9ab8))
@@ -764,12 +764,12 @@
 ### [4.0.1](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v4.0.0...v4.0.1) (2022-04-12)
 
 
-### Bug Fixes
+### Bug fixes
 
 * stop npm from swallowing exit signals; run migrations on launch ([d4169fa](https://github.com/Fdawgs/ydh-community-contacts-api/commit/d4169fa71b75c4ae6ae1e7a8277e65c2ad72bdd3))
 
 
-### Continuous Integration
+### Continuous integration
 
 * **automerge:** squash automerge prs ([1d4f55a](https://github.com/Fdawgs/ydh-community-contacts-api/commit/1d4f55ae488e0c154de0794654a699ea00cdc7e1))
 * **cd:** update org name for release-please-action ([8430711](https://github.com/Fdawgs/ydh-community-contacts-api/commit/84307115d13deeb28e689cd498baa31b0745d89b))
@@ -821,7 +821,7 @@
 * **migrations:** `DATETIME2` replaced with `DATETIMEOFFSET` in MSSQL. `TIMESTAMP` replaced with `TIMESTAMPTZ` in Postgres
 * **routes/docs:** `docs/json` route renamed to `docs/openapi`
 
-### Bug Fixes
+### Bug fixes
 
 * **migrations:** datetime with timezone data types now used ([d160e7e](https://github.com/Fdawgs/ydh-community-contacts-api/commit/d160e7eed7581e00e1bfe17baad1e33e05f7491a))
 * **routes/docs/json:** add cors support ([#138](https://github.com/Fdawgs/ydh-community-contacts-api/issues/138)) ([b550a01](https://github.com/Fdawgs/ydh-community-contacts-api/commit/b550a01e0a97f9adc81566f9a7154d8c9bdc52b8))
@@ -866,7 +866,7 @@
 * **routes:** add `location` header to 201 responses ([#113](https://github.com/Fdawgs/ydh-community-contacts-api/issues/113)) ([7720af8](https://github.com/Fdawgs/ydh-community-contacts-api/commit/7720af804cc39e7a98c43fa1883e257b378838a5))
 
 
-### Bug Fixes
+### Bug fixes
 
 * **routes/docs:** add ie unsupported script ([8e71438](https://github.com/Fdawgs/ydh-community-contacts-api/commit/8e71438cf7d0cf3941c8ce04e17e44fbac6cdf2d))
 * **routes/docs:** resolve cwe-676 ([2af5aec](https://github.com/Fdawgs/ydh-community-contacts-api/commit/2af5aec5d2b3b6b0d1446a6de4e1f2985505b7e7))
@@ -893,7 +893,7 @@
 * **scripts:** use shorter arg aliases; remove debugging args from jest ([17cd36c](https://github.com/Fdawgs/ydh-community-contacts-api/commit/17cd36cfd3ffe15fa2b916cae375d3a6330732d9))
 
 
-### Continuous Integration
+### Continuous integration
 
 * add job step names, workflow comments, and whitespace ([f1c327b](https://github.com/Fdawgs/ydh-community-contacts-api/commit/f1c327b2addc3c0b4e21bb8490e8ffffe3573062))
 * **codeql-analysis:** remove unused autobuild step ([6aa6779](https://github.com/Fdawgs/ydh-community-contacts-api/commit/6aa677972840a5107ee75042d04fff5286f68a16))
@@ -933,14 +933,14 @@
 * **config:** `ADMIN_PASSWORD` env variable now has minimum length of 8 characters
 * **routes:** `admin/access` route moved to `admin/access/bearer-token`
 
-### Bug Fixes
+### Bug fixes
 
 * **admin/access:** searching using `access.scopes` ([9c8c24f](https://github.com/Fdawgs/ydh-community-contacts-api/commit/9c8c24f58337eeb2d4a919ab3ccd965e556eb25f))
 * **config:** enforce minimum length for `ADMIN_PASSWORD` env variable ([7decdca](https://github.com/Fdawgs/ydh-community-contacts-api/commit/7decdca273a8066cd6945640fe4d74850c374eb5))
 * **plugins/hashed-bearer-auth:** log client name ([48de80e](https://github.com/Fdawgs/ydh-community-contacts-api/commit/48de80ef17984f85bdd1cc88ee67fc82ff3a7429))
 
 
-### Continuous Integration
+### Continuous integration
 
 * add image optimisation workflow ([#99](https://github.com/Fdawgs/ydh-community-contacts-api/issues/99)) ([78e10db](https://github.com/Fdawgs/ydh-community-contacts-api/commit/78e10dbe2c44b2d89741dcb5abad5cd6c89c5fe2))
 
@@ -975,7 +975,7 @@
 * **admin/access:** allow more than one `access.scopes` search param ([ddb866f](https://github.com/Fdawgs/ydh-community-contacts-api/commit/ddb866f85738ab49bf87cf2a652c852504d9d08f))
 
 
-### Bug Fixes
+### Bug fixes
 
 * **admin/access:** searching using `access.scopes` in postgres ([c3c5b0b](https://github.com/Fdawgs/ydh-community-contacts-api/commit/c3c5b0b8431fa5cedb1d22314310a9f8374ded8d))
 * **docker-compose:** declare `DB_CLIENT` env variable ([c816fef](https://github.com/Fdawgs/ydh-community-contacts-api/commit/c816fef788c7121a094b8cd3b54f59cef163795d))
@@ -1005,7 +1005,7 @@
 * **routes/admin:** add access route ([#83](https://github.com/Fdawgs/ydh-community-contacts-api/issues/83)) ([f6caf95](https://github.com/Fdawgs/ydh-community-contacts-api/commit/f6caf952f82de47498b75ee613e5eec8eb41e74a))
 
 
-### Bug Fixes
+### Bug fixes
 
 * **config:** redact request auth header from logs ([318f94f](https://github.com/Fdawgs/ydh-community-contacts-api/commit/318f94f849bc0069d22d210b8a1fe301ee7a68fe))
 
@@ -1017,14 +1017,14 @@
 ### [1.1.1](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v1.1.0...v1.1.1) (2022-03-08)
 
 
-### Bug Fixes
+### Bug fixes
 
 * **plugins/shared-schemas:** use `examples` not `enum` for 404 responses ([2fc06e2](https://github.com/Fdawgs/ydh-community-contacts-api/commit/2fc06e27899ef973c1f0b4f52f471cf0b8d4c4fb))
 * **routes/contact:** make `match.value` param case-insensitive ([1dd1a4c](https://github.com/Fdawgs/ydh-community-contacts-api/commit/1dd1a4cd2f334e3b35f170293dd959e8d8a74dde))
 * **routes/contact:** use singular not plurals in read responses ([441a20c](https://github.com/Fdawgs/ydh-community-contacts-api/commit/441a20c703595513968d45e07e22bf17d9627df4))
 
 
-### Continuous Integration
+### Continuous integration
 
 * only install chromium and firefox with playwright ([0ddb239](https://github.com/Fdawgs/ydh-community-contacts-api/commit/0ddb239e31404fd5776812d0723b1d0f7c552b46))
 
@@ -1062,7 +1062,7 @@
 * **routes/contact:** support `application/xml` responses ([#45](https://github.com/Fdawgs/ydh-community-contacts-api/issues/45)) ([62c6380](https://github.com/Fdawgs/ydh-community-contacts-api/commit/62c6380348d6bef9a036b9617058e0120614d939))
 
 
-### Bug Fixes
+### Bug fixes
 
 * **config:** renew rate-limit if user attempts req in limit time window ([#36](https://github.com/Fdawgs/ydh-community-contacts-api/issues/36)) ([70b2c35](https://github.com/Fdawgs/ydh-community-contacts-api/commit/70b2c3569aa3207d4edb57e82a60af44ab8360b6))
 * **migrate:** catch errors thrown ([156373d](https://github.com/Fdawgs/ydh-community-contacts-api/commit/156373db21be882f9ef5c112aa8275ba3695c583))
@@ -1125,13 +1125,13 @@
 ### [1.0.2](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v1.0.1...v1.0.2) (2022-02-01)
 
 
-### Bug Fixes
+### Bug fixes
 
 * **routes/contact:** ignore additional properties in pagination object ([#25](https://github.com/Fdawgs/ydh-community-contacts-api/issues/25)) ([55ad339](https://github.com/Fdawgs/ydh-community-contacts-api/commit/55ad33928a0d903c114cf15685ca22d86f4a6c7f))
 * **utils/escape-single-quotes:** ignore non-string expressions ([#27](https://github.com/Fdawgs/ydh-community-contacts-api/issues/27)) ([2379a86](https://github.com/Fdawgs/ydh-community-contacts-api/commit/2379a86dcadc4e2c3fc64b422665be29b2e49958))
 
 
-### Continuous Integration
+### Continuous integration
 
 * install playwright ([0ed046b](https://github.com/Fdawgs/ydh-community-contacts-api/commit/0ed046b3f1c2199982b04d9b67f7b8073f19034d))
 
@@ -1149,7 +1149,7 @@
 ### [1.0.1](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v1.0.0...v1.0.1) (2022-01-28)
 
 
-### Bug Fixes
+### Bug fixes
 
 * **plugins/db:** log error if connection fails ([3d36949](https://github.com/Fdawgs/ydh-community-contacts-api/commit/3d369491d19d1a4eed8827d1715c6dd55cb575f4))
 * **routes/contact:** escape single-quote characters ([74b83ed](https://github.com/Fdawgs/ydh-community-contacts-api/commit/74b83ed01c7e69696903081819af75470d0b7ec7))
