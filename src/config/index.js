@@ -244,7 +244,7 @@ async function getConfig() {
 						url: "/public/images/ydh-y-logo-transparent-background-wide-canvas.png",
 						backgroundColor: "#6D3176",
 						altText:
-							"Yeovil District Hospital NHS Foundation Trust Logo",
+							"Yeovil District Hospital NHS Foundation Trust logo",
 					},
 				},
 				// Components object populated by shared schemas at launch
@@ -260,12 +260,12 @@ async function getConfig() {
 				},
 				tags: [
 					{
-						name: "Community Contacts",
+						name: "Community contacts",
 						description:
 							"Endpoints relating to community contact details",
 					},
 					{
-						name: "System Administration",
+						name: "System administration",
 						description: "",
 					},
 				],
