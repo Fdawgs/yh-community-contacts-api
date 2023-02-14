@@ -1,5 +1,39 @@
 # Changelog
 
+## [7.1.1](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v7.1.0...v7.1.1) (2023-02-14)
+
+
+### Improvements
+
+* **plugins:** replace xml plugin with dedicated dependency ([#575](https://github.com/Fdawgs/ydh-community-contacts-api/issues/575)) ([e08821a](https://github.com/Fdawgs/ydh-community-contacts-api/commit/e08821a080a95f12f766e31c6ee9f50cf553c112))
+* **routes/contact:** use json object over fluent schema ([#578](https://github.com/Fdawgs/ydh-community-contacts-api/issues/578)) ([618874a](https://github.com/Fdawgs/ydh-community-contacts-api/commit/618874a9add1a979dea98fcbf8e0dc449c763ae2))
+
+
+### Documentation
+
+* **readme:** use more inclusive language ([c7cdf16](https://github.com/Fdawgs/ydh-community-contacts-api/commit/c7cdf16a4ef9b62e5ff087b10fce2a947aae3d0d))
+
+
+### Miscellaneous
+
+* **config:** add comment re openapi `components` object ([#579](https://github.com/Fdawgs/ydh-community-contacts-api/issues/579)) ([d5b781e](https://github.com/Fdawgs/ydh-community-contacts-api/commit/d5b781e72543f0d04e245c191fee868b5b726e36))
+* **config:** correct inline comment ([771d49e](https://github.com/Fdawgs/ydh-community-contacts-api/commit/771d49e3e076c490c96ed2ff22b074e66fb81b11))
+* **config:** use consistent style across api repos ([fea9684](https://github.com/Fdawgs/ydh-community-contacts-api/commit/fea96848d73d87e184783316fca07f61891fd287))
+* use sentence case over ap style for titles and headings ([438a038](https://github.com/Fdawgs/ydh-community-contacts-api/commit/438a0388d4b1d68abe34cae077df19dec5c6b26c))
+
+
+### Bug fixes
+
+* **config:** convert cors params to lowercase ([0aafa64](https://github.com/Fdawgs/ydh-community-contacts-api/commit/0aafa649d7fefb972e088468bd2d83c307d20379))
+* openapi title and doc page description ([3617c56](https://github.com/Fdawgs/ydh-community-contacts-api/commit/3617c5637e2c1c189cfc17982bdc989998e796d5))
+* **routes/contact:** only add 401 response to schema when auth enabled ([7a74c6f](https://github.com/Fdawgs/ydh-community-contacts-api/commit/7a74c6fabde6bb0f507e6975c27f45f9b9ee3e40))
+* **routes:** search schema response key ([ef53e51](https://github.com/Fdawgs/ydh-community-contacts-api/commit/ef53e5182dcd6df636c2adadf9e593ae7681350e))
+
+
+### Continuous integration
+
+* **cd:** use sentence case for changelog headings ([d805afe](https://github.com/Fdawgs/ydh-community-contacts-api/commit/d805afe6f89bb0a9ebebb0befee25d6d06224335))
+
 ## [7.1.0](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v7.0.2...v7.1.0) (2023-02-01)
 
 
