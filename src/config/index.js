@@ -227,7 +227,7 @@ async function getConfig() {
 		swagger: {
 			openapi: {
 				info: {
-					title: "YDH Community Contacts API",
+					title: "Community Contacts API",
 					description:
 						'<a href="https://yeovilhospital.co.uk/">Yeovil District Hospital NHSFT</a>\'s Community Contacts RESTful API, a Node.js application using the <a href="https://fastify.io/">Fastify web framework</a>, built to support CRUD (Create, Read, Update, and Delete) functionality of community midwife, health visitor, and school nurse team email addresses in YDH\'s catchment area.',
 					contact: {
