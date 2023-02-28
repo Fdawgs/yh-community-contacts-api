@@ -117,6 +117,8 @@ API documentation can be found at `/docs`:
 
 <img alttext="Screenshot of Community Contacts API documentation page" src="https://raw.githubusercontent.com/Fdawgs/ydh-community-contacts-api/main/docs/images/api_documentation_screenshot.png" width="720">
 
+The underlying OpenAPI definitions found at `/docs/openapi`.
+
 ### Generating bearer tokens for access
 
 If `BEARER_TOKEN_AUTH_ENABLED` is set to `true` in the `.env` file, you will need to generate bearer tokens for a client/service to access the `/contact` routes of the API.
