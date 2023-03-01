@@ -1,5 +1,29 @@
 # Changelog
 
+## [7.1.3](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v7.1.2...v7.1.3) (2023-03-01)
+
+
+### Improvements
+
+* **routes/docs:** defer non-critical css ([#610](https://github.com/Fdawgs/ydh-community-contacts-api/issues/610)) ([0a9e93c](https://github.com/Fdawgs/ydh-community-contacts-api/commit/0a9e93cf39d42574e89359eb3d2d7a1842f945d2))
+
+
+### Miscellaneous
+
+* **routes/docs:** use correct terminology for openapi definitions ([#613](https://github.com/Fdawgs/ydh-community-contacts-api/issues/613)) ([c6a9deb](https://github.com/Fdawgs/ydh-community-contacts-api/commit/c6a9debfb3f939e0e3c95e3ac3778c68d29416b1))
+
+
+### Dependencies
+
+* **deps-dev:** bump esbuild from 0.17.5 to 0.17.10 ([#620](https://github.com/Fdawgs/ydh-community-contacts-api/issues/620)) ([6619c6e](https://github.com/Fdawgs/ydh-community-contacts-api/commit/6619c6e443c599a099f0299613e1b6d92f9f54f3))
+* **deps-dev:** bump eslint from 8.34.0 to 8.35.0 ([#618](https://github.com/Fdawgs/ydh-community-contacts-api/issues/618)) ([1868160](https://github.com/Fdawgs/ydh-community-contacts-api/commit/1868160132f2182ad1e84bcd3156941d392b95a0))
+* **deps-dev:** bump glob from 8.1.0 to 9.1.0 ([442dbdd](https://github.com/Fdawgs/ydh-community-contacts-api/commit/442dbddd41d18ec313bcfdabd6fac06988203ed4))
+* **deps-dev:** bump pino-pretty from 9.3.0 to 9.4.0 ([#615](https://github.com/Fdawgs/ydh-community-contacts-api/issues/615)) ([6e4fba3](https://github.com/Fdawgs/ydh-community-contacts-api/commit/6e4fba3eefc373376ccbe7f7c0ec1727d65e3741))
+* **deps-dev:** bump playwright from 1.31.0 to 1.31.1 ([#617](https://github.com/Fdawgs/ydh-community-contacts-api/issues/617)) ([b245ff3](https://github.com/Fdawgs/ydh-community-contacts-api/commit/b245ff34bef01c63f2093a5c836b11e2eb1f8067))
+* **deps:** bump coverallsapp/github-action from 1.1.3 to 1.2.3 ([#614](https://github.com/Fdawgs/ydh-community-contacts-api/issues/614)) ([8ee53a4](https://github.com/Fdawgs/ydh-community-contacts-api/commit/8ee53a42d8414b1f3c5636a10a2e43e08b761d24))
+* **deps:** bump pino from 8.10.0 to 8.11.0 ([#616](https://github.com/Fdawgs/ydh-community-contacts-api/issues/616)) ([9bbf3b2](https://github.com/Fdawgs/ydh-community-contacts-api/commit/9bbf3b2d2f72da3798d2d11a9485bd332c903178))
+* **deps:** bump transistive dependencies ([#621](https://github.com/Fdawgs/ydh-community-contacts-api/issues/621)) ([44f42d7](https://github.com/Fdawgs/ydh-community-contacts-api/commit/44f42d7f4c95e71b10bd3bf6cbe80c1680791b0a))
+
 ## [7.1.2](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v7.1.1...v7.1.2) (2023-02-22)
 
 
