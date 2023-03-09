@@ -567,7 +567,7 @@ describe("Server deployment", () => {
 				});
 
 				describe("/admin/access/bearer-token/:id route", () => {
-					const basicAuthTests = [
+					test.each([
 						{
 							testName: "basic auth username invalid",
 							authString: "invalidadmin:password",
@@ -581,16 +581,15 @@ describe("Server deployment", () => {
 								"basic auth username and password invalid",
 							authString: "invalidadmin:invalidpassword",
 						},
-					];
-
-					basicAuthTests.forEach((basicAuthTestObject) => {
-						test(`Should return HTTP status code 401 if ${basicAuthTestObject.testName}`, async () => {
+					])(
+						"Should return HTTP status code 401 if $testName",
+						async ({ authString }) => {
 							const response = await server.inject({
 								method: "GET",
 								url: `/admin/access/bearer-token/${testId}`,
 								headers: {
 									authorization: `Basic ${Buffer.from(
-										`${basicAuthTestObject.authString}`
+										`${authString}`
 									).toString("base64")}`,
 								},
 							});
@@ -604,8 +603,8 @@ describe("Server deployment", () => {
 								expResHeaders4xxErrors
 							);
 							expect(response.statusCode).toBe(401);
-						});
-					});
+						}
+					);
 
 					test("Should return response if basic auth username and password valid", async () => {
 						const response = await server.inject({
