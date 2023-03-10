@@ -39,6 +39,8 @@ WHERE id = '${id}';`;
  * @param {number} options.perPage - Number of bearer token records to return per page.
  * @returns {string} Query string.
  */
+
+// DISTINCT SQL keyword needed as CROSS APPLY causes duplicates
 const contactGetSearch = ({ client, whereClausePredicates, page, perPage }) => `
 SELECT COUNT(DISTINCT id)${
 	// Cast from string to int - https://node-postgres.com/features/types
