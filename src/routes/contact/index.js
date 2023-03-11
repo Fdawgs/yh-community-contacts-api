@@ -174,7 +174,7 @@ async function route(server, options) {
 				 */
 				const contact = results?.recordsets?.[0] ?? results?.rows;
 
-				if (contact && contact.length > 0) {
+				if (contact?.length > 0) {
 					return server.cleanObject(buildContact(contact[0]));
 				}
 				return res.notFound("Contact record not found");
@@ -398,7 +398,7 @@ async function route(server, options) {
 				 */
 				let contact = results?.recordsets?.[0] ?? results?.rows;
 
-				if (contact && contact.length > 0) {
+				if (contact?.length > 0) {
 					contact = contact[0];
 
 					res.header(
