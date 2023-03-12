@@ -345,7 +345,9 @@ async function route(server, options) {
 				const contactsObject = {
 					link: new URL(req.url, `${req.protocol}://${req.hostname}`)
 						.href,
-					entry: [],
+					entry: contacts.map((contact) =>
+						buildContact(contact, req)
+					),
 					meta: {
 						pagination: {
 							total: count,
@@ -356,9 +358,6 @@ async function route(server, options) {
 					},
 				};
 
-				contacts.forEach((contact) => {
-					contactsObject.entry.push(buildContact(contact, req));
-				});
 				return server.cleanObject(contactsObject);
 			} catch (err) {
 				return res.internalServerError(err);
