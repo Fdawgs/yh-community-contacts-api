@@ -259,12 +259,9 @@ async function route(server, options) {
 				 * can be a string or array
 				 */
 				if (req?.query?.["meta.created"]) {
-					let created = [];
-					if (Array.isArray(req.query["meta.created"])) {
-						created = req.query["meta.created"];
-					} else {
-						created.push(req.query["meta.created"]);
-					}
+					const created = Array.isArray(req.query["meta.created"])
+						? req.query["meta.created"]
+						: [req.query["meta.created"]];
 
 					created.forEach((createDate) => {
 						let date = createDate;
@@ -285,12 +282,11 @@ async function route(server, options) {
 				 * can be a string or array
 				 */
 				if (req?.query?.["meta.last_updated"]) {
-					let lastUpdated = [];
-					if (Array.isArray(req.query["meta.last_updated"])) {
-						lastUpdated = req.query["meta.last_updated"];
-					} else {
-						lastUpdated.push(req.query["meta.last_updated"]);
-					}
+					const lastUpdated = Array.isArray(
+						req.query["meta.last_updated"]
+					)
+						? req.query["meta.last_updated"]
+						: [req.query["meta.last_updated"]];
 
 					lastUpdated.forEach((lastUpdatedDate) => {
 						let date = lastUpdatedDate;
