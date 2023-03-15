@@ -52,7 +52,7 @@ async function plugin(server, config) {
 		// Utility functions and error handlers
 		.register(sensible)
 
-		// Serialization support for XML responses
+		// Serialisation support for XML responses
 		.register(serialiseJsonToXml)
 
 		// Reusable schemas
