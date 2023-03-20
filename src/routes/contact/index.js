@@ -61,7 +61,7 @@ function buildContact(results, req) {
 				: results.telecom,
 		meta: {
 			created: results.created,
-			last_updated: results?.last_updated,
+			last_updated: results.last_updated,
 		},
 	};
 }
@@ -115,7 +115,7 @@ async function route(server, options) {
 		preValidation: async (req) => {
 			if (
 				options.bearerTokenAuthEnabled &&
-				!req?.scopes?.includes("contact.delete")
+				!req.scopes?.includes("contact.delete")
 			) {
 				throw server.httpErrors.unauthorized(
 					"You do not have permission to perform an HTTP DELETE request on this route"
@@ -134,7 +134,7 @@ async function route(server, options) {
 				 * Database client packages return results in different structures,
 				 * (mssql uses rowsAffected, pg uses rowCount) thus the optional chaining
 				 */
-				if (results?.rowsAffected?.[0] > 0 || results?.rowCount > 0) {
+				if (results.rowsAffected?.[0] > 0 || results.rowCount > 0) {
 					return res.status(204).send();
 				}
 				return res.notFound(
@@ -153,7 +153,7 @@ async function route(server, options) {
 		preValidation: async (req) => {
 			if (
 				options.bearerTokenAuthEnabled &&
-				!req?.scopes?.includes("contact.read")
+				!req.scopes?.includes("contact.read")
 			) {
 				throw server.httpErrors.unauthorized(
 					"You do not have permission to perform an HTTP GET request on this route"
@@ -172,7 +172,7 @@ async function route(server, options) {
 				 * Database client packages return results in different structures,
 				 * (mssql uses recordsets, pg uses rows) thus the optional chaining
 				 */
-				const contact = results?.recordsets?.[0] ?? results?.rows;
+				const contact = results.recordsets?.[0] ?? results.rows;
 
 				if (contact?.length > 0) {
 					return server.cleanObject(buildContact(contact[0]));
@@ -191,7 +191,7 @@ async function route(server, options) {
 		preValidation: async (req) => {
 			if (
 				options.bearerTokenAuthEnabled &&
-				!req?.scopes?.includes("contact.search")
+				!req.scopes?.includes("contact.search")
 			) {
 				throw server.httpErrors.unauthorized(
 					"You do not have permission to perform an HTTP GET request on this route"
@@ -204,14 +204,14 @@ async function route(server, options) {
 				const whereArray = [];
 
 				// match.type - Type of matching value
-				if (req?.query?.["match.type"]) {
+				if (req.query?.["match.type"]) {
 					whereArray.push(
 						escSq`(match_type = '${req.query["match.type"]}')`
 					);
 				}
 
 				// match.value - Matching value, case-insensitive and supports `*` wildcards
-				if (req?.query?.["match.value"]) {
+				if (req.query?.["match.value"]) {
 					// _ and % act as wildcards in SQL LIKE clauses, so need to be escaped
 					whereArray.push(
 						escSq`(LOWER(match_value) LIKE LOWER('${req.query[
@@ -224,7 +224,7 @@ async function route(server, options) {
 				}
 
 				// match.receiver - Receiving organisation or area, case-insensitive and supports `*` wildcards
-				if (req?.query?.["match.receiver"]) {
+				if (req.query?.["match.receiver"]) {
 					// _ and % act as wildcards in SQL LIKE clauses, so need to be escaped
 					whereArray.push(
 						escSq`(LOWER(match_receiver) LIKE LOWER('${req.query[
@@ -237,7 +237,7 @@ async function route(server, options) {
 				}
 
 				// telecom.value - Value of one of the objects `value` key in the telecom array
-				if (req?.query?.["telecom.value"]) {
+				if (req.query?.["telecom.value"]) {
 					switch (options.database.client) {
 						case "postgresql":
 							whereArray.push(
@@ -258,7 +258,7 @@ async function route(server, options) {
 				 * meta.created - Datetime when community contact record was created,
 				 * can be a string or array
 				 */
-				if (req?.query?.["meta.created"]) {
+				if (req.query?.["meta.created"]) {
 					const created = Array.isArray(req.query["meta.created"])
 						? req.query["meta.created"]
 						: [req.query["meta.created"]];
@@ -281,7 +281,7 @@ async function route(server, options) {
 				 * meta.last_updated - Last modified datetime of community contact record,
 				 * can be a string or array
 				 */
-				if (req?.query?.["meta.last_updated"]) {
+				if (req.query?.["meta.last_updated"]) {
 					const lastUpdated = Array.isArray(
 						req.query["meta.last_updated"]
 					)
@@ -331,11 +331,11 @@ async function route(server, options) {
 				 * (mssql uses recordsets, pg uses rows) thus the optional chaining
 				 */
 				const count =
-					results?.recordsets?.[0]?.[0]?.total ??
-					results?.[0]?.rows?.[0]?.total ??
+					results.recordsets?.[0]?.[0]?.total ??
+					results[0]?.rows?.[0]?.total ??
 					0;
 				const contacts = server.cleanObject(
-					results?.recordsets?.[1] ?? results?.[1]?.rows ?? []
+					results.recordsets?.[1] ?? results[1]?.rows ?? []
 				);
 
 				const contactsObject = {
@@ -368,7 +368,7 @@ async function route(server, options) {
 		preValidation: async (req) => {
 			if (
 				options.bearerTokenAuthEnabled &&
-				!req?.scopes?.includes("contact.post")
+				!req.scopes?.includes("contact.post")
 			) {
 				throw server.httpErrors.unauthorized(
 					"You do not have permission to perform an HTTP POST request on this route"
@@ -391,7 +391,7 @@ async function route(server, options) {
 				 * Database client packages return results in different structures,
 				 * (mssql uses recordsets, pg uses rows) thus the optional chaining
 				 */
-				let contact = results?.recordsets?.[0] ?? results?.rows;
+				let contact = results.recordsets?.[0] ?? results.rows;
 
 				if (contact?.length > 0) {
 					contact = contact[0];
@@ -427,7 +427,7 @@ async function route(server, options) {
 		preValidation: async (req) => {
 			if (
 				options.bearerTokenAuthEnabled &&
-				!req?.scopes?.includes("contact.put")
+				!req.scopes?.includes("contact.put")
 			) {
 				throw server.httpErrors.unauthorized(
 					"You do not have permission to perform an HTTP PUT request on this route"
@@ -450,7 +450,7 @@ async function route(server, options) {
 				 * Database client packages return results in different structures,
 				 * (mssql uses rowsAffected, pg uses rowCount) thus the optional chaining
 				 */
-				if (results?.rowsAffected?.[0] > 0 || results?.rowCount > 0) {
+				if (results.rowsAffected?.[0] > 0 || results.rowCount > 0) {
 					return res.status(204).send();
 				}
 				return res.notFound(
