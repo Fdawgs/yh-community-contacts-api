@@ -232,7 +232,7 @@ async function getConfig() {
 						'<a href="https://yeovilhospital.co.uk/">Yeovil District Hospital NHSFT</a>\'s Community Contacts RESTful API, a Node.js application using the <a href="https://fastify.io/">Fastify web framework</a>, built to support CRUD (Create, Read, Update, and Delete) functionality of community midwife, health visitor, and school nurse team email addresses in YDH\'s catchment area.',
 					contact: {
 						name: "Author",
-						email: "frazer.smith@ydh.nhs.uk",
+						email: "frazer.smith@somersetft.nhs.uk",
 					},
 					license: {
 						name: license,
@@ -243,8 +243,7 @@ async function getConfig() {
 					"x-logo": {
 						url: "/public/images/ydh-y-logo-transparent-background-wide-canvas.png",
 						backgroundColor: "#6D3176",
-						altText:
-							"Yeovil District Hospital NHS Foundation Trust logo",
+						altText: "Yeovil District Hospital logo",
 					},
 				},
 				// Components object populated by shared schemas at launch
