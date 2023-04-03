@@ -230,7 +230,7 @@ describe("Contact route", () => {
 			});
 
 			describe("/:id DELETE requests", () => {
-				test("Should delete a contact record", async () => {
+				it("Deletes a contact record", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -251,7 +251,7 @@ describe("Contact route", () => {
 					expect(response.statusCode).toBe(204);
 				});
 
-				test("Should return HTTP status code 404 if contact record missing or already deleted", async () => {
+				it("Returns HTTP status code 404 if contact record missing or already deleted", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -277,7 +277,7 @@ describe("Contact route", () => {
 					expect(response.statusCode).toBe(404);
 				});
 
-				test("Should return HTTP status code 500 if connection issue encountered", async () => {
+				it("Returns HTTP status code 500 if connection issue encountered", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockRejectedValue(Error("Failed to connect to DB"));
@@ -302,7 +302,7 @@ describe("Contact route", () => {
 			});
 
 			describe("/:id GET requests", () => {
-				test("Should return contact record", async () => {
+				it("Returns contact record", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -330,7 +330,7 @@ describe("Contact route", () => {
 					expect(response.statusCode).toBe(200);
 				});
 
-				test("Should return HTTP status code 404 if contact record missing", async () => {
+				it("Returns HTTP status code 404 if contact record missing", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -355,7 +355,7 @@ describe("Contact route", () => {
 					expect(response.statusCode).toBe(404);
 				});
 
-				test("Should return HTTP status code 500 if connection issue encountered", async () => {
+				it("Returns HTTP status code 500 if connection issue encountered", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockRejectedValue(Error("Failed to connect to DB"));
@@ -380,7 +380,7 @@ describe("Contact route", () => {
 			});
 
 			describe("/ GET requests", () => {
-				test("Should return contact record, using all query string parameters", async () => {
+				it("Returns contact record, using all query string parameters", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -413,7 +413,7 @@ describe("Contact route", () => {
 					expect(response.statusCode).toBe(200);
 				});
 
-				test("Should return contact record, using more than one `meta.created` and `meta.last_updated` query string params", async () => {
+				it("Returns contact record, using more than one `meta.created` and `meta.last_updated` query string params", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -440,7 +440,7 @@ describe("Contact route", () => {
 					expect(response.statusCode).toBe(200);
 				});
 
-				test("Should return contact record, using operators in the `meta.created` and `meta.last_updated` query string params", async () => {
+				it("Returns contact record, using operators in the `meta.created` and `meta.last_updated` query string params", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -467,7 +467,7 @@ describe("Contact route", () => {
 					expect(response.statusCode).toBe(200);
 				});
 
-				test("Should return no contact records if table empty", async () => {
+				it("Returns no contact records if table empty", async () => {
 					const mockQueryFn = jest.fn().mockResolvedValue({});
 
 					server.db = {
@@ -498,7 +498,7 @@ describe("Contact route", () => {
 					expect(response.statusCode).toBe(200);
 				});
 
-				test("Should return HTTP status code 400 if no query string params present", async () => {
+				it("Returns HTTP status code 400 if no query string params present", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -523,7 +523,7 @@ describe("Contact route", () => {
 					expect(response.statusCode).toBe(400);
 				});
 
-				test("Should return HTTP status code 500 if connection issue encountered", async () => {
+				it("Returns HTTP status code 500 if connection issue encountered", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockRejectedValue(Error("Failed to connect to DB"));
@@ -551,7 +551,7 @@ describe("Contact route", () => {
 			});
 
 			describe("/:id PUT requests", () => {
-				test("Should update contact record", async () => {
+				it("Updates contact record", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -576,7 +576,7 @@ describe("Contact route", () => {
 					expect(response.statusCode).toBe(204);
 				});
 
-				test("Should return HTTP status code 415 if content-type in `Content-Type` request header unsupported", async () => {
+				it("Returns HTTP status code 415 if content-type in `Content-Type` request header unsupported", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -606,7 +606,7 @@ describe("Contact route", () => {
 					expect(response.statusCode).toBe(415);
 				});
 
-				test("Should return HTTP status code 404 if contact record with id not found", async () => {
+				it("Returns HTTP status code 404 if contact record with id not found", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -636,7 +636,7 @@ describe("Contact route", () => {
 					expect(response.statusCode).toBe(404);
 				});
 
-				test("Should return HTTP status code 500 if connection issue encountered", async () => {
+				it("Returns HTTP status code 500 if connection issue encountered", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockRejectedValue(Error("Failed to connect to DB"));
@@ -663,7 +663,7 @@ describe("Contact route", () => {
 					expect(response.statusCode).toBe(500);
 				});
 
-				test("Should return HTTP status code 500 if primary key constraint violation occurs", async () => {
+				it("Returns HTTP status code 500 if primary key constraint violation occurs", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockRejectedValue(Error("ck_destination_match"));
@@ -693,7 +693,7 @@ describe("Contact route", () => {
 			});
 
 			describe("/ POST requests", () => {
-				test("Should create contact record", async () => {
+				it("Creates contact record", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -723,7 +723,7 @@ describe("Contact route", () => {
 					expect(response.statusCode).toBe(201);
 				});
 
-				test("Should return HTTP status code 415 if content-type in `Content-Type` request header unsupported", async () => {
+				it("Returns HTTP status code 415 if content-type in `Content-Type` request header unsupported", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -753,7 +753,7 @@ describe("Contact route", () => {
 					expect(response.statusCode).toBe(415);
 				});
 
-				test("Should return HTTP status code 500 if unable to update a contact record", async () => {
+				it("Returns HTTP status code 500 if unable to update a contact record", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -782,7 +782,7 @@ describe("Contact route", () => {
 					expect(response.statusCode).toBe(500);
 				});
 
-				test("Should return HTTP status code 500 if connection issue encountered", async () => {
+				it("Returns HTTP status code 500 if connection issue encountered", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockRejectedValue(Error("Failed to connect to DB"));
@@ -809,7 +809,7 @@ describe("Contact route", () => {
 					expect(response.statusCode).toBe(500);
 				});
 
-				test("Should return HTTP status code 500 if primary key constraint violation occurs", async () => {
+				it("Returns HTTP status code 500 if primary key constraint violation occurs", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockRejectedValue(Error("ck_destination_match"));
@@ -865,7 +865,7 @@ describe("Contact route", () => {
 			});
 
 			describe("/:id DELETE requests", () => {
-				test("Should return HTTP status code 401 if not in permitted access", async () => {
+				it("Returns HTTP status code 401 if not in permitted access", async () => {
 					const response = await server.inject({
 						method: "DELETE",
 						url: `/${testId}`,
@@ -882,7 +882,7 @@ describe("Contact route", () => {
 			});
 
 			describe("/:id GET requests", () => {
-				test("Should return HTTP status code 401 if not in permitted access", async () => {
+				it("Returns HTTP status code 401 if not in permitted access", async () => {
 					const response = await server.inject({
 						method: "GET",
 						url: `/${testId}`,
@@ -899,7 +899,7 @@ describe("Contact route", () => {
 			});
 
 			describe("/ GET requests", () => {
-				test("Should return HTTP status code 401 if not in permitted access", async () => {
+				it("Returns HTTP status code 401 if not in permitted access", async () => {
 					const response = await server.inject({
 						method: "GET",
 						url: "/",
@@ -926,7 +926,7 @@ describe("Contact route", () => {
 			});
 
 			describe("/:id PUT requests", () => {
-				test("Should return HTTP status code 401 if not in permitted access", async () => {
+				it("Returns HTTP status code 401 if not in permitted access", async () => {
 					const response = await server.inject({
 						method: "PUT",
 						url: `/${testId}`,
@@ -947,7 +947,7 @@ describe("Contact route", () => {
 			});
 
 			describe("/ POST requests", () => {
-				test("Should return HTTP status code 401 if not in permitted access", async () => {
+				it("Returns HTTP status code 401 if not in permitted access", async () => {
 					const response = await server.inject({
 						method: "POST",
 						url: "/",
