@@ -26,7 +26,7 @@ const testReqPayload = {
 		},
 		{
 			system: "email",
-			value: "examplemidwife@ydh.nhs.uk",
+			value: "examplemidwife@somersetft.nhs.uk",
 			use: "Community Midwives",
 		},
 	],

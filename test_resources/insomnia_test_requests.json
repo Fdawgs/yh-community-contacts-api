@@ -15,7 +15,7 @@
 			"method": "POST",
 			"body": {
 				"mimeType": "application/json",
-				"text": "{\n\t\"name\": \"Mirth Connect instance\",\n\t\"email\": \"frazer.smith@ydh.nhs.uk\",\n\t\"expires\": \"2099-03-09\",\n\t\"scopes\": [\n\t\t\"contact.delete\",\n\t\t\"contact.read\",\n\t\t\"contact.search\",\n\t\t\"contact.put\",\n\t\t\"contact.post\"\n\t]\n}"
+				"text": "{\n\t\"name\": \"Mirth Connect instance\",\n\t\"email\": \"frazer.smith@somersetft.nhs.uk\",\n\t\"expires\": \"2099-03-09\",\n\t\"scopes\": [\n\t\t\"contact.delete\",\n\t\t\"contact.read\",\n\t\t\"contact.search\",\n\t\t\"contact.put\",\n\t\t\"contact.post\"\n\t]\n}"
 			},
 			"parameters": [],
 			"headers": [
@@ -301,7 +301,7 @@
 			"method": "PUT",
 			"body": {
 				"mimeType": "application/json",
-				"text": "{\n\t\"match\": {\n\t\t\"type\": \"postcode\",\n\t\t\"value\": \"TA12\",\n\t\t\"receiver\": \"Area North\"\n\t},\n\t\"telecom\": [\n\t\t{\n\t\t\t\"system\": \"email\",\n\t\t\t\"value\": \"examplehv@nhs.net\",\n\t\t\t\"use\": \"Health Visitors\"\n\t\t},\n\t\t{\n\t\t\t\"system\": \"email\",\n\t\t\t\"value\": \"examplemidwife@ydh.nhs.uk\",\n\t\t\t\"use\": \"Community Midwives\"\n\t\t}\n\t]\n}"
+				"text": "{\n\t\"match\": {\n\t\t\"type\": \"postcode\",\n\t\t\"value\": \"TA12\",\n\t\t\"receiver\": \"Area North\"\n\t},\n\t\"telecom\": [\n\t\t{\n\t\t\t\"system\": \"email\",\n\t\t\t\"value\": \"examplehv@nhs.net\",\n\t\t\t\"use\": \"Health Visitors\"\n\t\t},\n\t\t{\n\t\t\t\"system\": \"email\",\n\t\t\t\"value\": \"examplemidwife@somersetft.nhs.uk\",\n\t\t\t\"use\": \"Community Midwives\"\n\t\t}\n\t]\n}"
 			},
 			"parameters": [],
 			"headers": [
@@ -336,7 +336,7 @@
 			"method": "POST",
 			"body": {
 				"mimeType": "application/json",
-				"text": "{\n\t\"match\": {\n\t\t\"type\": \"postcode\",\n\t\t\"value\": \"TA12233\",\n\t\t\"receiver\": \"Area North\"\n\t},\n\t\"telecom\": [\n\t\t{\n\t\t\t\"system\": \"email\",\n\t\t\t\"value\": \"examplehv@nhs.net\",\n\t\t\t\"use\": \"\",\n\t\t\t\"test\": \"true\"\n\t\t},\n\t\t{\n\t\t\t\"system\": \"email\",\n\t\t\t\"value\": \"examplemidwife@ydh.nhs.uk\",\n\t\t\t\"use\": \"Community Midwives\"\n\t\t}\n\t]\n}"
+				"text": "{\n\t\"match\": {\n\t\t\"type\": \"postcode\",\n\t\t\"value\": \"TA12233\",\n\t\t\"receiver\": \"Area North\"\n\t},\n\t\"telecom\": [\n\t\t{\n\t\t\t\"system\": \"email\",\n\t\t\t\"value\": \"examplehv@nhs.net\",\n\t\t\t\"use\": \"\",\n\t\t\t\"test\": \"true\"\n\t\t},\n\t\t{\n\t\t\t\"system\": \"email\",\n\t\t\t\"value\": \"examplemidwife@somersetft.nhs.uk\",\n\t\t\t\"use\": \"Community Midwives\"\n\t\t}\n\t]\n}"
 			},
 			"parameters": [],
 			"headers": [
