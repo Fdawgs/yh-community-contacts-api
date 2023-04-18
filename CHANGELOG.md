@@ -1,5 +1,19 @@
 # Changelog
 
+## [7.1.7](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v7.1.6...v7.1.7) (2023-04-18)
+
+
+### Improvements
+
+* **server:** replace json parse stringify with `structuredClone()` ([#691](https://github.com/Fdawgs/ydh-community-contacts-api/issues/691)) ([64bcabc](https://github.com/Fdawgs/ydh-community-contacts-api/commit/64bcabc7f4eebb45e4d39ca831fb7e09c0e9f353))
+
+
+### Miscellaneous
+
+* **license:** add somerset nhsft ([d96c2e8](https://github.com/Fdawgs/ydh-community-contacts-api/commit/d96c2e8195a4a147e2928d9a81a5f0e22d13659e))
+* replace ydh nhsft branding and links with somerset nhsft ([#692](https://github.com/Fdawgs/ydh-community-contacts-api/issues/692)) ([05c32d9](https://github.com/Fdawgs/ydh-community-contacts-api/commit/05c32d90d5a27dfdafe32d70dd7cb3b40e529955))
+* update ydh email domain ([df25657](https://github.com/Fdawgs/ydh-community-contacts-api/commit/df25657590fa12a3cd25cd72ba2a00a5d607249e))
+
 ## [7.1.6](https://github.com/Fdawgs/ydh-community-contacts-api/compare/v7.1.5...v7.1.6) (2023-04-04)
 
 
