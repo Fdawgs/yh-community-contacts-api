@@ -239,7 +239,7 @@ async function getConfig() {
 					},
 					license: {
 						name: license,
-						url: "https://raw.githubusercontent.com/Fdawgs/ydh-community-contacts-api/main/LICENSE",
+						url: "https://raw.githubusercontent.com/Fdawgs/yh-community-contacts-api/main/LICENSE",
 					},
 					version,
 					// Redoc specific extension to support loading image in docs

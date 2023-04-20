@@ -1,12 +1,12 @@
 {
-	"name": "ydh-community-contacts-api",
+	"name": "yh-community-contacts-api",
 	"version": "7.1.6",
 	"description": "Yeovil Hospital's RESTful CRUD API for community team contact details",
 	"main": "dist/app.js",
-	"repository": "git+https://github.com/Fdawgs/ydh-community-contacts-api.git",
-	"homepage": "https://github.com/Fdawgs/ydh-community-contacts-api",
+	"repository": "git+https://github.com/Fdawgs/yh-community-contacts-api.git",
+	"homepage": "https://github.com/Fdawgs/yh-community-contacts-api",
 	"bugs": {
-		"url": "https://github.com/Fdawgs/ydh-community-contacts-api/issues"
+		"url": "https://github.com/Fdawgs/yh-community-contacts-api/issues"
 	},
 	"license": "MIT",
 	"author": "Frazer Smith <frazer.smith@somersetft.nhs.uk>",
@@ -28,14 +28,14 @@
 		"start": "node .",
 		"start:dev": "nodemon src/app.js | pino-pretty",
 		"test": "npm run lint && npm run jest",
-		"test:db:mssql:build": "docker run -p 1433:1433 --name ydh-community-contacts-api-mssql -e ACCEPT_EULA=Y -e SA_PASSWORD=Password! -e MSSQL_PID=Express -d mcr.microsoft.com/mssql/server:2019-latest",
-		"test:db:mssql:down": "docker stop ydh-community-contacts-api-mssql",
-		"test:db:mssql:nuke": "docker stop ydh-community-contacts-api-mssql && docker rm -v ydh-community-contacts-api-mssql",
-		"test:db:mssql:up": "docker start ydh-community-contacts-api-mssql",
-		"test:db:postgres:build": "docker run -p 5432:5432 --name ydh-community-contacts-api-postgres -e POSTGRES_DB=community_contacts_api -e POSTGRES_PASSWORD=password -d postgres:14-alpine",
-		"test:db:postgres:down": "docker stop ydh-community-contacts-api-postgres",
-		"test:db:postgres:nuke": "docker stop ydh-community-contacts-api-postgres && docker rm -v ydh-community-contacts-api-postgres",
-		"test:db:postgres:up": "docker start ydh-community-contacts-api-postgres"
+		"test:db:mssql:build": "docker run -p 1433:1433 --name yh-community-contacts-api-mssql -e ACCEPT_EULA=Y -e SA_PASSWORD=Password! -e MSSQL_PID=Express -d mcr.microsoft.com/mssql/server:2019-latest",
+		"test:db:mssql:down": "docker stop yh-community-contacts-api-mssql",
+		"test:db:mssql:nuke": "docker stop yh-community-contacts-api-mssql && docker rm -v yh-community-contacts-api-mssql",
+		"test:db:mssql:up": "docker start yh-community-contacts-api-mssql",
+		"test:db:postgres:build": "docker run -p 5432:5432 --name yh-community-contacts-api-postgres -e POSTGRES_DB=community_contacts_api -e POSTGRES_PASSWORD=password -d postgres:14-alpine",
+		"test:db:postgres:down": "docker stop yh-community-contacts-api-postgres",
+		"test:db:postgres:nuke": "docker stop yh-community-contacts-api-postgres && docker rm -v yh-community-contacts-api-postgres",
+		"test:db:postgres:up": "docker start yh-community-contacts-api-postgres"
 	},
 	"commitlint": {
 		"extends": [
