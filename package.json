@@ -1,6 +1,6 @@
 {
 	"name": "yh-community-contacts-api",
-	"version": "7.1.7",
+	"version": "7.1.8",
 	"description": "Yeovil Hospital's RESTful CRUD API for community team contact details",
 	"main": "dist/app.js",
 	"repository": "git+https://github.com/Fdawgs/yh-community-contacts-api.git",

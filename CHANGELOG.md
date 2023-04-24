@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.8](https://github.com/Fdawgs/yh-community-contacts-api/compare/v7.1.7...v7.1.8) (2023-04-24)
+
+
+### Documentation
+
+* **readme:** add unmaintained note ([8ac3f46](https://github.com/Fdawgs/yh-community-contacts-api/commit/8ac3f46cd6ee5756d367fe36f36f83e625166aa7))
+
 ## [7.1.7](https://github.com/Fdawgs/yh-community-contacts-api/compare/v7.1.6...v7.1.7) (2023-04-24)
 
 
