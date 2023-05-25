@@ -23,7 +23,7 @@ const {
 
 /**
  * @author Frazer Smith
- * @description Build contact object from database results.
+ * @description Builds contact object from database results.
  * @param {object} results - Database query result.
  * @param {string} results.id - Unique identifier of community contact record.
  * @param {string} results.match_type - Type of matching value.
