@@ -14,7 +14,7 @@ const testDate2 = "2022-11-07";
 
 const testId = randomUUID();
 
-const testReqPayload = {
+const testReqBody = {
 	name: "Test Clinical System Supplier Product",
 	email: "testFirstName.testLastName@somersetft.nhs.uk",
 	expires: "2022-11-07",
@@ -23,10 +23,10 @@ const testReqPayload = {
 
 const testDbResult = {
 	id: testId,
-	name: testReqPayload.name,
-	email: testReqPayload.email,
+	name: testReqBody.name,
+	email: testReqBody.email,
 	hash: "testhash",
-	expires: testReqPayload.expires,
+	expires: testReqBody.expires,
 	created: "2022-01-18T14:07:48.190Z",
 	last_updated: "2022-01-18T14:07:48.190Z",
 };
@@ -38,7 +38,7 @@ const testResRecord = {
 		email: testDbResult.email,
 		expires: testDbResult.expires,
 		hash: testDbResult.hash,
-		scopes: testReqPayload.scopes,
+		scopes: testReqBody.scopes,
 	},
 	meta: {
 		created: testDbResult.created,
@@ -87,7 +87,7 @@ describe("Access route", () => {
 									{
 										...testDbResult,
 										scopes: JSON.stringify(
-											testReqPayload.scopes
+											testReqBody.scopes
 										),
 									},
 								],
@@ -105,7 +105,7 @@ describe("Access route", () => {
 									{
 										...testDbResult,
 										scopes: JSON.stringify(
-											testReqPayload.scopes
+											testReqBody.scopes
 										),
 									},
 								],
@@ -122,7 +122,7 @@ describe("Access route", () => {
 									{
 										id: testId,
 										scopes: JSON.stringify(
-											testReqPayload.scopes
+											testReqBody.scopes
 										),
 									},
 								],
@@ -159,7 +159,7 @@ describe("Access route", () => {
 							rows: [
 								{
 									...testDbResult,
-									scopes: testReqPayload.scopes,
+									scopes: testReqBody.scopes,
 								},
 							],
 						},
@@ -174,7 +174,7 @@ describe("Access route", () => {
 								rows: [
 									{
 										...testDbResult,
-										scopes: testReqPayload.scopes,
+										scopes: testReqBody.scopes,
 									},
 								],
 							},
@@ -188,7 +188,7 @@ describe("Access route", () => {
 							rows: [
 								{
 									id: testId,
-									scopes: testReqPayload.scopes,
+									scopes: testReqBody.scopes,
 								},
 							],
 						},
@@ -236,7 +236,7 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(response.payload).toBe("");
+				expect(response.body).toBe("");
 				expect(response.statusCode).toBe(204);
 			});
 
@@ -255,7 +255,7 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
+				expect(JSON.parse(response.body)).toEqual({
 					error: "Not Found",
 					message:
 						"Bearer token record does not exist or has already been deleted",
@@ -279,7 +279,7 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
+				expect(JSON.parse(response.body)).toEqual({
 					error: "Internal Server Error",
 					message: "Error: Failed to connect to DB",
 					statusCode: 500,
@@ -304,7 +304,7 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual(testResRecord);
+				expect(JSON.parse(response.body)).toEqual(testResRecord);
 				expect(response.statusCode).toBe(200);
 			});
 
@@ -323,7 +323,7 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
+				expect(JSON.parse(response.body)).toEqual({
 					error: "Not Found",
 					message: "Bearer token record not found",
 					statusCode: 404,
@@ -346,7 +346,7 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
+				expect(JSON.parse(response.body)).toEqual({
 					error: "Internal Server Error",
 					message: "Error: Failed to connect to DB",
 					statusCode: 500,
@@ -381,7 +381,7 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual(expSearchResult);
+				expect(JSON.parse(response.body)).toEqual(expSearchResult);
 				expect(response.statusCode).toBe(200);
 			});
 
@@ -406,7 +406,7 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual(expSearchResult);
+				expect(JSON.parse(response.body)).toEqual(expSearchResult);
 				expect(response.statusCode).toBe(200);
 			});
 
@@ -430,7 +430,7 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual(expSearchResult);
+				expect(JSON.parse(response.body)).toEqual(expSearchResult);
 				expect(response.statusCode).toBe(200);
 			});
 
@@ -450,7 +450,7 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
+				expect(JSON.parse(response.body)).toEqual({
 					link: expect.any(String),
 					meta: {
 						pagination: {
@@ -480,7 +480,7 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(0);
-				expect(JSON.parse(response.payload)).toEqual({
+				expect(JSON.parse(response.body)).toEqual({
 					error: "Bad Request",
 					message: "No valid query string parameters provided",
 					statusCode: 400,
@@ -506,7 +506,7 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
+				expect(JSON.parse(response.body)).toEqual({
 					error: "Internal Server Error",
 					message: "Error: Failed to connect to DB",
 					statusCode: 500,
@@ -531,15 +531,15 @@ describe("Access route", () => {
 					headers: {
 						"content-type": "application/json",
 					},
-					payload: testReqPayload,
+					body: testReqBody,
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
+				expect(JSON.parse(response.body)).toEqual({
 					id: testId,
 					access: {
 						token: expect.stringMatching(/^ydhcc_/i),
-						scopes: testReqPayload.scopes,
+						scopes: testReqBody.scopes,
 					},
 				});
 				expect(response.headers).toMatchObject({
@@ -559,8 +559,8 @@ describe("Access route", () => {
 					query: mockQueryFn,
 				};
 
-				const trimmedTestReqPayload = {
-					...testReqPayload,
+				const trimmedtestReqBody = {
+					...testReqBody,
 					email: undefined,
 					expires: undefined,
 				};
@@ -571,15 +571,15 @@ describe("Access route", () => {
 					headers: {
 						"content-type": "application/json",
 					},
-					payload: trimmedTestReqPayload,
+					body: trimmedtestReqBody,
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
+				expect(JSON.parse(response.body)).toEqual({
 					id: testId,
 					access: {
 						token: expect.stringMatching(/^ydhcc_/i),
-						scopes: testReqPayload.scopes,
+						scopes: testReqBody.scopes,
 					},
 				});
 				expect(response.statusCode).toBe(201);
@@ -600,11 +600,11 @@ describe("Access route", () => {
 					headers: {
 						"content-type": "application/javascript",
 					},
-					payload: testReqPayload,
+					body: testReqBody,
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(0);
-				expect(JSON.parse(response.payload)).toEqual({
+				expect(JSON.parse(response.body)).toEqual({
 					error: "Unsupported Media Type",
 					message: "Unsupported Media Type: application/javascript",
 					statusCode: 415,
@@ -627,11 +627,11 @@ describe("Access route", () => {
 					headers: {
 						"content-type": "application/json",
 					},
-					payload: testReqPayload,
+					body: testReqBody,
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
+				expect(JSON.parse(response.body)).toEqual({
 					error: "Internal Server Error",
 					message: "Error",
 					statusCode: 500,
@@ -654,11 +654,11 @@ describe("Access route", () => {
 					headers: {
 						"content-type": "application/json",
 					},
-					payload: testReqPayload,
+					body: testReqBody,
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
+				expect(JSON.parse(response.body)).toEqual({
 					error: "Internal Server Error",
 					message: "Error: Failed to connect to DB",
 					statusCode: 500,

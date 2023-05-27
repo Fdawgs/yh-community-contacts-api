@@ -12,7 +12,7 @@ const testDate1 = "2018-08-01";
 const testDate2 = "2022-11-07";
 
 const testId = "b8e7265c-4733-44be-9238-7d7b8718fb88";
-const testReqPayload = {
+const testReqBody = {
 	match: {
 		type: "postcode",
 		value: "TA126JU",
@@ -34,9 +34,9 @@ const testReqPayload = {
 
 const testDbResult = {
 	id: testId,
-	match_type: testReqPayload.match.type,
-	match_value: testReqPayload.match.value,
-	match_receiver: testReqPayload.match.receiver,
+	match_type: testReqBody.match.type,
+	match_value: testReqBody.match.value,
+	match_receiver: testReqBody.match.receiver,
 	created: "2022-01-18T14:07:48.190Z",
 	last_updated: "2022-01-18T14:07:48.190Z",
 };
@@ -59,7 +59,7 @@ const expSearchResult = {
 				created: testDbResult.created,
 				last_updated: testDbResult.last_updated,
 			},
-			...testReqPayload,
+			...testReqBody,
 		},
 	],
 };
@@ -87,7 +87,7 @@ describe("Contact route", () => {
 									{
 										...testDbResult,
 										telecom: JSON.stringify(
-											testReqPayload.telecom
+											testReqBody.telecom
 										),
 									},
 								],
@@ -105,7 +105,7 @@ describe("Contact route", () => {
 									{
 										...testDbResult,
 										telecom: JSON.stringify(
-											testReqPayload.telecom
+											testReqBody.telecom
 										),
 									},
 								],
@@ -156,7 +156,7 @@ describe("Contact route", () => {
 							rows: [
 								{
 									...testDbResult,
-									telecom: testReqPayload.telecom,
+									telecom: testReqBody.telecom,
 								},
 							],
 						},
@@ -171,7 +171,7 @@ describe("Contact route", () => {
 								rows: [
 									{
 										...testDbResult,
-										telecom: testReqPayload.telecom,
+										telecom: testReqBody.telecom,
 									},
 								],
 							},
@@ -247,7 +247,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(response.payload).toBe("");
+					expect(response.body).toBe("");
 					expect(response.statusCode).toBe(204);
 				});
 
@@ -268,7 +268,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Not Found",
 						message:
 							"Contact record does not exist or has already been deleted",
@@ -292,7 +292,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Internal Server Error",
 						message: "Error: Failed to connect to DB",
 						statusCode: 500,
@@ -319,13 +319,13 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						id: testId,
 						meta: {
 							created: "2022-01-18T14:07:48.190Z",
 							last_updated: "2022-01-18T14:07:48.190Z",
 						},
-						...testReqPayload,
+						...testReqBody,
 					});
 					expect(response.statusCode).toBe(200);
 				});
@@ -347,7 +347,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Not Found",
 						message: "Contact record not found",
 						statusCode: 404,
@@ -370,7 +370,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Internal Server Error",
 						message: "Error: Failed to connect to DB",
 						statusCode: 500,
@@ -398,7 +398,7 @@ describe("Contact route", () => {
 							"match.type": testDbResult.match_type,
 							"match.value": testDbResult.match_value,
 							"match.receiver": testDbResult.match_receiver,
-							"telecom.value": testReqPayload.telecom[0].value,
+							"telecom.value": testReqBody.telecom[0].value,
 							"meta.created": testDate1,
 							"meta.last_updated": testDate1,
 							per_page: testPage,
@@ -407,9 +407,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual(
-						expSearchResult
-					);
+					expect(JSON.parse(response.body)).toEqual(expSearchResult);
 					expect(response.statusCode).toBe(200);
 				});
 
@@ -434,9 +432,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual(
-						expSearchResult
-					);
+					expect(JSON.parse(response.body)).toEqual(expSearchResult);
 					expect(response.statusCode).toBe(200);
 				});
 
@@ -461,9 +457,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual(
-						expSearchResult
-					);
+					expect(JSON.parse(response.body)).toEqual(expSearchResult);
 					expect(response.statusCode).toBe(200);
 				});
 
@@ -483,7 +477,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						link: expect.any(String),
 						meta: {
 							pagination: {
@@ -515,7 +509,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(0);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Bad Request",
 						message: "No valid query string parameters provided",
 						statusCode: 400,
@@ -541,7 +535,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Internal Server Error",
 						message: "Error: Failed to connect to DB",
 						statusCode: 500,
@@ -568,11 +562,11 @@ describe("Contact route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testReqPayload,
+						body: testReqBody,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(response.payload).toBe("");
+					expect(response.body).toBe("");
 					expect(response.statusCode).toBe(204);
 				});
 
@@ -593,11 +587,11 @@ describe("Contact route", () => {
 						headers: {
 							"content-type": "application/javascript",
 						},
-						payload: testReqPayload,
+						body: testReqBody,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(0);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Unsupported Media Type",
 						message:
 							"Unsupported Media Type: application/javascript",
@@ -623,11 +617,11 @@ describe("Contact route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testReqPayload,
+						body: testReqBody,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Not Found",
 						message:
 							"Contact record does not exist or has already been deleted",
@@ -651,11 +645,11 @@ describe("Contact route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testReqPayload,
+						body: testReqBody,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Internal Server Error",
 						message: "Error: Failed to connect to DB",
 						statusCode: 500,
@@ -678,11 +672,11 @@ describe("Contact route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testReqPayload,
+						body: testReqBody,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Bad Request",
 						message:
 							"A contact record with this match.type and match.value combination already exists",
@@ -710,11 +704,11 @@ describe("Contact route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testReqPayload,
+						body: testReqBody,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						id: testId,
 					});
 					expect(response.headers).toMatchObject({
@@ -740,11 +734,11 @@ describe("Contact route", () => {
 						headers: {
 							"content-type": "application/javascript",
 						},
-						payload: testReqPayload,
+						body: testReqBody,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(0);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Unsupported Media Type",
 						message:
 							"Unsupported Media Type: application/javascript",
@@ -770,11 +764,11 @@ describe("Contact route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testReqPayload,
+						body: testReqBody,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Internal Server Error",
 						message: "Error",
 						statusCode: 500,
@@ -797,11 +791,11 @@ describe("Contact route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testReqPayload,
+						body: testReqBody,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Internal Server Error",
 						message: "Error: Failed to connect to DB",
 						statusCode: 500,
@@ -824,11 +818,11 @@ describe("Contact route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testReqPayload,
+						body: testReqBody,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Bad Request",
 						message:
 							"A contact record with this match.type and match.value combination already exists",
@@ -871,7 +865,7 @@ describe("Contact route", () => {
 						url: `/${testId}`,
 					});
 
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Unauthorized",
 						message:
 							"You do not have permission to perform an HTTP DELETE request on this route",
@@ -888,7 +882,7 @@ describe("Contact route", () => {
 						url: `/${testId}`,
 					});
 
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Unauthorized",
 						message:
 							"You do not have permission to perform an HTTP GET request on this route",
@@ -907,7 +901,7 @@ describe("Contact route", () => {
 							"match.type": testDbResult.match_type,
 							"match.value": testDbResult.match_value,
 							"match.receiver": testDbResult.match_receiver,
-							"telecom.value": testReqPayload.telecom[0].value,
+							"telecom.value": testReqBody.telecom[0].value,
 							"meta.created": testDate1,
 							"meta.last_updated": testDate1,
 							per_page: testPage,
@@ -915,7 +909,7 @@ describe("Contact route", () => {
 						},
 					});
 
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Unauthorized",
 						message:
 							"You do not have permission to perform an HTTP GET request on this route",
@@ -933,10 +927,10 @@ describe("Contact route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testReqPayload,
+						body: testReqBody,
 					});
 
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Unauthorized",
 						message:
 							"You do not have permission to perform an HTTP PUT request on this route",
@@ -953,7 +947,7 @@ describe("Contact route", () => {
 						url: "/",
 					});
 
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Unauthorized",
 						message:
 							"You do not have permission to perform an HTTP POST request on this route",
