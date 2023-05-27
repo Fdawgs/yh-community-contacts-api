@@ -141,7 +141,7 @@ async function route(server, options) {
 					"Contact record does not exist or has already been deleted"
 				);
 			} catch (err) {
-				return res.internalServerError(err);
+				return res.internalServerError(err.message);
 			}
 		},
 	});
@@ -179,7 +179,7 @@ async function route(server, options) {
 				}
 				return res.notFound("Contact record not found");
 			} catch (err) {
-				return res.internalServerError(err);
+				return res.internalServerError(err.message);
 			}
 		},
 	});
@@ -356,7 +356,7 @@ async function route(server, options) {
 
 				return server.cleanObject(contactsObject);
 			} catch (err) {
-				return res.internalServerError(err);
+				return res.internalServerError(err.message);
 			}
 		},
 	});
@@ -406,7 +406,7 @@ async function route(server, options) {
 					return contact;
 				}
 
-				throw new Error();
+				throw new Error("Failed to create contact record");
 			} catch (err) {
 				// Primary key constraint 'ck_destination_match'
 				if (err.message.includes("ck_destination_match")) {
@@ -415,7 +415,7 @@ async function route(server, options) {
 					);
 				}
 
-				return res.internalServerError(err);
+				return res.internalServerError(err.message);
 			}
 		},
 	});
@@ -464,7 +464,7 @@ async function route(server, options) {
 					);
 				}
 
-				return res.internalServerError(err);
+				return res.internalServerError(err.message);
 			}
 		},
 	});
