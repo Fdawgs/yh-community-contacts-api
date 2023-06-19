@@ -268,7 +268,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Not Found",
 						message:
 							"Contact record does not exist or has already been deleted",
@@ -292,7 +292,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Internal Server Error",
 						message: "Failed to connect to DB",
 						statusCode: 500,
@@ -319,7 +319,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						id: testId,
 						meta: {
 							created: "2022-01-18T14:07:48.190Z",
@@ -347,7 +347,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Not Found",
 						message: "Contact record not found",
 						statusCode: 404,
@@ -370,7 +370,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Internal Server Error",
 						message: "Failed to connect to DB",
 						statusCode: 500,
@@ -407,7 +407,9 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.body)).toEqual(expSearchResult);
+					expect(JSON.parse(response.body)).toStrictEqual(
+						expSearchResult
+					);
 					expect(response.statusCode).toBe(200);
 				});
 
@@ -432,7 +434,9 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.body)).toEqual(expSearchResult);
+					expect(JSON.parse(response.body)).toStrictEqual(
+						expSearchResult
+					);
 					expect(response.statusCode).toBe(200);
 				});
 
@@ -457,7 +461,9 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.body)).toEqual(expSearchResult);
+					expect(JSON.parse(response.body)).toStrictEqual(
+						expSearchResult
+					);
 					expect(response.statusCode).toBe(200);
 				});
 
@@ -477,7 +483,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						link: expect.any(String),
 						meta: {
 							pagination: {
@@ -509,7 +515,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(0);
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Bad Request",
 						message: "No valid query string parameters provided",
 						statusCode: 400,
@@ -535,7 +541,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Internal Server Error",
 						message: "Failed to connect to DB",
 						statusCode: 500,
@@ -591,7 +597,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(0);
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Unsupported Media Type",
 						message:
 							"Unsupported Media Type: application/javascript",
@@ -621,7 +627,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Not Found",
 						message:
 							"Contact record does not exist or has already been deleted",
@@ -649,7 +655,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Internal Server Error",
 						message: "Failed to connect to DB",
 						statusCode: 500,
@@ -676,7 +682,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Bad Request",
 						message:
 							"A contact record with this match.type and match.value combination already exists",
@@ -708,7 +714,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						id: testId,
 					});
 					expect(response.headers).toMatchObject({
@@ -738,7 +744,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(0);
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Unsupported Media Type",
 						message:
 							"Unsupported Media Type: application/javascript",
@@ -768,7 +774,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Internal Server Error",
 						message: "Failed to create contact record",
 						statusCode: 500,
@@ -795,7 +801,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Internal Server Error",
 						message: "Failed to connect to DB",
 						statusCode: 500,
@@ -822,7 +828,7 @@ describe("Contact route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Bad Request",
 						message:
 							"A contact record with this match.type and match.value combination already exists",
@@ -865,7 +871,7 @@ describe("Contact route", () => {
 						url: `/${testId}`,
 					});
 
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Unauthorized",
 						message:
 							"You do not have permission to perform an HTTP DELETE request on this route",
@@ -882,7 +888,7 @@ describe("Contact route", () => {
 						url: `/${testId}`,
 					});
 
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Unauthorized",
 						message:
 							"You do not have permission to perform an HTTP GET request on this route",
@@ -909,7 +915,7 @@ describe("Contact route", () => {
 						},
 					});
 
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Unauthorized",
 						message:
 							"You do not have permission to perform an HTTP GET request on this route",
@@ -930,7 +936,7 @@ describe("Contact route", () => {
 						body: testReqBody,
 					});
 
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Unauthorized",
 						message:
 							"You do not have permission to perform an HTTP PUT request on this route",
@@ -947,7 +953,7 @@ describe("Contact route", () => {
 						url: "/",
 					});
 
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Unauthorized",
 						message:
 							"You do not have permission to perform an HTTP POST request on this route",
