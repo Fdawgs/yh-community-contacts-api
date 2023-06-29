@@ -210,6 +210,7 @@ describe("Contact route", () => {
 				await server
 					.register(cleanObject)
 					.register(convertDateParamOperator)
+					.decorateRequest("scopes", null)
 					.addHook("preValidation", async (req) => {
 						req.scopes = [
 							"contact.read",
