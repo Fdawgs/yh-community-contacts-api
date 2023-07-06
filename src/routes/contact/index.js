@@ -217,9 +217,9 @@ async function route(server, options) {
 						escSq`(LOWER(match_value) LIKE LOWER('${req.query[
 							"match.value"
 						]
-							.replace(/%/g, "!%")
-							.replace(/_/g, "!_")
-							.replace(/\*/g, "%")}') ESCAPE '!')`
+							.replace(/%/gu, "!%")
+							.replace(/_/gu, "!_")
+							.replace(/\*/gu, "%")}') ESCAPE '!')`
 					);
 				}
 
@@ -230,9 +230,9 @@ async function route(server, options) {
 						escSq`(LOWER(match_receiver) LIKE LOWER('${req.query[
 							"match.receiver"
 						]
-							.replace(/%/g, "!%")
-							.replace(/_/g, "!_")
-							.replace(/\*/g, "%")}') ESCAPE '!')`
+							.replace(/%/gu, "!%")
+							.replace(/_/gu, "!_")
+							.replace(/\*/gu, "%")}') ESCAPE '!')`
 					);
 				}
 
