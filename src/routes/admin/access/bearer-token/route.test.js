@@ -544,7 +544,7 @@ describe("Access route", () => {
 				expect(JSON.parse(response.body)).toStrictEqual({
 					id: testId,
 					access: {
-						token: expect.stringMatching(/^ydhcc_/i),
+						token: expect.stringMatching(/^ydhcc_/iu),
 						scopes: testReqBody.scopes,
 					},
 				});
@@ -584,7 +584,7 @@ describe("Access route", () => {
 				expect(JSON.parse(response.body)).toStrictEqual({
 					id: testId,
 					access: {
-						token: expect.stringMatching(/^ydhcc_/i),
+						token: expect.stringMatching(/^ydhcc_/iu),
 						scopes: testReqBody.scopes,
 					},
 				});
