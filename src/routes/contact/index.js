@@ -1,3 +1,5 @@
+"use strict";
+
 const secJSON = require("secure-json-parse");
 
 // Import plugins
