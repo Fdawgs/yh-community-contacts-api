@@ -199,6 +199,9 @@ describe("Contact route", () => {
 	connectionTests.forEach((testObject) => {
 		describe(`${testObject.testName} - with request scopes`, () => {
 			let config;
+			/**
+			 * @type {Fastify.FastifyInstance}
+			 */
 			let server;
 
 			beforeAll(async () => {
@@ -404,8 +407,8 @@ describe("Contact route", () => {
 							"telecom.value": testReqBody.telecom[0].value,
 							"meta.created": testDate1,
 							"meta.last_updated": testDate1,
-							per_page: testPage,
-							page: testPage,
+							per_page: `${testPage}`,
+							page: `${testPage}`,
 						},
 					});
 
@@ -844,6 +847,9 @@ describe("Contact route", () => {
 
 		describe(`${testObject.testName} - without request scopes`, () => {
 			let config;
+			/**
+			 * @type {Fastify.FastifyInstance}
+			 */
 			let server;
 
 			beforeAll(async () => {
@@ -913,8 +919,8 @@ describe("Contact route", () => {
 							"telecom.value": testReqBody.telecom[0].value,
 							"meta.created": testDate1,
 							"meta.last_updated": testDate1,
-							per_page: testPage,
-							page: testPage,
+							per_page: `${testPage}`,
+							page: `${testPage}`,
 						},
 					});
 
