@@ -45,7 +45,10 @@ WHERE id = '${id}';`;
 // DISTINCT SQL keyword needed as CROSS APPLY causes duplicates
 const contactGetSearch = ({ client, whereClausePredicates, page, perPage }) => `
 SELECT COUNT(DISTINCT id)${
-	// Cast from string to int - https://node-postgres.com/features/types
+	/**
+	 * Cast from string to int.
+	 * @see {@link https://node-postgres.com/features/types | Node-Postgres Type Parsing}
+	 */
 	client === "postgresql" ? "::int" : ""
 } AS total
 FROM lookup.contacts
