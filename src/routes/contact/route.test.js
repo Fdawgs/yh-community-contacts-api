@@ -284,7 +284,9 @@ describe("Contact route", () => {
 				it("Returns HTTP status code 500 if connection issue encountered", async () => {
 					const mockQueryFn = jest
 						.fn()
-						.mockRejectedValue(Error("Failed to connect to DB"));
+						.mockRejectedValue(
+							new Error("Failed to connect to DB")
+						);
 
 					server.db = {
 						query: mockQueryFn,
@@ -362,7 +364,9 @@ describe("Contact route", () => {
 				it("Returns HTTP status code 500 if connection issue encountered", async () => {
 					const mockQueryFn = jest
 						.fn()
-						.mockRejectedValue(Error("Failed to connect to DB"));
+						.mockRejectedValue(
+							new Error("Failed to connect to DB")
+						);
 
 					server.db = {
 						query: mockQueryFn,
@@ -530,7 +534,9 @@ describe("Contact route", () => {
 				it("Returns HTTP status code 500 if connection issue encountered", async () => {
 					const mockQueryFn = jest
 						.fn()
-						.mockRejectedValue(Error("Failed to connect to DB"));
+						.mockRejectedValue(
+							new Error("Failed to connect to DB")
+						);
 
 					server.db = {
 						query: mockQueryFn,
@@ -643,7 +649,9 @@ describe("Contact route", () => {
 				it("Returns HTTP status code 500 if connection issue encountered", async () => {
 					const mockQueryFn = jest
 						.fn()
-						.mockRejectedValue(Error("Failed to connect to DB"));
+						.mockRejectedValue(
+							new Error("Failed to connect to DB")
+						);
 
 					server.db = {
 						query: mockQueryFn,
@@ -670,7 +678,7 @@ describe("Contact route", () => {
 				it("Returns HTTP status code 500 if primary key constraint violation occurs", async () => {
 					const mockQueryFn = jest
 						.fn()
-						.mockRejectedValue(Error("ck_destination_match"));
+						.mockRejectedValue(new Error("ck_destination_match"));
 
 					server.db = {
 						query: mockQueryFn,
@@ -789,7 +797,9 @@ describe("Contact route", () => {
 				it("Returns HTTP status code 500 if connection issue encountered", async () => {
 					const mockQueryFn = jest
 						.fn()
-						.mockRejectedValue(Error("Failed to connect to DB"));
+						.mockRejectedValue(
+							new Error("Failed to connect to DB")
+						);
 
 					server.db = {
 						query: mockQueryFn,
@@ -816,7 +826,7 @@ describe("Contact route", () => {
 				it("Returns HTTP status code 500 if primary key constraint violation occurs", async () => {
 					const mockQueryFn = jest
 						.fn()
-						.mockRejectedValue(Error("ck_destination_match"));
+						.mockRejectedValue(new Error("ck_destination_match"));
 
 					server.db = {
 						query: mockQueryFn,
