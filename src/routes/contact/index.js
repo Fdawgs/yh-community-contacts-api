@@ -268,11 +268,11 @@ async function route(server, options) {
 					created.forEach((createDate) => {
 						let date = createDate;
 						const operator = server.convertDateParamOperator(
-							date.substring(0, 2)
+							date.slice(0, 2)
 						);
 
-						if (Number.isNaN(Number(date.substring(0, 2)))) {
-							date = date.substring(2, date.length);
+						if (Number.isNaN(Number(date.slice(0, 2)))) {
+							date = date.slice(2);
 						}
 
 						whereArray.push(escSq`(created ${operator} '${date}')`);
@@ -293,11 +293,11 @@ async function route(server, options) {
 					lastUpdated.forEach((lastUpdatedDate) => {
 						let date = lastUpdatedDate;
 						const operator = server.convertDateParamOperator(
-							date.substring(0, 2)
+							date.slice(0, 2)
 						);
 
-						if (Number.isNaN(Number(date.substring(0, 2)))) {
-							date = date.substring(2, date.length);
+						if (Number.isNaN(Number(date.slice(0, 2)))) {
+							date = date.slice(2);
 						}
 
 						whereArray.push(
