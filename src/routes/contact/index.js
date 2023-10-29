@@ -23,6 +23,11 @@ const {
 	contactPut,
 } = require("./query");
 
+// Cache immutable regex as they are expensive to create and garbage collect
+const sqlLikePercRegex = /%/gu;
+const sqlLikeUnderRegex = /_/gu;
+const sqlLikeWildRegex = /\*/gu;
+
 /**
  * @author Frazer Smith
  * @description Builds contact object from database results.
@@ -219,9 +224,9 @@ async function route(server, options) {
 						escSq`(LOWER(match_value) LIKE LOWER('${req.query[
 							"match.value"
 						]
-							.replace(/%/gu, "!%")
-							.replace(/_/gu, "!_")
-							.replace(/\*/gu, "%")}') ESCAPE '!')`
+							.replace(sqlLikePercRegex, "!%")
+							.replace(sqlLikeUnderRegex, "!_")
+							.replace(sqlLikeWildRegex, "%")}') ESCAPE '!')`
 					);
 				}
 
@@ -232,9 +237,9 @@ async function route(server, options) {
 						escSq`(LOWER(match_receiver) LIKE LOWER('${req.query[
 							"match.receiver"
 						]
-							.replace(/%/gu, "!%")
-							.replace(/_/gu, "!_")
-							.replace(/\*/gu, "%")}') ESCAPE '!')`
+							.replace(sqlLikePercRegex, "!%")
+							.replace(sqlLikeUnderRegex, "!_")
+							.replace(sqlLikeWildRegex, "%")}') ESCAPE '!')`
 					);
 				}
 
