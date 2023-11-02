@@ -9,10 +9,10 @@
 
 # Yeovil Hospital - Community Contacts RESTful CRUD API
 
-[![GitHub Release](https://img.shields.io/github/release/Fdawgs/yh-community-contacts-api.svg)](https://github.com/Fdawgs/yh-community-contacts-api/releases/latest/)
-![Build Status](https://github.com/Fdawgs/yh-community-contacts-api/workflows/CI/badge.svg?branch=main)
-[![Coverage Status](https://coveralls.io/repos/github/Fdawgs/yh-community-contacts-api/badge.svg?branch=main)](https://coveralls.io/github/Fdawgs/yh-community-contacts-api?branch=main)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)
+[![GitHub release](https://img.shields.io/github/release/Fdawgs/yh-community-contacts-api.svg)](https://github.com/Fdawgs/yh-community-contacts-api/releases/latest/)
+[![Build status](https://github.com/Fdawgs/yh-community-contacts-api/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Fdawgs/yh-community-contacts-api/actions/workflows/ci.yml)
+[![Coverage status](https://coveralls.io/repos/github/Fdawgs/yh-community-contacts-api/badge.svg?branch=main)](https://coveralls.io/github/Fdawgs/yh-community-contacts-api?branch=main)
+[![code style: Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)
 
 > Yeovil Hospital's RESTful CRUD API for community team contact details
 
