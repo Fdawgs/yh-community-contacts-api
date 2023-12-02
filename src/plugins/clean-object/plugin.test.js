@@ -22,9 +22,7 @@ describe("Clean-Object plugin", () => {
 		await server.ready();
 	});
 
-	afterAll(async () => {
-		await server.close();
-	});
+	afterAll(async () => server.close());
 
 	it("Recursively removes keys from request object where value is undefined or null", async () => {
 		const response = await server.inject({

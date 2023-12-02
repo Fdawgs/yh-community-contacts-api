@@ -18,9 +18,7 @@ describe("Convert-Date-Param-Operator plugin", () => {
 		await server.ready();
 	});
 
-	afterAll(async () => {
-		await server.close();
-	});
+	afterAll(async () => server.close());
 
 	it("Converts date param operators to expected value", async () => {
 		const values = {
