@@ -1,5 +1,62 @@
 # Changelog
 
+## [7.1.13](https://github.com/Fdawgs/yh-community-contacts-api/compare/v7.1.12...v7.1.13) (2023-12-02)
+
+
+### Bug fixes
+
+* **server:** basic auth `www-authenticate` response header ([11919c0](https://github.com/Fdawgs/yh-community-contacts-api/commit/11919c0e2a73c0f56762604d29ac2f1f30a10e64))
+
+
+### Dependencies
+
+* **deps-dev:** bump @types/jest from 29.5.6 to 29.5.7 ([#906](https://github.com/Fdawgs/yh-community-contacts-api/issues/906)) ([f752b00](https://github.com/Fdawgs/yh-community-contacts-api/commit/f752b006d0b3431ae88820840e862b82f70142c7))
+* **deps-dev:** bump @types/jest from 29.5.7 to 29.5.10 ([#912](https://github.com/Fdawgs/yh-community-contacts-api/issues/912)) ([a55c63e](https://github.com/Fdawgs/yh-community-contacts-api/commit/a55c63ebd174839c80058654ac72a08916e43578))
+* **deps-dev:** bump autocannon from 7.12.0 to 7.14.0 ([#914](https://github.com/Fdawgs/yh-community-contacts-api/issues/914)) ([164caa5](https://github.com/Fdawgs/yh-community-contacts-api/commit/164caa50029f96accdfa182922a939a3ad4feac0))
+* **deps-dev:** bump esbuild from 0.19.5 to 0.19.8 ([0b38b74](https://github.com/Fdawgs/yh-community-contacts-api/commit/0b38b742561255d3726194e3793592e639528e35))
+* **deps-dev:** bump eslint-config-prettier from 9.0.0 to 9.1.0 ([26810ad](https://github.com/Fdawgs/yh-community-contacts-api/commit/26810ad1bb24d194e0b609cfd2c3af131ed7a0e7))
+* **deps-dev:** bump nodemon from 3.0.1 to 3.0.2 ([#923](https://github.com/Fdawgs/yh-community-contacts-api/issues/923)) ([f8d01b8](https://github.com/Fdawgs/yh-community-contacts-api/commit/f8d01b88ab53ed452b597c3f97cd47874f99bccd))
+* **deps-dev:** bump playwright from 1.39.0 to 1.40.0 ([#913](https://github.com/Fdawgs/yh-community-contacts-api/issues/913)) ([74be52d](https://github.com/Fdawgs/yh-community-contacts-api/commit/74be52d3ce7784e5b658a8b6d025736bde28ffde))
+* **deps-dev:** bump playwright from 1.40.0 to 1.40.1 ([#918](https://github.com/Fdawgs/yh-community-contacts-api/issues/918)) ([5f5e03b](https://github.com/Fdawgs/yh-community-contacts-api/commit/5f5e03b9de585996eb370cb495ebaa06851167cd))
+* **deps-dev:** bump prettier from 3.0.3 to 3.1.0 ([#915](https://github.com/Fdawgs/yh-community-contacts-api/issues/915)) ([bfefb28](https://github.com/Fdawgs/yh-community-contacts-api/commit/bfefb28c9c4adfe48fd0c00a1ee9654680afceac))
+* **deps-dev:** bump the commitlint group with 2 updates ([#909](https://github.com/Fdawgs/yh-community-contacts-api/issues/909)) ([db925e8](https://github.com/Fdawgs/yh-community-contacts-api/commit/db925e88b40c92f2a6d6e0acd7ed642a10bf84c4))
+* **deps-dev:** bump the eslint group with 1 update ([#922](https://github.com/Fdawgs/yh-community-contacts-api/issues/922)) ([c5b507f](https://github.com/Fdawgs/yh-community-contacts-api/commit/c5b507fc75dfa8f77a3979d82ac4a43dc20fa253))
+* **deps-dev:** bump the eslint group with 2 updates ([#911](https://github.com/Fdawgs/yh-community-contacts-api/issues/911)) ([2cd9615](https://github.com/Fdawgs/yh-community-contacts-api/commit/2cd9615c06b088202245ac17d4bb81dec965b59d))
+* **deps-dev:** remove broken eslint-plugin-security-node ([c06aaf0](https://github.com/Fdawgs/yh-community-contacts-api/commit/c06aaf0918f0bcec43d77b7ff588ac6a44af145d))
+* **deps:** bump fastify-disablecache from 3.1.6 to 3.1.7 ([#920](https://github.com/Fdawgs/yh-community-contacts-api/issues/920)) ([5245a5a](https://github.com/Fdawgs/yh-community-contacts-api/commit/5245a5af42c92b4e54ffbd9b25bfc0c649819479))
+* **deps:** bump fastify-floc-off from 2.1.6 to 2.1.7 ([#917](https://github.com/Fdawgs/yh-community-contacts-api/issues/917)) ([8a33b13](https://github.com/Fdawgs/yh-community-contacts-api/commit/8a33b13957909ebd886ef94597b4a46b03459091))
+* **deps:** bump fastify-json-to-xml from 1.1.8 to 1.1.9 ([#919](https://github.com/Fdawgs/yh-community-contacts-api/issues/919)) ([ac563a6](https://github.com/Fdawgs/yh-community-contacts-api/commit/ac563a60b9ce108d7f1d244a85698b21a988ccd7))
+* **deps:** bump the fastify-core group with 7 updates ([83ac67c](https://github.com/Fdawgs/yh-community-contacts-api/commit/83ac67c74686d08fcb3d8732e95c51f3cbd29a37))
+* **deps:** bump the pino-core group with 1 update ([#910](https://github.com/Fdawgs/yh-community-contacts-api/issues/910)) ([ca6c76c](https://github.com/Fdawgs/yh-community-contacts-api/commit/ca6c76c5d26343eb955a13ae4e9500685a6db3ab))
+* **deps:** bump transistive dependencies ([c71968d](https://github.com/Fdawgs/yh-community-contacts-api/commit/c71968d3ecfec18322fb8b4a61ed6bac9c0041a7))
+* **docker:** bump node image from 18-alpine to 20-alpine ([c8985f0](https://github.com/Fdawgs/yh-community-contacts-api/commit/c8985f0b843c153f0cb92b75264b18664148ce23))
+
+
+### Miscellaneous
+
+* **.eslintrc:** update no-param-reassign rule to ignore obj refs ([114075a](https://github.com/Fdawgs/yh-community-contacts-api/commit/114075a6d344d9ccfdba6665fde55af2c4802e4a))
+* **package:** install playwright browsers on install ([03f17c6](https://github.com/Fdawgs/yh-community-contacts-api/commit/03f17c6017367df5d1dd8b8874b78fc27d0ff2c0))
+* **package:** remove typescript exts from lint script ([90d8f0b](https://github.com/Fdawgs/yh-community-contacts-api/commit/90d8f0bfc9a44bfd24def7fd4c6682fa90518ede))
+
+
+### Continuous integration
+
+* **ci:** add node 20 to test matrix ([303741f](https://github.com/Fdawgs/yh-community-contacts-api/commit/303741f2d17404e026a7b78444822c5ca437c9e0))
+* **dependabot:** ignore release-please-action major updates ([3fa92ae](https://github.com/Fdawgs/yh-community-contacts-api/commit/3fa92ae88db74a416d711d7634b60038952a90ec))
+* **deps:** bump actions/github-script from 6 to 7 ([#908](https://github.com/Fdawgs/yh-community-contacts-api/issues/908)) ([2d978ed](https://github.com/Fdawgs/yh-community-contacts-api/commit/2d978edf5713d01250c309b168586a8856faa3b6))
+
+
+### Improvements
+
+* **plugins/clean-object:** remove useless obj reference ([730cbc1](https://github.com/Fdawgs/yh-community-contacts-api/commit/730cbc1f48f874f03630a0de34d2340471572ea0))
+* **plugins/convert-date-param-operator:** use object over `switch` ([5d0895c](https://github.com/Fdawgs/yh-community-contacts-api/commit/5d0895c3a161fcc80f1afce7afa4dc27cf4359cd))
+
+
+### Documentation
+
+* **readme:** fix broken ci badge link ([ca8fb19](https://github.com/Fdawgs/yh-community-contacts-api/commit/ca8fb1907f916d9e3386938458c4beebd22c04b2))
+* **readme:** update maintenance note ([65350ce](https://github.com/Fdawgs/yh-community-contacts-api/commit/65350ce6fdff545ad01bc8ede67b6b1f8f4492a3))
+
 ## [7.1.12](https://github.com/Fdawgs/yh-community-contacts-api/compare/v7.1.11...v7.1.12) (2023-10-29)
 
 
