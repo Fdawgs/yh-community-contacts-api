@@ -219,9 +219,7 @@ describe("Access route", () => {
 				.ready();
 		});
 
-		afterAll(async () => {
-			await server.close();
-		});
+		afterAll(async () => server.close());
 
 		describe("/:id DELETE requests", () => {
 			it("Deletes a bearer token record", async () => {

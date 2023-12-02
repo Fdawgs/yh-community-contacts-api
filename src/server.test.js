@@ -284,9 +284,7 @@ describe("Server deployment", () => {
 				await server.register(startServer, config).ready();
 			});
 
-			afterAll(async () => {
-				await server.close();
-			});
+			afterAll(async () => server.close());
 
 			describe("/admin/healthcheck route", () => {
 				it("Returns `ok`", async () => {
@@ -388,9 +386,7 @@ describe("Server deployment", () => {
 				await server.register(startServer, config).ready();
 			});
 
-			afterAll(async () => {
-				await server.close();
-			});
+			afterAll(async () => server.close());
 
 			describe("/admin/healthcheck route", () => {
 				it("Returns `ok`", async () => {
@@ -578,9 +574,7 @@ describe("Server deployment", () => {
 				await server.register(startServer, config).ready();
 			});
 
-			afterAll(async () => {
-				await server.close();
-			});
+			afterAll(async () => server.close());
 
 			describe("/admin/access/bearer-token/:id route", () => {
 				/** @todo use `it.concurrent.each()` once it is no longer experimental */
@@ -958,9 +952,7 @@ describe("Server deployment", () => {
 			await server.register(startServer, config).listen(config.fastify);
 		});
 
-		afterAll(async () => {
-			await server.close();
-		});
+		afterAll(async () => server.close());
 
 		describe("Content", () => {
 			describe("/docs route", () => {
@@ -1049,9 +1041,7 @@ describe("Server deployment", () => {
 			await server.ready();
 		});
 
-		afterAll(async () => {
-			await server.close();
-		});
+		afterAll(async () => server.close());
 
 		describe("/error route", () => {
 			it("Returns HTTP status code 500", async () => {

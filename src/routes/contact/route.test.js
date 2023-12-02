@@ -229,9 +229,7 @@ describe("Contact route", () => {
 					.ready();
 			});
 
-			afterAll(async () => {
-				await server.close();
-			});
+			afterAll(async () => server.close());
 
 			describe("/:id DELETE requests", () => {
 				it("Deletes a contact record", async () => {
@@ -875,9 +873,7 @@ describe("Contact route", () => {
 					.ready();
 			});
 
-			afterAll(async () => {
-				await server.close();
-			});
+			afterAll(async () => server.close());
 
 			describe("/:id DELETE requests", () => {
 				it("Returns HTTP status code 401 if not in permitted access", async () => {

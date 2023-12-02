@@ -50,9 +50,7 @@ describe("DB plugin", () => {
 			await server.ready();
 		});
 
-		afterAll(async () => {
-			await server.close();
-		});
+		afterAll(async () => server.close());
 
 		it("Returns 'test' string", async () => {
 			const response = await server.inject({
@@ -88,9 +86,7 @@ describe("DB plugin", () => {
 			await server.ready();
 		});
 
-		afterAll(async () => {
-			await server.close();
-		});
+		afterAll(async () => server.close());
 
 		it("Returns 'test' string", async () => {
 			const response = await server.inject({
