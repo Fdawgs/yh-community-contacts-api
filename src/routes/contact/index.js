@@ -50,7 +50,7 @@ function buildContact(results, req) {
 				? new URL(
 						`/contact/${results.id}`,
 						`${req.protocol}://${req.hostname}`
-				  ).href
+					).href
 				: undefined,
 		id: results.id,
 		match: {
