@@ -40,7 +40,7 @@ const sqlLikeWildRegex = /\*/gu;
  * @param {string} results.created - Date community contact record was created.
  * @param {string} [results.last_updated] - Date community contact record was last updated.
  * @param {object} [req] - Fastify Request object.
- * @returns {object} community contact record.
+ * @returns {object} Community contact record.
  */
 function buildContact(results, req) {
 	return {
@@ -60,7 +60,7 @@ function buildContact(results, req) {
 		},
 		/**
 		 * Database client packages return results in different structures:
-		 * mssql returns JSON as string; pg returns JSON as object
+		 * mssql returns JSON as string; pg returns JSON as object.
 		 */
 		telecom:
 			typeof results.telecom === "string"
@@ -139,7 +139,7 @@ async function route(server, options) {
 
 				/**
 				 * Database client packages return results in different structures,
-				 * (mssql uses rowsAffected, pg uses rowCount) thus the optional chaining
+				 * (mssql uses rowsAffected, pg uses rowCount) thus the optional chaining.
 				 */
 				if (results.rowsAffected?.[0] > 0 || results.rowCount > 0) {
 					return res.status(204).send();
@@ -177,7 +177,7 @@ async function route(server, options) {
 
 				/**
 				 * Database client packages return results in different structures,
-				 * (mssql uses recordsets, pg uses rows) thus the optional chaining
+				 * (mssql uses recordsets, pg uses rows) thus the optional chaining.
 				 */
 				const contact = results.recordsets?.[0] ?? results.rows;
 
@@ -262,8 +262,8 @@ async function route(server, options) {
 				}
 
 				/**
-				 * meta.created - Datetime when community contact record was created,
-				 * can be a string or array
+				 * Meta.created - Datetime when community contact record was created,
+				 * can be a string or array.
 				 */
 				if (req.query?.["meta.created"]) {
 					const created = Array.isArray(req.query["meta.created"])
@@ -285,8 +285,8 @@ async function route(server, options) {
 				}
 
 				/**
-				 * meta.last_updated - Last modified datetime of community contact record,
-				 * can be a string or array
+				 * Meta.last_updated - Last modified datetime of community contact record,
+				 * can be a string or array.
 				 */
 				if (req.query?.["meta.last_updated"]) {
 					const lastUpdated = Array.isArray(
@@ -316,8 +316,8 @@ async function route(server, options) {
 				const perPage = parseInt(req.query.per_page, 10);
 
 				/**
-				 * Stops SQL query with empty WHERE clause from being made and throwing errors
-				 * @todo replace with JSON Schema subschemas when supported
+				 * Stops SQL query with empty WHERE clause from being made and throwing errors.
+				 * @todo Replace with JSON Schema subschemas when supported.
 				 */
 				if (whereArray.length === 0) {
 					return res.badRequest(
@@ -337,7 +337,7 @@ async function route(server, options) {
 
 				/**
 				 * Database client packages return results in different structures,
-				 * (mssql uses recordsets, pg uses rows) thus the optional chaining
+				 * (mssql uses recordsets, pg uses rows) thus the optional chaining.
 				 */
 				const count =
 					results.recordsets?.[0]?.[0]?.total ??
@@ -398,7 +398,7 @@ async function route(server, options) {
 
 				/**
 				 * Database client packages return results in different structures,
-				 * (mssql uses recordsets, pg uses rows) thus the optional chaining
+				 * (mssql uses recordsets, pg uses rows) thus the optional chaining.
 				 */
 				let contact = results.recordsets?.[0] ?? results.rows;
 
@@ -457,7 +457,7 @@ async function route(server, options) {
 
 				/**
 				 * Database client packages return results in different structures,
-				 * (mssql uses rowsAffected, pg uses rowCount) thus the optional chaining
+				 * (mssql uses rowsAffected, pg uses rowCount) thus the optional chaining.
 				 */
 				if (results.rowsAffected?.[0] > 0 || results.rowCount > 0) {
 					return res.status(204).send();

@@ -582,7 +582,7 @@ describe("Server deployment", () => {
 			afterAll(async () => server.close());
 
 			describe("/admin/access/bearer-token/:id route", () => {
-				/** @todo use `it.concurrent.each()` once it is no longer experimental */
+				/** @todo Use `it.concurrent.each()` once it is no longer experimental. */
 				it.each([
 					{
 						testName: "basic auth username invalid",
