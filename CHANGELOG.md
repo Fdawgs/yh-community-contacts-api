@@ -1,5 +1,31 @@
 # Changelog
 
+## [7.1.14](https://github.com/Fdawgs/yh-community-contacts-api/compare/v7.1.13...v7.1.14) (2023-12-19)
+
+
+### Dependencies
+
+* **deps-dev:** bump @types/jest from 29.5.10 to 29.5.11 ([#929](https://github.com/Fdawgs/yh-community-contacts-api/issues/929)) ([eb980b7](https://github.com/Fdawgs/yh-community-contacts-api/commit/eb980b79318722084f04bc642f26599884a4f9a5))
+* **deps-dev:** bump esbuild from 0.19.8 to 0.19.10 ([f5ac36b](https://github.com/Fdawgs/yh-community-contacts-api/commit/f5ac36bb5a7e8f4c7537bff6e8d6a96df2dfb613))
+* **deps-dev:** bump prettier from 3.1.0 to 3.1.1 ([#930](https://github.com/Fdawgs/yh-community-contacts-api/issues/930)) ([755d107](https://github.com/Fdawgs/yh-community-contacts-api/commit/755d1072197da077620953f5c73c06bf1121a204))
+* **deps-dev:** bump the eslint group with 5 updates ([#934](https://github.com/Fdawgs/yh-community-contacts-api/issues/934)) ([c189462](https://github.com/Fdawgs/yh-community-contacts-api/commit/c189462847db8974a624140a49114b90b45a9004))
+* **deps:** bump the fastify-core group with 5 updates ([#935](https://github.com/Fdawgs/yh-community-contacts-api/issues/935)) ([014be62](https://github.com/Fdawgs/yh-community-contacts-api/commit/014be6246b0539dd89fce6e4013d2b004dc6bd8d))
+* **deps:** bump the pino-core group with 1 update ([#927](https://github.com/Fdawgs/yh-community-contacts-api/issues/927)) ([f784150](https://github.com/Fdawgs/yh-community-contacts-api/commit/f7841505e758fd2c77b4d1b5779133cc1b43b078))
+* **deps:** bump the pino-core group with 2 updates ([#933](https://github.com/Fdawgs/yh-community-contacts-api/issues/933)) ([5f8d36f](https://github.com/Fdawgs/yh-community-contacts-api/commit/5f8d36f79193b0a28aceecd9d33d8e6c49ab751f))
+* **deps:** bump transistive dependencies ([461af02](https://github.com/Fdawgs/yh-community-contacts-api/commit/461af0297dabac371894f6a4b3b48539a2831224))
+
+
+### Miscellaneous
+
+* jsdoc comments must be complete sentences ([c227cd8](https://github.com/Fdawgs/yh-community-contacts-api/commit/c227cd81cb2097db3a96f6ed27c7f0fbd608035b))
+* **plugins/clean-object:** allow mutation ([bba2b7f](https://github.com/Fdawgs/yh-community-contacts-api/commit/bba2b7f76b00efdd7f0bdbe7ec0712b8ae51873d))
+
+
+### Continuous integration
+
+* **deps:** bump actions/upload-artifact from 3 to 4 ([#932](https://github.com/Fdawgs/yh-community-contacts-api/issues/932)) ([cea80bd](https://github.com/Fdawgs/yh-community-contacts-api/commit/cea80bd08ce71e46186c5c12ca4805f74a17a7ff))
+* **deps:** bump github/codeql-action from 2 to 3 ([#925](https://github.com/Fdawgs/yh-community-contacts-api/issues/925)) ([57eea1a](https://github.com/Fdawgs/yh-community-contacts-api/commit/57eea1a4a78f719297d19abf58628f40c4d1df60))
+
 ## [7.1.13](https://github.com/Fdawgs/yh-community-contacts-api/compare/v7.1.12...v7.1.13) (2023-12-02)
 
 
