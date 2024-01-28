@@ -1,5 +1,33 @@
 # Changelog
 
+## [7.1.15](https://github.com/Fdawgs/yh-community-contacts-api/compare/v7.1.14...v7.1.15) (2024-01-28)
+
+
+### Dependencies
+
+* **deps-dev:** bump husky from 8.0.3 to 9.0.6 ([#952](https://github.com/Fdawgs/yh-community-contacts-api/issues/952)) ([1b12389](https://github.com/Fdawgs/yh-community-contacts-api/commit/1b12389fd8c2145bff603df9412f097e8df9b02a))
+* **deps-dev:** bump nodemon from 3.0.2 to 3.0.3 ([#950](https://github.com/Fdawgs/yh-community-contacts-api/issues/950)) ([4b84adf](https://github.com/Fdawgs/yh-community-contacts-api/commit/4b84adf3296d96f8ef793aa77e7c89dcc38c10fd))
+* **deps-dev:** bump playwright from 1.40.1 to 1.41.1 ([#943](https://github.com/Fdawgs/yh-community-contacts-api/issues/943)) ([c67fdf2](https://github.com/Fdawgs/yh-community-contacts-api/commit/c67fdf266aa3dd81d975c273618688f4bb671c8c))
+* **deps-dev:** bump the commitlint group with 2 updates ([#938](https://github.com/Fdawgs/yh-community-contacts-api/issues/938)) ([ff47ace](https://github.com/Fdawgs/yh-community-contacts-api/commit/ff47ace5ad9ae81f049843d93aa3cd7447c262ae))
+* **deps-dev:** bump the eslint group with 3 updates ([#951](https://github.com/Fdawgs/yh-community-contacts-api/issues/951)) ([120a4c8](https://github.com/Fdawgs/yh-community-contacts-api/commit/120a4c8f485e4b8b73b44870acf7787d8bfff471))
+* **deps:** bump dotenv from 16.3.1 to 16.4.1 ([#948](https://github.com/Fdawgs/yh-community-contacts-api/issues/948)) ([585515a](https://github.com/Fdawgs/yh-community-contacts-api/commit/585515ab9f929817b274a0774c4d21c5dbce690d))
+* **deps:** bump fastify-disablecache from 3.1.7 to 3.1.9 ([#946](https://github.com/Fdawgs/yh-community-contacts-api/issues/946)) ([2acf331](https://github.com/Fdawgs/yh-community-contacts-api/commit/2acf33169fe63bf7cea4ca953564dc0428002aaa))
+* **deps:** bump fastify-floc-off from 2.1.7 to 2.1.11 ([#947](https://github.com/Fdawgs/yh-community-contacts-api/issues/947)) ([3b03bee](https://github.com/Fdawgs/yh-community-contacts-api/commit/3b03bee0de878933ce44301bcce17ae374d02369))
+* **deps:** bump fastify-json-to-xml from 1.1.9 to 1.1.11 ([#945](https://github.com/Fdawgs/yh-community-contacts-api/issues/945)) ([c20ce95](https://github.com/Fdawgs/yh-community-contacts-api/commit/c20ce95d5685f6292fb536ebb126e3e1fe0051ad))
+* **deps:** bump mssql from 10.0.1 to 10.0.2 ([#944](https://github.com/Fdawgs/yh-community-contacts-api/issues/944)) ([abda5fc](https://github.com/Fdawgs/yh-community-contacts-api/commit/abda5fcbb1d588a75048fdcff01b4098602092da))
+* **deps:** bump the fastify-core group with 4 updates ([#939](https://github.com/Fdawgs/yh-community-contacts-api/issues/939)) ([8c1c3b7](https://github.com/Fdawgs/yh-community-contacts-api/commit/8c1c3b703f361f6d8215f3e101d0f8331bf58d87))
+* **deps:** bump the pino-core group with 2 updates ([#940](https://github.com/Fdawgs/yh-community-contacts-api/issues/940)) ([9628f6f](https://github.com/Fdawgs/yh-community-contacts-api/commit/9628f6fdfb20c02b62783214ec5d566c80cda6ef))
+
+
+### Miscellaneous
+
+* **funding:** update link ([9c3ac50](https://github.com/Fdawgs/yh-community-contacts-api/commit/9c3ac50b2db71e12eca972a2a05f9a990dffa215))
+
+
+### Continuous integration
+
+* **deps:** bump actions/dependency-review-action from 3 to 4 ([#937](https://github.com/Fdawgs/yh-community-contacts-api/issues/937)) ([e5231e1](https://github.com/Fdawgs/yh-community-contacts-api/commit/e5231e1dcf10adc2e2e5b3cba40dae09deb07f6e))
+
 ## [7.1.14](https://github.com/Fdawgs/yh-community-contacts-api/compare/v7.1.13...v7.1.14) (2023-12-19)
 
 

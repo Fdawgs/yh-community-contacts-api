@@ -1,6 +1,6 @@
 {
 	"name": "yh-community-contacts-api",
-	"version": "7.1.14",
+	"version": "7.1.15",
 	"description": "Yeovil Hospital's RESTful CRUD API for community team contact details",
 	"main": "dist/app.js",
 	"type": "commonjs",
